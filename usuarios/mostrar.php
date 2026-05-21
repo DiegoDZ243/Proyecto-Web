@@ -50,15 +50,15 @@ while($row = $NewConn->GetRows($result)){
     echo "<td>".$row[5]."</td>";
     echo "<td>".$row[6]."</td>";
     echo "<td>
-    <a href='editar.php?id=".$row[0]."'>
-    Editar
-    </a>
+        <a class='editar' href='editar.php?id=".$row[0]."'>
+        Editar
+        </a>
     </td>";
     
     echo "<td>
-    <a href='eliminar.php?id=".$row[0]."'>
-    Eliminar
-    </a>
+        <a class='eliminar' href='eliminar.php?id=".$row[0]."'>
+        Eliminar
+        </a>
     </td>";
 
     echo "</tr>";
