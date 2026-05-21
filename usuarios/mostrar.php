@@ -16,6 +16,7 @@ $result = $NewConn->ExecuteQuery($query);
 <head>
     <meta charset="UTF-8">
     <title>Mostrar Usuarios</title>
+    <link rel="stylesheet" href="css/usuarios.css">
 </head>
 <body>
 
