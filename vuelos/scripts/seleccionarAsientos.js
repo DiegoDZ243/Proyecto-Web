@@ -2,9 +2,11 @@ const contenedorMitadIzquierdaAvion=document.getElementById("avion-mitad1");
 const contenedorMitadDerechaAvion=document.getElementById("avion-mitad2"); 
 const btnConfirmar=document.getElementById("confirmarAsientos"); 
 const dashBoardBoletos=document.getElementById("boletosCuerpo"); 
-
+const valorPasajeros=document.getElementById("pasajeros"); 
 
 let asientosActuales=[];
+let pasajeros=valorPasajeros.value;
+let cont=0;
 
 function generarAsientos(){
     const letrasIzquierda=['A','B','C']; 
@@ -18,18 +20,23 @@ function generarAsientos(){
             asiento.innerHTML=`${letrasIzquierda[j]}${i}`
             asiento.className="asiento";
             asiento.id=`asiento-${asiento.innerText}`;
-           
+            asiento.classList.add("disponible");
             asiento.addEventListener('click',(e)=>{
                 if(asiento.classList.contains('ocupado')) return; 
                 if(asiento.classList.contains('seleccionado')){
                     asientosActuales=asientosActuales.filter(i=>i!==asiento.innerText);
                     quitarAsientoElegido(asiento.innerText); 
+                    cont--; 
                 }else{
+                    if(cont>=pasajeros){
+                        return;
+                    }
                     asientosActuales.push(asiento.innerText);
                     generaAsientoElegido(asiento.innerText); 
+                    cont++; 
                 }
                 asiento.classList.toggle('seleccionado'); 
-                console.log(asientosActuales.toString()); 
+                console.log(cont); 
             }); 
             filaActual.appendChild(asiento); 
         }
@@ -44,6 +51,7 @@ function generarAsientos(){
             asiento.innerHTML=`${letrasDerecha[j]}${i}`;
             asiento.className="asiento";
             asiento.id=`asiento-${asiento.innerText}`;
+            asiento.classList.add("disponible");
             asiento.addEventListener('click',(e)=>{
                 
                 if(asiento.classList.contains('seleccionado')){
@@ -69,7 +77,7 @@ function generaAsientoElegido(asiento){
     asiento_boleto.id=`asientoBoleto-${asiento}`; 
     const numeroAsiento=document.createElement("div"); 
     numeroAsiento.className="boleto-numero"; 
-    numeroAsiento.innerHTML=asiento; 
+    numeroAsiento.innerText="Asiento "+asiento; 
     asiento_boleto.appendChild(numeroAsiento); 
     dashBoardBoletos.appendChild(asiento_boleto); 
 }

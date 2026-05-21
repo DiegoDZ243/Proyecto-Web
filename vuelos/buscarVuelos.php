@@ -96,7 +96,7 @@
 
             <div class="contenedor-tarjetas-vuelos" >
                 <?php $i=0; foreach($listaVuelosBaratos as $v):?>
-                <div class="tarjeta-vuelo" style="background-image: url('<?= htmlspecialchars($v["imagen"]) ?>');">
+                <form method="post" action="seleccionarAsientos.php" class="tarjeta-vuelo" style="background-image: url('<?= htmlspecialchars($v["imagen"]) ?>');">
                     <div class="contenedor-origen-destino">
                         <h4 id="origen-<?= $i ?>"><?= $v["origen"] ?></h4>
                         <h4> a </h4>
@@ -118,16 +118,28 @@
                             <h3 id="salida"><?= $v["hora"] ?></h3>
                         </div>
                     </div>
-
-                </div>
+                    <input name="vuelo" type="number" value="<?= $v["id_vuelo"] ?>" hidden>
+                    <input name="pasajeros" type="number" value="1" hidden>
+                    <button id="btn-<?= $v["id_vuelo"] ?>" hidden></button>
+                </form>
                 <?php endforeach; ?>
             </div>  
         </section>
         <script>
+            
+            const tarjetas = document.querySelectorAll(".tarjeta-vuelo");
+            tarjetas.forEach(element => {
+                element.addEventListener('click',(e)=>{
+                    const boton=element.querySelector("button"); 
+                    boton.click(); 
+                });
+
+            });
+            
             document.querySelector('input[name="pasajeros"]').addEventListener('input', function () {
                 this.value = this.value
-                    .replace(/[^0-9]/g, '') // solo números
-                    .replace(/^0+/, '');    // evita 0001
+                    .replace(/[^0-9]/g, '') 
+                    .replace(/^0+/, '');    
             });
         </script>
 </body>

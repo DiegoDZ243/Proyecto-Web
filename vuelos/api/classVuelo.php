@@ -33,6 +33,22 @@
             return $asientos; 
         }
 
+        public function getPrecio(){
+            
+            $query="select precio from vuelo where id_vuelo=".$this->id_vuelo;
+            $result=$this->NewConn->ExecuteQuery($query); 
+            $asientos=[]; 
+            if($result){
+                while($fila=$this->NewConn->GetRows($result)){
+                    $asientos[]=$fila[0]; 
+                }
+            }else{
+                echo "NOOOO";
+            }
+           
+            return $asientos; 
+        }
+
 
     }
 ?>

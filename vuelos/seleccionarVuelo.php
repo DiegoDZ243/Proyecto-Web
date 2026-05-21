@@ -33,6 +33,7 @@
                 <?php foreach($vuelosFiltrados as $v): ?>
                 <form class="tarjeta-resultado" method="post" action="seleccionarAsientos.php">
                     <input name="vuelo" value="<?= $v["id_vuelo"] ?>" hidden>
+                    <input name="pasajeros" value="<?= $pasajeros ?>" hidden>
                     <div class="contenedor-origen-destino">
                         
                         <div class="origen-a-destino">
