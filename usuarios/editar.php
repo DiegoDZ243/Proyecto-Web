@@ -20,6 +20,7 @@ $row = $NewConn->GetRows($result);
 <head>
     <meta charset="UTF-8">
     <title>Editar Usuario</title>
+    <link rel="stylesheet" href="css/usuarios.css">
 </head>
 <body>
 
