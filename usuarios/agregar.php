@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<div class="contenedor">
+
 <h1>Agregar Usuario</h1>
 
 <form action="insertar.php" method="POST">
@@ -34,6 +36,8 @@
     </button>
 
 </form>
+
+</div>
 
 </body>
 </html>
