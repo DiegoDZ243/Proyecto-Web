@@ -49,6 +49,21 @@
             return $result->free_result(); 
         }
 
+        public function ClearResults(){
+
+            while($this->conn->more_results()){
+
+                $this->conn->next_result();
+
+                $extraResult = $this->conn->store_result();
+
+                if($extraResult){
+                    $extraResult->free();
+                }
+            }
+        }
+        
+
     }
 
 ?>

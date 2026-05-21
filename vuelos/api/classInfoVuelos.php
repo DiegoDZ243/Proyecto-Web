@@ -22,13 +22,15 @@
             if($result){
                 while($fila=$this->NewConn->GetRowsWithColumn($result)){
                     $vuelosActuales[]=[
-                        "id_vuelo"=>$fila["id_vuelo"]
-                        // "origen"=>$fila["origen"],
-                        // "destino"=>$fila["destino"],
-                        // "fecha"=>$fila["fecha"],
-                        // "precio"=>$fila["precio"]
+                        "id_vuelo"=>$fila["id_vuelo"],
+                        "origen"=>$fila["origen"],
+                        "destino"=>$fila["destino"],
+                        "fecha"=>$fila["fecha"],
+                        "precio"=>$fila["precio"]
                     ]; 
                 }
+                $result->free();
+                $this->NewConn->ClearResults();
             }else{
                 echo "Hubo un error con la api de vuelos :'(";
             }
@@ -45,14 +47,21 @@
                     $vuelosBaratos[]=[
                         "id_vuelo"=>$fila["id_vuelo"],
                         "origen"=>$fila["origen"],
-                        "destino"=>$fila["fecha"],
-                        "fecha"=>$fila["fecha"]
+                        "destino"=>$fila["destino"],
+                        "fecha"=>$fila["fecha"],
+                        "precio"=>$fila["precio"],
+                        "hora"=>$fila["hora_salida"],
+                        "imagen"=>$fila["imagen"]
                     ]; 
                 }
+                $result->free();
+                $this->NewConn->ClearResults();
             }else{
                 echo "Hubo un error con la api de vuelos :'(";
             }   
             return $vuelosBaratos;          
         }
+
+        
     }
 ?>

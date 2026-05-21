@@ -9,9 +9,10 @@
     $listaVuelosActuales=$vuelos->getVuelos(); 
 
 
-    // foreach($listaVuelos as $v){
-    //     echo "id_vuelo: ".$v["id_vuelo"]."<br>"; 
-    // }
+    foreach($listaVuelos as $v){
+        echo "id_vuelo: ".$v["id_vuelo"]."<br>"; 
+        echo "imagen: ".$v["imagen"]."<br>";
+    }
 
     echo "<br><br>"; 
 
