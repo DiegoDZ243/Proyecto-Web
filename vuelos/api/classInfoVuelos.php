@@ -62,6 +62,47 @@
             return $vuelosBaratos;          
         }
 
+        public function getDestinos(){
+            $query="call sp_getDestinos()"; 
+            $result=$this->NewConn->ExecuteQuery($query); 
+            $listaDestinos=[]; 
+            if($result){
+                while($fila=$this->NewConn->GetRowsWithColumn($result)){
+                    $listaDestinos[]=[
+                        "id_destino"=>$fila["id_destino"],
+                        "ciudad"=>$fila["ciudad"]
+                    ]; 
+                }
+                $result->free();
+                $this->NewConn->ClearResults();
+            }else{
+                echo "Hubo un error con la api de vuelos :'(";
+            }   
+            return $listaDestinos;          
+        }
+
+        public function getVuelosFiltrado($origen,$destino,$fecha,$pasajeros){
+            $query = "CALL sp_buscarVuelos($origen, $destino, '$fecha', $pasajeros)";
+            $result=$this->NewConn->ExecuteQuery($query); 
+            $listaDeVuelosFiltrados=[]; 
+            if($result){
+                while($fila=$this->NewConn->GetRowsWithColumn($result)){
+                    $listaDeVuelosFiltrados[]=[
+                        "id_vuelo"=>$fila["id_vuelo"],
+                        "origen"=>$fila["origen"],
+                        "destino"=>$fila["destino"],
+                        "fecha"=>$fila["fecha"],
+                        "precio"=>$fila["precio"],
+                        "hora"=>$fila["hora_salida"]
+                    ]; 
+                }
+                $result->free();
+                $this->NewConn->ClearResults();
+            }else{
+                echo "Hubo un error con la api de vuelos :'(";
+            }   
+            return $listaDeVuelosFiltrados;          
+        }
         
     }
 ?>

@@ -57,11 +57,11 @@ CREATE TABLE empleados(
 );
 
 INSERT INTO destinos (id_destino, ciudad,imagen) VALUES
-(1, 'Guadalajara','destinosImg/guadalajara.jpg'),
-(2, 'Monterrey', 'destinosImg/monterrey.jpg'),
-(3, 'Cancún','destinosImg/cancun.jpg'),
-(4, 'Tijuana','destinosImg/tijuana.jpg'),
-(5, 'Mérida','destinosImg/merida.jpg');
+(1, 'Guadalajara','https://cdn.travelconline.com/images/fit-in/2000x0/filters:quality(75):strip_metadata():format(webp)/https%3A%2F%2Ftr2storage.blob.core.windows.net%2Fimagenes%2Fu5mDjrIbRxHc-NDHgnpxembjpeg.jpeg'),
+(2, 'Monterrey', 'https://www.entornoturistico.com/wp-content/uploads/2021/09/Metropolitan-center-en-San-Pedro-Garza-Garci%CC%81a-Monterrey-1280x720.jpg'),
+(3, 'Cancún','https://images.trvl-media.com/place/179995/1d2c3f9b-5a1a-4305-b0e2-9bef30204118.jpg'),
+(4, 'Tijuana','https://www.mexicodesconocido.com.mx/wp-content/uploads/2020/10/Cosas-que-hacer-Tijuana-900x593.jpg'),
+(5, 'Mérida','https://kunukhotel.com/wp-content/uploads/2025/03/Slide_y_Preview_Cosas_que_hacer_en_merida_7d0fbba96e.webp');
 
 INSERT INTO vuelos (id_origen ,fecha, hora_salida, embarque, precio, cupo, id_destino) VALUES
 (2,'2025-07-10', '06:30:00', 'Bloque A, Acceso 1', 1450.00, 43, 1),
@@ -109,6 +109,14 @@ VALUES
 ('Sofia', 'Torres', 'Mendoza', 19000.00, '08:00:00', '17:00:00', 1),
 ('Diego', 'Castro', 'Vega', 16000.00, '09:00:00', '18:00:00', 1);
 
+-- Creación de trigger para automatizar la actualizacion del cupo en vuelos
+delimiter $
+create trigger trigger_cupo after insert on boletos
+for each row
+	begin
+		update vuelos set cupo=cupo-1 where id_vuelo=new.id_vuelo; 
+    end $
+delimiter ;
 
 -- PROCEDIMIENTOS ALMACENADOS
 drop procedure if exists sp_getVuelos; 
@@ -126,11 +134,14 @@ delimiter ;
 delimiter $ 
     create procedure sp_getVuelosBaratos()
 		begin
-			select id_vuelo, o.ciudad as origen, d.ciudad as destino, v.fecha, v.precio
+			select id_vuelo, o.ciudad as origen,
+					d.ciudad as destino, v.fecha, v.precio,v.hora_salida,
+                    d.imagen
 			from vuelos v join destinos o on o.id_destino=v.id_origen
 			join destinos d on d.id_destino=v.id_destino
-			order by precio asc;
-		end
+            where v.cupo>=0
+			order by precio asc limit 5;
+		end $
 delimiter ;
 call sp_getVuelos();
 call sp_getVuelosBaratos(); 

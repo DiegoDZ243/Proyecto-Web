@@ -1,10 +1,10 @@
 <?php
     require('api/classInfoVuelos.php'); 
     $vuelos=new vuelos(); 
+    $listaDestinos=$vuelos->getDestinos(); 
     $listaVuelosBaratos=$vuelos->getVuelosBaratos(); 
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,33 +19,43 @@
         <div class="contenedor-barra">
             <div class="contendor-logo">
                 <h5>AeroPHP</h5>
-                <img alt="logo aeropuerto">
+                <img src="img/icn-logo.png" alt="logo aeropuerto">
             </div>
             <div class="contendor-enlaces">
                 <a>Mis boletos</a>
                 <a>
-                    <img alt="iconoUsuario">
+                    <img src="img/icn-usuario.png" alt="iconoUsuario">
                     <h5>Mi cuenta</h5>
                 </a>
             </div>
         </div>
     </section>
     <main class="fondo-buscador">        
-        <form class="contenedor-buscador">
+        <form class="contenedor-buscador" method="post" action="seleccionarVuelo.php">
             <div class="parte-superior">
                 <div class="contendor-ubicaciones">
                     <div class="contenedor-lugar">
                         <img src="img/icn-destino.png" alt="ubicacion">
                         <div class="contenedor-select-ubicacion">
                             <label>Origen</label>
-                            <select name="origen"></select>
+                            <select name="origen" >
+                                <option value="" selected disabled>Selecciona un origen</option>
+                                <?php foreach($listaDestinos as $d):?>
+                                    <option value="<?= $d["id_destino"] ?>"><?= $d["ciudad"] ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                     </div>
                     <div class="contenedor-lugar">
                         <img src="img/icn-destino.png" alt="ubicacion">
                         <div class="contenedor-select-ubicacion">
                             <label>Destino</label>
-                            <select name="destino"></select>
+                            <select name="destino">
+                                <option value="" selected disabled>Selecciona un destino</option>
+                                <?php foreach($listaDestinos as $d):?>
+                                    <option value="<?= $d["id_destino"] ?>"><?= $d["ciudad"] ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -63,7 +73,7 @@
                         <img src="img/icn-pasajero.png" alt="salida">
                         <div class="contenedor-input-pasajero">
                             <label>Pasajeros</label>
-                            <input type="number" name="pasajeros">
+                            <input type="number" name="pasajeros" id="pasajeros" step="1" placeholder="¿Cuántos viajan?">
                         </div>
                     </div>
                 </div>
@@ -85,12 +95,12 @@
             <h1>Vuelos baratos</h1>
 
             <div class="contenedor-tarjetas-vuelos" >
-                 <?php foreach($listaVuelosBaratos as $v):?>
+                <?php $i=0; foreach($listaVuelosBaratos as $v):?>
                 <div class="tarjeta-vuelo" style="background-image: url('<?= htmlspecialchars($v["imagen"]) ?>');">
                     <div class="contenedor-origen-destino">
-                        <h4 id="origen"><?= $v["origen"] ?></h4>
+                        <h4 id="origen-<?= $i ?>"><?= $v["origen"] ?></h4>
                         <h4> a </h4>
-                        <h4 id="destino"><?= $v["destino"] ?></h4>
+                        <h4 id="destino-<?= $i ?>"><?= $v["destino"] ?></h4>
                     </div>
 
                     <div class="contenedor-mas-info">
@@ -113,6 +123,12 @@
                 <?php endforeach; ?>
             </div>  
         </section>
-    
+        <script>
+            document.querySelector('input[name="pasajeros"]').addEventListener('input', function () {
+                this.value = this.value
+                    .replace(/[^0-9]/g, '') // solo números
+                    .replace(/^0+/, '');    // evita 0001
+            });
+        </script>
 </body>
 </html>

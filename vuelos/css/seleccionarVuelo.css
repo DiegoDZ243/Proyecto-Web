@@ -1,0 +1,179 @@
+/* seleccionarVuelo.css */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+/* CONTENEDOR PRINCIPAL */
+
+main{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* RESULTADO BUSQUEDA */
+
+.resultado-busqueda{
+    width: 100%;
+    max-width: 950px;
+}
+
+/* ENCABEZADO */
+
+.encabezado-busqueda{
+    margin-bottom: 25px;
+}
+
+.encabezado-busqueda h5{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.encabezado-busqueda p{
+    display: inline;
+    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* CUERPO */
+
+.cuerpo-busqueda{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* TARJETA */
+
+.tarjeta-resultado{
+    background: white;
+    border-radius: 18px;
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    transition: 0.25s ease;
+    border: 2px solid transparent;
+}
+
+.tarjeta-resultado:hover{
+    transform: translateY(-4px);
+    border-color: #2563eb;
+    box-shadow: 0 10px 25px rgba(37,99,235,0.15);
+}
+
+/* ORIGEN DESTINO */
+
+.contenedor-origen-destino{
+    flex: 1;
+}
+
+.origen-a-destino{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.origen-a-destino img{
+    width: 60px;
+    opacity: 0.7;
+}
+
+/* INFO ORIGEN Y DESTINO */
+
+.info-origen h3{
+    font-size: 2rem;
+    color: #111827;
+}
+
+.info-origen h5,
+.info-destino h5{
+    font-size: 1rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* PRECIO */
+
+.info-precio{
+    background: #2563eb;
+    border: none;
+    border-radius: 14px;
+    padding: 18px 28px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.info-precio:hover{
+    background: #1d4ed8;
+}
+
+.display-precio{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    color: white;
+}
+
+.display-precio h3{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.display-precio h3 p{
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+
+.elegir-vuelo{
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 768px){
+
+    .tarjeta-resultado{
+        flex-direction: column;
+        gap: 25px;
+        align-items: flex-start;
+    }
+
+    .origen-a-destino{
+        gap: 15px;
+    }
+
+    .origen-a-destino img{
+        width: 45px;
+    }
+
+    .info-precio{
+        width: 100%;
+    }
+
+    .display-precio{
+        justify-content: center;
+    }
+
+    .encabezado-busqueda p{
+        display: block;
+        margin-top: 8px;
+    }
+}

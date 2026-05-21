@@ -120,7 +120,6 @@ label{
     color: #475569;
 }
 
-select,
 input{
     width: 100%;
 
@@ -133,6 +132,44 @@ input{
     color: #0f172a;
 }
 
+select{
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    font-size: 16px;
+    color: #0f172a;
+
+    cursor: pointer;
+
+    padding: 6px 2px;
+}
+
+/* Contenedor tipo “input moderno” */
+.contenedor-select-ubicacion{
+    position: relative;
+}
+
+
+/* Opciones (limitado pero limpio) */
+option{
+    background-color: #ffffff;
+    color: #0f172a;
+
+    padding: 12px;
+}
+
+option[value=""]{
+    color: #94a3b8;
+}
+
+select:focus{
+    background-color: rgba(37,99,235,0.03);
+    border-radius: 10px;
+}
 
 .contenedor-salida{
     flex: 1;
@@ -313,5 +350,98 @@ input{
 #salida{
     font-size: 22px;
     margin-top: 5px;
+}
+
+/* =========================
+   BARRA SUPERIOR
+========================= */
+
+.barra-superior{
+    width: 100%;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.contenedor-barra{
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 12px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LOGO */
+.contendor-logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.contendor-logo h5{
+    font-size: 20px;
+    font-weight: bold;
+    color: #2563eb;
+    letter-spacing: 0.5px;
+}
+
+.contendor-logo img{
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+/* ENLACES */
+.contendor-enlaces{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.contendor-enlaces a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    color: #0f172a;
+
+    font-weight: 600;
+    font-size: 15px;
+
+    padding: 8px 14px;
+    border-radius: 12px;
+
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.contendor-enlaces a:hover{
+    background: rgba(37,99,235,0.08);
+    color: #2563eb;
+}
+
+/* ICONO USUARIO */
+.contendor-enlaces img{
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px){
+    .contenedor-barra{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .contendor-enlaces{
+        gap: 10px;
+    }
 }
 

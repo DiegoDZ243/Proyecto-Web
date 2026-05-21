@@ -1,5 +1,5 @@
 <?php
-    $id_vuelo=1; 
+    $id_vuelo=$_POST["vuelo"]; 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     require('api/classVuelo.php'); 
