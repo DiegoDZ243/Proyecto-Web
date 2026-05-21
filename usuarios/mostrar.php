@@ -31,6 +31,8 @@ $result = $NewConn->ExecuteQuery($query);
     <th>Fecha</th>
     <th>Correo</th>
     <th>Password</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
 </tr>
 
 <?php
