@@ -7,17 +7,17 @@
 </head>
 <body>
 
-    <h1>Modulo Usuarios</h1>
+    <div class="botones-menu">
 
-    <a href="agregar.php">
-        <button>Agregar Usuario</button>
-    </a>
+        <a href="agregar.php">
+            <button>Agregar Usuario</button>
+        </a>
 
-    <br><br>
+        <a href="mostrar.php">
+            <button>Mostrar Usuarios</button>
+        </a>
 
-    <a href="mostrar.php">
-        <button>Mostrar Usuarios</button>
-    </a>
+    </div>
 
 </body>
 </html>
