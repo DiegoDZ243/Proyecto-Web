@@ -23,7 +23,7 @@ $row = $NewConn->GetRows($result);
     <link rel="stylesheet" href="css/usuarios.css">
 </head>
 <body>
-
+<div class="contenedor">
 <h1>Editar Usuario</h1>
 
 <form action="actualizar.php" method="POST">
@@ -53,6 +53,6 @@ $row = $NewConn->GetRows($result);
     </button>
 
 </form>
-
+</div>
 </body>
 </html>
