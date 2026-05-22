@@ -80,12 +80,7 @@
             $a_paterno = $boleto['a_paterno'];
             $a_materno = $boleto['a_materno'];
             $query="call sp_insertarBoletos($id_vuelo,'$asiento','$nombre','$a_paterno','$a_materno',$usuario)";
-            $result=$this->NewConn->ExecuteQuery($query);
-            if($result){
-                echo "Se registró";
-            }else{
-                echo "Hubo un error con el registro"; 
-            }
+             $this->NewConn->ExecuteQuery($query);
         }
 
     }
