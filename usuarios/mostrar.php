@@ -15,6 +15,7 @@ $result = $NewConn->ExecuteQuery($query);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar Usuarios</title>
     <link rel="stylesheet" href="css/usuarios.css">
 </head>
@@ -22,7 +23,7 @@ $result = $NewConn->ExecuteQuery($query);
 
 <h1>Lista de Usuarios</h1>
 
-<table border="1">
+<table>
 
 <tr>
     <th>ID</th>
@@ -49,20 +50,20 @@ while($row = $NewConn->GetRows($result)){
     echo "<td>".$row[4]."</td>";
     echo "<td>".$row[5]."</td>";
     echo "<td>".$row[6]."</td>";
+
     echo "<td>
         <a class='editar' href='editar.php?id=".$row[0]."'>
-        Editar
+            Editar
         </a>
     </td>";
-    
+
     echo "<td>
         <a class='eliminar' href='eliminar.php?id=".$row[0]."'>
-        Eliminar
+            Eliminar
         </a>
     </td>";
 
     echo "</tr>";
-
 }
 
 ?>
