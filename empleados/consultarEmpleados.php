@@ -13,9 +13,6 @@ $resultado = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <title>Consultar Empleados</title>
-
-    <link rel="stylesheet" href="css/empleados.css">
-
 </head>
 <body>
 
@@ -24,6 +21,7 @@ $resultado = mysqli_query($conn, $sql);
     <table border="1">
 
         <tr>
+
             <th>ID</th>
             <th>Nombre</th>
             <th>Apellido Paterno</th>
@@ -32,6 +30,8 @@ $resultado = mysqli_query($conn, $sql);
             <th>Hora Entrada</th>
             <th>Hora Salida</th>
             <th>ID Jefe</th>
+            <th>Acciones</th>
+
         </tr>
 
         <?php while($fila = mysqli_fetch_assoc($resultado)){ ?>
@@ -68,6 +68,20 @@ $resultado = mysqli_query($conn, $sql);
 
             <td>
                 <?php echo $fila['id_jefe']; ?>
+            </td>
+
+            <td>
+
+                <a href="editarEmpleado.php?id=<?php echo $fila['id_empleado']; ?>">
+                    Editar
+                </a>
+
+                |
+
+                <a href="eliminarEmpleado.php?id=<?php echo $fila['id_empleado']; ?>">
+                    Eliminar
+                </a>
+
             </td>
 
         </tr>
