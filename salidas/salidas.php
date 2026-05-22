@@ -2,9 +2,6 @@
     require("api/classSalidas.php"); 
     $classSalidas=new vuelos(); 
     $listaSalidas=$classSalidas->getVuelosMas(); 
-    foreach($listaSalidas as $v){
-        echo $v["id_vuelo"];
-    }
 ?>
 
 <!DOCTYPE html>

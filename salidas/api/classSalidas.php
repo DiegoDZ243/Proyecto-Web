@@ -137,7 +137,7 @@
             $this->NewConn->ExecuteQuery($query); 
         }
 
-        public function actualizarVuelo($id_vuelo, $id_origen, $id_destino, $fecha, $hora_salida, $precio, $embarque, $cupo) {
+        public function actualizarVuelo($id_vuelo, $id_origen, $id_destino, $fecha, $hora_salida, $precio) {
             // Recuerda que fecha, hora y embarque van entre comillas simples en el SQL
             $query = "CALL sp_actualizarVuelo($id_vuelo, $id_origen, $id_destino, '$fecha', '$hora_salida', $precio)";
             $this->NewConn->ExecuteQuery($query); 

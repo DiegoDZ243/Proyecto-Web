@@ -9,5 +9,7 @@
 
     $claseSalida->agregarVuelo($origen,$destino,$fecha_salida,$hora_salida,$precio); 
 
+    header("Location: salidas.php");
+
 
 ?>

@@ -1,0 +1,128 @@
+/* =========================
+   BASE
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+/* =========================
+   CARD CONFIRMACIÓN
+========================= */
+.contenedor-confirmacion{
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+    animation: aparecer 0.3s ease;
+}
+
+/* =========================
+   ICONO
+========================= */
+.contenedor-icono{
+    margin-bottom: 25px;
+}
+
+.contenedor-icono img{
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.contenedor-texto h1{
+    font-size: 32px;
+    color: #111827;
+    margin-bottom: 15px;
+}
+
+.contenedor-texto p{
+    color: #6b7280;
+    line-height: 1.6;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.contenedor-botones{
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-eliminar,
+.btn-cancelar{
+    text-decoration: none;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s ease;
+    min-width: 180px;
+}
+
+/* =========================
+   ELIMINAR
+========================= */
+.btn-eliminar{
+    background: #dc2626;
+    color: white;
+}
+
+.btn-eliminar:hover{
+    background: #b91c1c;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   CANCELAR
+========================= */
+.btn-cancelar{
+    background: #e5e7eb;
+    color: #111827;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-cancelar:hover{
+    background: #d1d5db;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   ANIMACIÓN
+========================= */
+@keyframes aparecer{
+    from{
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
