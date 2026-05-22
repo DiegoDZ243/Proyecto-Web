@@ -8,186 +8,213 @@
 /* ===== BODY ===== */
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #dbeafe, #eff6ff);
-    min-height:100vh;
-    padding:40px;
-    color:#1e293b;
-}
-
-/* ===== CONTENEDOR ===== */
-.contenedor{
-    max-width:1100px;
-    margin:auto;
-}
-
-/* ===== TITULOS ===== */
-h1{
-    text-align:center;
-    margin-bottom:30px;
+    background:#eef4ff;
     color:#0f172a;
-    font-size:34px;
-    letter-spacing:1px;
+    min-height:100vh;
 }
 
-/* ===== FORMULARIOS ===== */
-form{
-    background:white;
+/* ===== HEADER ===== */
+.header{
     width:100%;
-    max-width:550px;
+    height:90px;
+    background:linear-gradient(to right,#0f2c8f,#2563eb);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+    color:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ===== LOGO ===== */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo-icono{
+    width:60px;
+    height:60px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.15);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+.logo h2{
+    font-size:30px;
+}
+
+.logo p{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* ===== USUARIO ===== */
+.usuario{
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* ===== HERO ===== */
+.hero{
+    max-width:1200px;
     margin:auto;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    border:1px solid #e2e8f0;
+    padding:70px 20px;
+    text-align:center;
 }
 
-/* ===== LABEL ===== */
-label{
-    display:block;
-    margin-bottom:6px;
+/* ===== BADGE ===== */
+.badge{
+    background:#dbeafe;
+    color:#2563eb;
+    padding:10px 22px;
+    border-radius:30px;
     font-weight:bold;
-    color:#334155;
     font-size:14px;
 }
 
-/* ===== INPUTS ===== */
-input{
-    width:100%;
-    padding:13px;
-    margin-bottom:18px;
-    border:1px solid #cbd5e1;
-    border-radius:12px;
-    font-size:14px;
-    outline:none;
-    transition:0.3s;
-    background:#f8fafc;
+/* ===== TITULO ===== */
+.hero h1{
+    margin-top:25px;
+    font-size:58px;
+    margin-bottom:20px;
 }
 
-input:focus{
-    border-color:#2563eb;
+/* ===== DESCRIPCION ===== */
+.descripcion{
+    font-size:22px;
+    color:#64748b;
+}
+
+/* ===== LINEA ===== */
+.linea{
+    width:100px;
+    height:5px;
+    background:#2563eb;
+    margin:35px auto 50px;
+    border-radius:10px;
+}
+
+/* ===== CARDS ===== */
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+/* ===== CARD ===== */
+.card{
+    width:420px;
     background:white;
-    box-shadow:0 0 8px rgba(37,99,235,0.2);
+    border-radius:25px;
+    padding:45px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+/* ===== ICONOS ===== */
+.icono{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    margin-bottom:30px;
+    font-size:45px;
+}
+
+.azul{
+    background:#dbeafe;
+    color:#2563eb;
+}
+
+.verde{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+/* ===== TEXTOS ===== */
+.card h3{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.card p{
+    color:#64748b;
+    font-size:22px;
+    line-height:1.5;
+    margin-bottom:35px;
 }
 
 /* ===== BOTONES ===== */
 button{
     width:100%;
-    padding:14px;
     border:none;
-    border-radius:12px;
-    background:#2563eb;
+    padding:18px;
+    border-radius:15px;
     color:white;
-    font-size:15px;
+    font-size:22px;
     font-weight:bold;
     cursor:pointer;
     transition:0.3s;
 }
 
+.btn-azul{
+    background:linear-gradient(to right,#2563eb,#1d4ed8);
+}
+
+.btn-verde{
+    background:linear-gradient(to right,#22c55e,#16a34a);
+}
+
 button:hover{
-    background:#1d4ed8;
-    transform:translateY(-2px);
-}
-
-/* ===== MENU ===== */
-.botones-menu{
-    max-width:450px;
-    margin:80px auto;
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-/* ===== TABLA ===== */
-table{
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* ===== ENCABEZADOS ===== */
-th{
-    background:#1e3a8a;
-    color:white;
-    padding:16px;
-    font-size:14px;
-    text-transform:uppercase;
-}
-
-/* ===== CELDAS ===== */
-td{
-    padding:14px;
-    border-bottom:1px solid #e2e8f0;
-    text-align:center;
-    font-size:14px;
-}
-
-/* ===== FILAS ===== */
-tr:hover{
-    background:#f8fafc;
-}
-
-/* ===== LINKS ===== */
-a{
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* ===== BOTON EDITAR ===== */
-.editar{
-    background:#facc15;
-    color:black;
-    padding:8px 14px;
-    border-radius:8px;
-    transition:0.3s;
-}
-
-.editar:hover{
-    background:#eab308;
-}
-
-/* ===== BOTON ELIMINAR ===== */
-.eliminar{
-    background:#ef4444;
-    color:white;
-    padding:8px 14px;
-    border-radius:8px;
-    transition:0.3s;
-}
-
-.eliminar:hover{
-    background:#dc2626;
+    transform:scale(1.03);
 }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width:768px){
+@media(max-width:900px){
 
-    body{
+    .hero h1{
+        font-size:38px;
+    }
+
+    .descripcion{
+        font-size:18px;
+    }
+
+    .card{
+        width:100%;
+    }
+
+    .card h3{
+        font-size:30px;
+    }
+
+    .card p{
+        font-size:18px;
+    }
+
+    button{
+        font-size:18px;
+    }
+
+    .header{
+        flex-direction:column;
+        height:auto;
         padding:20px;
-    }
-
-    h1{
-        font-size:26px;
-    }
-
-    form{
-        padding:25px;
-    }
-
-    table{
-        display:block;
-        overflow-x:auto;
-    }
-
-    th,
-    td{
-        font-size:13px;
-        padding:10px;
+        gap:15px;
     }
 }
