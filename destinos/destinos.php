@@ -33,6 +33,7 @@
             <?php endforeach ?>
             <div class="pie-destino">
                 <button><a href="crearDestinos.php">Crear Destino</a></button>
+                <button><a href="../dashboard_empleado.php">← Volver al Dashboard</a></button>
             </div>
         </div>
 

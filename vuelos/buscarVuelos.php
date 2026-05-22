@@ -1,4 +1,12 @@
 <?php
+    session_start();
+    
+    // Verificar que sea cliente
+    if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'cliente') {
+        header('Location: ../index.html');
+        exit();
+    }
+    
     require('api/classInfoVuelos.php'); 
     $vuelos=new vuelos(); 
     $listaDestinos=$vuelos->getDestinos(); 
@@ -22,10 +30,10 @@
                 <img src="img/icn-logo.png" alt="logo aeropuerto">
             </div>
             <div class="contendor-enlaces">
-                <a>Mis boletos</a>
-                <a>
+                <a href="mis_boletos.php">Mis boletos</a>
+                <a href="../logout.php" style="color: red;">
                     <img src="img/icn-usuario.png" alt="iconoUsuario">
-                    <h5>Mi cuenta</h5>
+                    <h5>Cerrar sesión</h5>
                 </a>
             </div>
         </div>

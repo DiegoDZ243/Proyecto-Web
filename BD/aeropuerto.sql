@@ -105,11 +105,11 @@ INSERT INTO boletos (nombre, a_paterno, a_materno, asiento, checked_in, id_vuelo
     
 INSERT INTO empleados(nombre, a_paterno, a_materno, sueldo, hora_entrada, hora_salida, id_jefe, correo, password)
 VALUES
-('Carlos', 'Ramirez', 'Lopez', 25000.00, '08:00:00', '17:00:00', NULL, 'carlos.ramirez@aeropuerto.com', 'emp1234'),
-('Ana', 'Martinez', 'Sanchez', 18000.00, '08:30:00', '17:30:00', 1, 'ana.martinez@aeropuerto.com', 'emp1234'),
-('Luis', 'Hernandez', 'Garcia', 17500.00, '09:00:00', '18:00:00', 1, 'luis.hernandez@aeropuerto.com', 'emp1234'),
-('Sofia', 'Torres', 'Mendoza', 19000.00, '08:00:00', '17:00:00', 1, 'sofia.torres@aeropuerto.com', 'emp1234'),
-('Diego', 'Castro', 'Vega', 16000.00, '09:00:00', '18:00:00', 1, 'diego.castro@aeropuerto.com', 'emp1234');
+('Carlos', 'Ramirez', 'Lopez', 25000.00, '08:00:00', '17:00:00', NULL, 'admin@aero.com', '1234'),
+('Ana', 'Martinez', 'Sanchez', 18000.00, '08:30:00', '17:30:00', 1, 'ana@aero.com', '1234'),
+('Luis', 'Hernandez', 'Garcia', 17500.00, '09:00:00', '18:00:00', 1, 'luis@aero.com', '1234'),
+('Sofia', 'Torres', 'Mendoza', 19000.00, '08:00:00', '17:00:00', 1, 'sofia@aero.com', '1234'),
+('Diego', 'Castro', 'Vega', 16000.00, '09:00:00', '18:00:00', 1, 'diego@aero.com', '1234');
 
 -- Creación de trigger para automatizar la actualizacion del cupo en vuelos
 delimiter $
@@ -251,6 +251,36 @@ BEGIN
     COMMIT;
 END $
 
+DROP PROCEDURE IF EXISTS sp_eliminarDestino;
+DELIMITER $
+CREATE PROCEDURE sp_eliminarDestino
+(
+    IN p_id_destino INT
+)
+BEGIN
+    -- Activamos una transacción para que todo se ejecute o no se ejecute nada
+    START TRANSACTION;
+    
+    -- 1. Primero eliminamos todos los boletos de aquellos vuelos que inicien o terminen en este destino
+    DELETE FROM boletos 
+    WHERE id_vuelo IN (
+        SELECT id_vuelo 
+        FROM vuelos 
+        WHERE id_origen = p_id_destino OR id_destino = p_id_destino
+    );
+    
+    -- 2. Después eliminamos los vuelos que usen este destino como origen o fin
+    DELETE FROM vuelos 
+    WHERE id_origen = p_id_destino OR id_destino = p_id_destino;
+    
+    -- 3. Finalmente, eliminamos el destino de forma segura
+    DELETE FROM destinos 
+    WHERE id_destino = p_id_destino;
+    
+    -- Confirmamos de manera permanente todos los borrados en la base de datos
+    COMMIT;
+END $
+DELIMITER ;
 
 
 call sp_getVuelos();

@@ -1,11 +1,19 @@
 <?php
+    session_start();
+    
+    // Verificar que el usuario esté logeado
+    if (!isset($_SESSION['usuario_id'])) {
+        header('Location: ../index.html');
+        exit();
+    }
+    
     $boletos = $_POST['boletos'];
     require("api/classVuelo.php"); 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     $vueloActual=new vuelo($boletos[0]["vuelo"]);
     foreach($boletos as $b){
-        $vueloActual->registrarBoleto($b,1); 
+        $vueloActual->registrarBoleto($b, $_SESSION['usuario_id']); 
     }
 ?>
 

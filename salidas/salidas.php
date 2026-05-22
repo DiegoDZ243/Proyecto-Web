@@ -57,6 +57,7 @@
         <?php endforeach?>
         <div class="pie-salidas">
             <a href="crearSalida.php"><img src="img/icn_insertar.png">Crear Salida</a>
+            <a href="../dashboard_empleado.php">← Volver al Dashboard</a>
         </div>
     </div>
 </body>
