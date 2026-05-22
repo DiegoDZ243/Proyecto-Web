@@ -18,13 +18,13 @@
 
     <h1>Agregar Empleado</h1>
 
-    <form action="guardar.php" method="POST">
+    <form action="guardarEmpleado.php" method="POST">
 
         <input type="text" name="nombre" placeholder="Nombre">
 
-        <input type="text" name="apellido" placeholder="Apellido">
+        <input type="text" name="apellidoPat" placeholder="Apellido paterno">
 
-        <input type="text" name="puesto" placeholder="Puesto">
+        <input type="text" name="apellidoMat" placeholder="Apellido Materno">
 
         <input type="number" name="salario" placeholder="Salario">
 
