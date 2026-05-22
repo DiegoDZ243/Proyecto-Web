@@ -3,10 +3,9 @@
         private $id_empleado; 
         private $NewConn;
 
-        public function __construct($id_empleado)
+        public function __construct()
         {
             require('../Conexion/classConnectionMySQL.php');
-            $this->id_empleado=$id_empleado; 
             $this->NewConn=new ConnectionMySQL(); 
             $this->NewConn->CreateConnection(); 
             
@@ -17,22 +16,31 @@
            $this->NewConn->CloseConnection();
         }
 
-        public function getEmpleados(){
+        public function getEmpleadoById($id){
             
-            $query="select nombre from empleados where id_empleado=".$this->id_empleado;
+            $query="select nombre from empleados where id_empleado=".$id;
             $result=$this->NewConn->ExecuteQuery($query); 
-            $empleados=[]; 
+            $empleado = null;
             if($result){
                 while($fila=$this->NewConn->GetRows($result)){
-                    $empleados[]=$fila[0]; 
+                    $empleado=$fila[0]; 
                 }
-            }else{
-                echo "NOOOO";
             }
            
-            return $empleados; 
+            return $empleado; 
         }
 
-
+        public function getEmpleados(){
+            
+            $query="select id_empleado, nombre, a_paterno, a_materno, sueldo, hora_entrada, hora_salida, id_jefe from empleados";
+            $result=$this->NewConn->ExecuteQuery($query); 
+            $empleados = array();
+            if($result){
+                while($fila=$this->NewConn->GetRows($result)){
+                    $empleados[]=$fila; 
+                }
+            }
+            return $empleados; 
+        }
     }
 ?>

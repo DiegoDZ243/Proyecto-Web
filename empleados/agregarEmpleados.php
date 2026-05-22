@@ -1,127 +1,99 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-require('api/classEmpleado.php');
-
-$empleado = new Empleado();
-
-$resultado = $empleado->getEmpleados();
-
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    require('api/classEmpleado.php'); 
+    $empleado=new empleado();
+    $empleadoActual=$empleado->getEmpleadoById(1); 
+    $listEmpleados=$empleado->getEmpleados(); 
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <title>Empleados Aeropuerto</title>
-
-    <link rel="stylesheet" href="css/empleados.css">
-
+    <link rel="stylesheet" href="css/Empleados.css">
 </head>
-
 <body>
 
-<h1>Agregar Empleado </h1>
+    <h1>Agregar Empleado</h1>
 
-<form id="formEmpleado"
-      action="guardar.php"
-      method="POST">
+    <form action="guardar.php" method="POST">
 
-    <input type="text"
-           name="nombre"
-           id="nombre"
-           placeholder="Nombre">
+        <input type="text" name="nombre" placeholder="Nombre">
 
-    <input type="text"
-           name="a_paterno"
-           id="a_paterno"
-           placeholder="Apellido Paterno">
+        <input type="text" name="apellido" placeholder="Apellido">
 
-    <input type="text"
-           name="a_materno"
-           id="a_materno"
-           placeholder="Apellido Materno">
+        <input type="text" name="puesto" placeholder="Puesto">
 
-    <input type="number"
-           step="0.01"
-           name="sueldo"
-           id="sueldo"
-           placeholder="Sueldo">
+        <input type="number" name="salario" placeholder="Salario">
 
-    <label>Hora Entrada</label>
+        <button type="submit">
+            Guardar
+        </button>
 
-    <input type="time"
-           name="hora_entrada">
+    </form>
 
-    <label>Hora Salida</label>
+    <hr>
 
-    <input type="time"
-           name="hora_salida">
+    <h2>Lista de empleados</h2>
 
-    <input type="number"
-           name="id_jefe"
-           placeholder="ID Jefe">
+    <table border="1" id="tblRegistros">
 
-    <button type="submit">
-
-        Guardar Empleado
-
-    </button>
-
-</form>
-
-<hr>
-
-<h2>Lista de empleados</h2>
-
-<table border="1">
-
-    <tr>
-
+        <tr>
         <th>ID</th>
         <th>Nombre</th>
         <th>Apellido Paterno</th>
         <th>Apellido Materno</th>
         <th>Sueldo</th>
+        <th>Hora Entrada</th>
+        <th>Hora Salida</th>
+        <th>ID Jefe</th>
+        </tr>
 
-    </tr>
 
-    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?>
+        
 
-    <tr>
+    </table>
 
-        <td>
-            <?php echo $fila['id_empleado']; ?>
-        </td>
+    <script>
+        
 
-        <td>
-            <?php echo $fila['nombre']; ?>
-        </td>
+        document.addEventListener("DOMContentLoaded", function () {
+                // EMPLEADO ACTUAL
+    let empleadoActual = <?php echo json_encode($empleadoActual); ?>;
 
-        <td>
-            <?php echo $fila['a_paterno']; ?>
-        </td>
+console.log(empleadoActual);
 
-        <td>
-            <?php echo $fila['a_materno']; ?>
-        </td>
+let listaEmpleados = <?php echo json_encode($listEmpleados); ?>;
 
-        <td>
-            $<?php echo $fila['sueldo']; ?>
-        </td>
 
-    </tr>
+console.log(listaEmpleados);
 
-    <?php } ?>
+let tabla = document.getElementById("tblRegistros");
 
-</table>
+for(let i = 0; i < listaEmpleados.length; i++){
+    let empleado = listaEmpleados[i];
+        
+    console.log(empleado.nombre);
+    
+    let fila = `
+        <tr>
+<td>${empleado[0]}</td>
+<td>${empleado[1]}</td>
+<td>${empleado[2]}</td>
+<td>${empleado[3]}</td>
+<td>${empleado[4]}</td>
+<td>${empleado[5]}</td>
+<td>${empleado[6]}</td>
+<td>${empleado[7]}</td>
+        </tr>
+        `;
 
-<script src="scripts/empleados.js"></script>
+    tabla.innerHTML += fila;
 
+}
+});
+    </script>
 </body>
-</html>
+</html> 
