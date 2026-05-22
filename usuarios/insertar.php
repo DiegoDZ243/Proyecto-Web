@@ -12,8 +12,7 @@ $password = $_POST['password'];
 $NewConn = new ConnectionMySQL();
 $NewConn->CreateConnection();
 
-$query = "INSERT INTO usuarios
-VALUES(
+$query = "INSERT INTO usuarios VALUES(
 null,
 '$nombre',
 '$a_paterno',
