@@ -9,15 +9,21 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 
     background:
-    radial-gradient(circle at top left, #dbeafe, transparent 25%),
-    radial-gradient(circle at bottom right, #bfdbfe, transparent 20%),
-    #eef4ff;
+    radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(37,99,235,0.18), transparent 20%),
+    linear-gradient(
+        135deg,
+        #eef4ff,
+        #f8fbff
+    );
 
     min-height: 100vh;
 
     padding: 35px;
 
     color: #1f2937;
+
+    overflow-x: hidden;
 }
 
 /* =========================
@@ -28,37 +34,35 @@ body{
 
     display: flex;
 
-    gap: 35px;
-
     justify-content: center;
 
     align-items: flex-start;
+
+    gap: 40px;
 
     flex-wrap: wrap;
 }
 
 .columna{
 
-    background: white;
-
-    border-radius: 24px;
-
-    padding: 20px;
+    border-radius: 28px;
 }
 
 /* =========================
-   BOARD BOLETOS
+   BOARD
 ========================= */
 
 .contenedor-board-boletos{
 
-    width: 380px;
+    width: 390px;
 
-    min-height: 700px;
+    min-height: 760px;
 
-    background: rgba(255,255,255,0.92);
+    background: rgba(255,255,255,0.78);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(16px);
+
+    border: 1px solid rgba(255,255,255,0.4);
 
     overflow: hidden;
 
@@ -67,23 +71,52 @@ body{
     flex-direction: column;
 
     box-shadow:
-    0 20px 40px rgba(0,0,0,0.08);
+    0 25px 50px rgba(15,23,42,0.08),
+    0 8px 20px rgba(59,130,246,0.08);
+
+    position: sticky;
+
+    top: 30px;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .contenedor-board-boletos-encabezado{
 
-    padding: 24px;
+    padding: 28px;
 
     background:
     linear-gradient(
         135deg,
-        #2563eb,
-        #1d4ed8
+        #2563eb 0%,
+        #1d4ed8 50%,
+        #1e40af 100%
     );
 
     color: white;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.contenedor-board-boletos-encabezado::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.08);
+
+    top: -120px;
+    right: -80px;
 }
 
 .contenedor-board-titulo{
@@ -93,31 +126,41 @@ body{
     justify-content: space-between;
 
     align-items: center;
+
+    position: relative;
+
+    z-index: 2;
 }
 
 .contenedor-board-titulo h3{
 
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+
+    font-weight: 700;
 }
 
 .contenedor-board-titulo p{
 
-    opacity: 0.9;
+    opacity: 0.92;
 
     font-size: 0.95rem;
 }
 
 #imgBoleto{
 
-    width: 50px;
-    height: 50px;
+    width: 62px;
+    height: 62px;
 
     object-fit: contain;
+
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
 }
 
-/* BODY */
+/* =========================
+   BODY BOARD
+========================= */
 
 .contenedor-board-boletos-cuerpo{
 
@@ -131,20 +174,22 @@ body{
 
     flex-direction: column;
 
-    gap: 16px;
+    gap: 18px;
 }
 
-/* TARJETA BOLETO */
+/* =========================
+   BOLETO ITEM
+========================= */
 
 .boleto-item{
 
     background: white;
 
-    border-radius: 18px;
+    border-radius: 22px;
 
-    padding: 18px;
+    padding: 20px;
 
-    border: 1px solid #e2e8f0;
+    border: 1px solid #e5e7eb;
 
     display: flex;
 
@@ -152,11 +197,14 @@ body{
 
     align-items: center;
 
-    transition: 0.3s ease;
-
     position: relative;
 
     overflow: hidden;
+
+    transition: all 0.28s ease;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,0.04);
 }
 
 .boleto-item::before{
@@ -168,18 +216,25 @@ body{
     left: 0;
     top: 0;
 
-    width: 6px;
+    width: 7px;
     height: 100%;
 
-    background: #2563eb;
+    background:
+    linear-gradient(
+        to bottom,
+        #2563eb,
+        #1d4ed8
+    );
 }
 
 .boleto-item:hover{
 
-    transform: translateY(-4px);
+    transform:
+    translateY(-5px)
+    scale(1.01);
 
     box-shadow:
-    0 12px 24px rgba(37,99,235,0.15);
+    0 18px 28px rgba(37,99,235,0.12);
 }
 
 .boleto-info{
@@ -188,7 +243,7 @@ body{
 
     align-items: center;
 
-    gap: 12px;
+    gap: 14px;
 }
 
 .boleto-numero{
@@ -196,6 +251,8 @@ body{
     font-size: 1rem;
 
     font-weight: bold;
+
+    color: #111827;
 }
 
 .boleto-precio{
@@ -203,18 +260,25 @@ body{
     color: #2563eb;
 
     font-weight: bold;
+
+    font-size: 1rem;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER BOARD
+========================= */
 
 .contenedor-board-boletos-pie{
 
-    padding: 24px;
+    padding: 26px;
 
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid #e5e7eb;
+
+    background: rgba(248,250,252,0.85);
 }
 
-.contenedor-board-total{
+.contenedor-board-total,
+.contenedor-board-asientos{
 
     display: flex;
 
@@ -223,9 +287,21 @@ body{
     align-items: center;
 }
 
+.contenedor-board-total{
+
+    margin-bottom: 18px;
+}
+
 .contenedor-board-total h2{
 
     color: #2563eb;
+
+    font-size: 1.8rem;
+}
+
+.contenedor-board-asientos h2{
+
+    color: #1e40af;
 }
 
 /* =========================
@@ -238,9 +314,9 @@ body{
 
     justify-content: center;
 
-    gap: 20px;
+    gap: 22px;
 
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     flex-wrap: wrap;
 }
@@ -251,9 +327,18 @@ body{
 
     align-items: center;
 
-    gap: 8px;
+    gap: 10px;
 
-    font-weight: bold;
+    font-weight: 600;
+
+    background: rgba(255,255,255,0.75);
+
+    padding: 12px 18px;
+
+    border-radius: 999px;
+
+    box-shadow:
+    0 5px 12px rgba(0,0,0,0.05);
 }
 
 .demo{
@@ -294,31 +379,55 @@ body{
     background:
     linear-gradient(
         to bottom,
-        #ffffff,
-        #f8fafc
+        rgba(255,255,255,0.95),
+        rgba(248,250,252,0.92)
     );
 
-    border-radius: 60px;
+    border-radius: 70px;
 
-    padding: 45px 35px;
+    padding: 55px 40px;
 
-    width: 620px;
+    width: 700px;
 
     display: flex;
 
     justify-content: center;
 
-    gap: 40px;
+    gap: 42px;
 
     position: relative;
 
-    border: 4px solid #dbeafe;
+    border: 4px solid rgba(219,234,254,0.8);
 
     box-shadow:
-    0 25px 50px rgba(0,0,0,0.08);
+    0 35px 60px rgba(0,0,0,0.08),
+    inset 0 2px 6px rgba(255,255,255,0.8);
+
+    overflow: hidden;
 }
 
-/* MITADES */
+.contenedor-avion::before{
+
+    content: "";
+
+    position: absolute;
+
+    top: -120px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background: rgba(59,130,246,0.08);
+}
+
+/* =========================
+   MITADES
+========================= */
 
 .contenedor-avion-mitad{
 
@@ -326,21 +435,25 @@ body{
 
     flex-direction: column;
 
-    gap: 14px;
+    gap: 16px;
+
+    z-index: 2;
 }
 
 .fila-asientos{
 
     display: flex;
 
-    gap: 12px;
+    gap: 14px;
 }
 
-/* PASILLO */
+/* =========================
+   PASILLO
+========================= */
 
 .pasillo{
 
-    width: 18px;
+    width: 22px;
 
     border-radius: 999px;
 
@@ -348,10 +461,12 @@ body{
     repeating-linear-gradient(
         to bottom,
         #94a3b8,
-        #94a3b8 12px,
-        #f1f5f9 12px,
-        #f1f5f9 24px
+        #94a3b8 14px,
+        #f8fafc 14px,
+        #f8fafc 28px
     );
+
+    opacity: 0.7;
 }
 
 /* =========================
@@ -360,10 +475,10 @@ body{
 
 .asiento{
 
-    width: 52px;
-    height: 52px;
+    width: 58px;
+    height: 58px;
 
-    border-radius: 14px 14px 8px 8px;
+    border-radius: 18px 18px 10px 10px;
 
     display: flex;
 
@@ -371,15 +486,15 @@ body{
 
     align-items: center;
 
-    font-size: 0.82rem;
+    font-size: 0.85rem;
 
     font-weight: bold;
 
     cursor: pointer;
 
-    transition: all 0.25s ease;
-
     user-select: none;
+
+    transition: all 0.22s ease;
 
     position: relative;
 
@@ -388,24 +503,30 @@ body{
     color: #111827;
 
     box-shadow:
-    inset 0 -4px 0 rgba(0,0,0,0.12),
-    0 3px 6px rgba(0,0,0,0.08);
+    inset 0 -4px 0 rgba(0,0,0,0.14),
+    0 5px 12px rgba(0,0,0,0.08);
 }
 
 .asiento:hover{
 
     transform:
-    translateY(-4px)
-    scale(1.06);
+    translateY(-6px)
+    scale(1.08);
 
-    background: #93c5fd;
+    box-shadow:
+    0 12px 22px rgba(37,99,235,0.18);
 }
 
 /* DISPONIBLE */
 
 .asiento.disponible{
 
-    background: #dcfce7;
+    background:
+    linear-gradient(
+        135deg,
+        #dcfce7,
+        #bbf7d0
+    );
 
     border: 2px solid #22c55e;
 }
@@ -426,6 +547,9 @@ body{
     border: 2px solid #1e40af;
 
     transform: scale(1.08);
+
+    box-shadow:
+    0 14px 24px rgba(37,99,235,0.3);
 }
 
 /* OCUPADO */
@@ -443,24 +567,71 @@ body{
 
     cursor: not-allowed;
 
-    opacity: 0.9;
+    opacity: 0.92;
 }
 
 /* =========================
    BOTÓN
 ========================= */
 
-#confirmarAsientos{
-
-    margin-top: 30px;
+.contenedor-boton-continuar{
 
     width: 100%;
 
-    padding: 18px;
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 35px;
+}
+
+#confirmarAsientos{
+
+    width: min(700px, 100%);
+
+    padding: 22px;
 
     border: none;
 
-    border-radius: 18px;
+    border-radius: 22px;
+
+    color: white;
+
+    font-size: 1.05rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.28s ease;
+
+    box-shadow:
+    0 18px 30px rgba(37,99,235,0.22);
+}
+
+.interior-boton-continuar{
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.contador-asientos{
+
+    font-size: 0.9rem;
+
+    opacity: 0.9;
+
+    font-weight: normal;
+}
+
+/* HABILITADO */
+
+#confirmarAsientos.habilitado{
 
     background:
     linear-gradient(
@@ -468,31 +639,107 @@ body{
         #2563eb,
         #1d4ed8
     );
-
-    color: white;
-
-    font-size: 1rem;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s ease;
-
-    box-shadow:
-    0 12px 24px rgba(37,99,235,0.25);
 }
 
-#confirmarAsientos:hover{
+#confirmarAsientos.habilitado:hover{
 
     transform:
-    translateY(-3px)
+    translateY(-4px)
     scale(1.01);
 
     box-shadow:
-    0 18px 30px rgba(37,99,235,0.35);
+    0 24px 40px rgba(37,99,235,0.35);
+}
+
+#confirmarAsientos.habilitado:active{
+
+    transform: translateY(-1px);
+}
+
+/* DESHABILITADO */
+
+#confirmarAsientos.deshabilitado{
+
+    background:
+    linear-gradient(
+        135deg,
+        #d1d5db,
+        #9ca3af
+    );
+
+    cursor: not-allowed;
+
+    opacity: 0.8;
+}
+
+/* =========================
+   SCROLL
+========================= */
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #cbd5e1;
+    border-radius: 999px;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
+
+@media(max-width:1100px){
+
+    .contenedor-dividido{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedor-board-boletos{
+        width: 100%;
+        max-width: 700px;
+
+        position: relative;
+        top: 0;
+    }
+
+    .contenedor-avion{
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+@media(max-width:768px){
+
+    body{
+        padding: 18px;
+    }
+
+    .contenedor-avion{
+
+        padding: 35px 20px;
+
+        border-radius: 40px;
+
+        gap: 22px;
+    }
+
+    .fila-asientos{
+        gap: 10px;
+    }
+
+    .asiento{
+        width: 46px;
+        height: 46px;
+        font-size: 0.72rem;
+    }
+
+    .pasillo{
+        width: 14px;
+    }
+
+    #confirmarAsientos{
+        padding: 18px;
+    }
+}

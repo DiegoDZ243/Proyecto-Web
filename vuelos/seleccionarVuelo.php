@@ -1,15 +1,37 @@
 <?php
-    $origen=$_POST["origen"]; 
-    $destino=$_POST["destino"]; 
-    $fecha_salida=$_POST["fecha_salida"]; 
-    $pasajeros=$_POST["pasajeros"]; 
-    echo $origen;
+    session_start();
+    
+    $origen = $_POST["origen"] ?? ''; 
+    $destino = $_POST["destino"] ?? ''; 
+    $fecha_salida = $_POST["fecha_salida"] ?? ''; 
+    $pasajeros = $_POST["pasajeros"] ?? ''; 
+    
+    
+    if (empty($origen)) {
+        $errores[] = "Origen es requerido";
+    }
+    if (empty($destino)) {
+        $errores[] = "Destino es requerido";
+    }
+    if (empty($fecha_salida)) {
+        $errores[] = "Fecha de salida es requerida";
+    }
+    if (empty($pasajeros) || intval($pasajeros) <= 0) {
+        $errores[] = "Número de pasajeros válido es requerido";
+    }
+    
     require("api/classInfoVuelos.php"); 
     $vuelos=new vuelos();
     $vuelosFiltrados=$vuelos->getVuelosFiltrado($origen,$destino,$fecha_salida,$pasajeros); 
 
-    foreach($vuelosFiltrados as $v){
-        echo $v["id_vuelo"]."<br>";
+    // Verificar si no hay resultados
+    if (empty($vuelosFiltrados)) {
+        $_SESSION['origen'] = $origen;
+        $_SESSION['destino'] = $destino;
+        $_SESSION['fecha_salida'] = $fecha_salida;
+        $_SESSION['pasajeros'] = $pasajeros;
+        header("Location: noHayResultados.php");
+        exit();
     }
 
 ?>

@@ -3,6 +3,7 @@ const contenedorMitadDerechaAvion=document.getElementById("avion-mitad2");
 const btnConfirmar=document.getElementById("confirmarAsientos"); 
 const dashBoardBoletos=document.getElementById("boletosCuerpo"); 
 const valorPasajeros=document.getElementById("pasajeros"); 
+const asientosSeleccionados=document.getElementById("pasajeros-actuales"); 
 
 let asientosActuales=[];
 let pasajeros=valorPasajeros.value;
@@ -35,8 +36,9 @@ function generarAsientos(){
                     generaAsientoElegido(asiento.innerText); 
                     cont++; 
                 }
+                asientosSeleccionados.innerText=`${cont}`; 
+                actualizarEstadoBoton();
                 asiento.classList.toggle('seleccionado'); 
-                console.log(cont); 
             }); 
             filaActual.appendChild(asiento); 
         }
@@ -57,10 +59,17 @@ function generarAsientos(){
                 if(asiento.classList.contains('seleccionado')){
                     asientosActuales=asientosActuales.filter(i=>i!==asiento.innerText);
                     quitarAsientoElegido(asiento.innerText); 
+                    cont--;
                 }else{
+                    if(cont>=pasajeros){
+                        return;
+                    }
                     asientosActuales.push(asiento.innerText);
                     generaAsientoElegido(asiento.innerText); 
+                    cont++;
                 }
+                asientosSeleccionados.innerText=`${cont}`; 
+                actualizarEstadoBoton();
                 asiento.classList.toggle('seleccionado'); 
                 console.log(asientosActuales.toString()); 
             }); 
@@ -87,11 +96,29 @@ function quitarAsientoElegido(asiento){
     dashBoardBoletos.removeChild(asientoAQuitar); 
 }
 
+function actualizarEstadoBoton(){
+    const asientosCompletos = cont == pasajeros;
+    btnConfirmar.disabled = !asientosCompletos;
+    
+    if(asientosCompletos){
+        btnConfirmar.classList.add('habilitado');
+        btnConfirmar.classList.remove('deshabilitado');
+    } else {
+        btnConfirmar.classList.remove('habilitado');
+        btnConfirmar.classList.add('deshabilitado');
+    }
+}
 
 btnConfirmar.addEventListener('click',(e)=>{
+    if(cont !== parseInt(pasajeros)){
+        e.preventDefault();
+        alert(`Debes seleccionar ${pasajeros} asientos. Actualmente tienes ${cont} seleccionados.`);
+        return;
+    }
+    
     const inputParaPost=document.getElementById("asientoInput"); 
     inputParaPost.value=asientosActuales.toString(); 
-    
 }); 
 
-generarAsientos(); 
+generarAsientos();
+actualizarEstadoBoton(); 

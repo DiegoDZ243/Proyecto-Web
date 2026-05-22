@@ -9,6 +9,8 @@
     require('api/classVuelo.php');
 
     $vueloActual = new vuelo($id_vuelo);
+    $precio=$vueloActual->getPrecio(); 
+    echo $precio;
     $asientosOcupados = $vueloActual->getAsientosOcupados();
 ?>
 
@@ -47,20 +49,21 @@
             </div>
 
             <div class="contenedor-board-boletos-pie">
-
                 <div class="contenedor-board-total">
                     <h3>Total</h3>
-                    <h2 id="total">$0 MXN</h2>
+                    <h2 id="total">$<?= $precio*$pasajeros ?> MXN</h2>
                 </div>
-
+                <div class="contenedor-board-asientos">
+                    <h3>Asientos:</h3>
+                    <h2 id="pasajeros-actuales">0</h2>
+                    <h2> / </h2>
+                    <h2 id="pasajeros-ticket"><?= $pasajeros ?></h2>
+                </div>
             </div>
 
         </section>
 
-        <!-- INPUT HIDDEN -->
         <input id="pasajeros" type="number" value="<?= $pasajeros ?>" hidden>
-
-        <!-- AVIÓN -->
         <section class="contenedor-avion-wrapper">
 
             <div class="leyenda-avion">
@@ -101,7 +104,7 @@
     </section>
 
     <!-- FORM -->
-    <form action="llenarBoletos.php" method="post">
+    <form action="llenarBoletos.php" method="post" id="form-asientos">
 
         <input
             type="text"
@@ -118,9 +121,14 @@
             hidden
         >
 
-        <button id="confirmarAsientos">
-            Continuar
-        </button>
+        <div class="contenedor-boton-continuar">
+            <button id="confirmarAsientos" type="submit" class="deshabilitado" disabled>
+                <div class="interior-boton-continuar">
+                    <span>Continuar</span>
+                    <span class="contador-asientos"></span hidden>
+                </div>
+            </button>
+        </div>
 
     </form>
 
@@ -130,6 +138,8 @@
 
         const asientosOcupados =
         <?php echo json_encode($asientosOcupados)?>;
+        
+        const contadorDinamico = document.getElementById('contador-dinamico');
 
         for(let i=0;i<asientosOcupados.length;i++){
 

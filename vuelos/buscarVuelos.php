@@ -2,8 +2,8 @@
     require('api/classInfoVuelos.php'); 
     $vuelos=new vuelos(); 
     $listaDestinos=$vuelos->getDestinos(); 
-    $listaVuelosBaratos=$vuelos->getVuelosBaratos(); 
-
+    $listaVuelosBaratos=$vuelos->getVuelosBaratos();
+    
 ?>
 
 <!DOCTYPE html>
@@ -30,18 +30,23 @@
             </div>
         </div>
     </section>
-    <main class="fondo-buscador">        
-        <form class="contenedor-buscador" method="post" action="seleccionarVuelo.php">
+    <main class="fondo-buscador">
+        <form class="contenedor-buscador" method="post" action="seleccionarVuelo.php" id="formulario-busqueda">
+            <!-- Mensaje de error -->
+            <div id="error-message" class="error-message" '; hidden>
+                <p id="error-text"></p>
+            </div>
+
             <div class="parte-superior">
                 <div class="contendor-ubicaciones">
                     <div class="contenedor-lugar">
                         <img src="img/icn-destino.png" alt="ubicacion">
                         <div class="contenedor-select-ubicacion">
                             <label>Origen</label>
-                            <select name="origen" >
+                            <select name="origen" id="select-origen">
                                 <option value="" selected disabled>Selecciona un origen</option>
                                 <?php foreach($listaDestinos as $d):?>
-                                    <option value="<?= $d["id_destino"] ?>"><?= $d["ciudad"] ?></option>
+                                    <option value="<?= $d["id_destino"] ?>" id="<?= $d["id_destino"] ?>-org"><?= $d["ciudad"] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -50,10 +55,10 @@
                         <img src="img/icn-destino.png" alt="ubicacion">
                         <div class="contenedor-select-ubicacion">
                             <label>Destino</label>
-                            <select name="destino">
+                            <select name="destino" id="select-destino">
                                 <option value="" selected disabled>Selecciona un destino</option>
                                 <?php foreach($listaDestinos as $d):?>
-                                    <option value="<?= $d["id_destino"] ?>"><?= $d["ciudad"] ?></option>
+                                    <option value="<?= $d["id_destino"] ?>" id="<?= $d["id_destino"] ?>-dest"> <?= $d["ciudad"] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -64,7 +69,7 @@
                         <img src="img/icn-salida.png" alt="salida">
                         <div class="contenedor-input-fecha">
                             <label>Salida</label>
-                            <input type="date" name="fecha_salida">
+                            <input type="date" name="fecha_salida" min="2026-01-01" max="<?= date('Y-m-d', strtotime('+3 year')) ?>">
                         </div>
                     </div>
                 </div>
@@ -125,8 +130,113 @@
                 <?php endforeach; ?>
             </div>  
         </section>
+        <script src="scripts/buscarVuelos.js"></script>
         <script>
+            const listaCiudadOrigen= <?php echo json_encode($listaDestinos) ?>;
+            const listaCiudadDestino= <?php echo json_encode($listaDestinos)?>; 
+            const selectOrigen=document.getElementById("select-origen"); 
+            const selectDestino=document.getElementById("select-destino"); 
+            const btnBuscar = document.getElementById("btn-buscar-vuelo");
+            const formulario = document.getElementById("formulario-busqueda");
+            const errorMessage = document.getElementById("error-message");
+            const errorText = document.getElementById("error-text");
+
+            // Función de validación
+            function validarFormulario() {
+                const origen = selectOrigen.value;
+                const destino = selectDestino.value;
+                const fecha = document.querySelector('input[name="fecha_salida"]').value;
+                const pasajeros = document.querySelector('input[name="pasajeros"]').value;
+
+                // Ocultar mensaje de error
+                ocultarError();
+
+                // Validaciones
+                if (!origen) {
+                    mostrarError("Por favor selecciona un origen");
+                    return false;
+                }
+                if (!destino) {
+                    mostrarError("Por favor selecciona un destino");
+                    return false;
+                }
+                if (!fecha) {
+                    mostrarError("Por favor selecciona una fecha de salida");
+                    return false;
+                }
+                if (!pasajeros || parseInt(pasajeros) <= 0) {
+                    mostrarError("Por favor ingresa el número de pasajeros");
+                    return false;
+                }
+
+                return true;
+            }
+
+            // Función para mostrar error
+            function mostrarError(mensaje) {
+                errorText.textContent = mensaje;
+                errorMessage.style.display = "block";
+                errorMessage.style.display = "block";
+                errorMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            function ocultarError() {
+                errorMessage.style.display = "none";
+            }
+
+            // Validar al hacer clic en el botón
+            btnBuscar.addEventListener("click", (e) => {
+                if (!validarFormulario()) {
+                    e.preventDefault();
+                }
+            });
+
+            // Validar al enviar el formulario
+            formulario.addEventListener("submit", (e) => {
+                if (!validarFormulario()) {
+                    e.preventDefault();
+                }
+                errorMessage.hidden = true;
+            });
             
+            selectOrigen.addEventListener('change',(e)=>{
+                if(selectOrigen.value===selectDestino.value){
+                    selectDestino.selectedIndex = 0;
+                }
+                document.querySelectorAll('#select-origen option').forEach(option=>{
+                    option.disabled=false;
+                });
+                document.querySelectorAll('#select-destino option').forEach(option=>{
+                    option.disabled=false;
+                });
+                const ciudadSeleccionada=selectOrigen.value;
+                console.log(ciudadSeleccionada);
+                const optionCiudad=document.getElementById(`${ciudadSeleccionada}-dest`); 
+                optionCiudad.disabled=true;
+                if(errorText.innerText==="Por favor selecciona un origen"){
+                    ocultarError();
+                }
+            }); 
+
+            selectDestino.addEventListener('change',(e)=>{
+                if(selectDestino.value===selectOrigen.value){
+                    selectOrigen.selectedIndex = 0;
+                }
+                document.querySelectorAll('#select-origen option').forEach(option=>{
+                    option.disabled=false;
+                });
+                document.querySelectorAll('#select-destino option').forEach(option=>{
+                    option.disabled=false;
+                });
+                const ciudadSeleccionada=selectDestino.value;
+                console.log(ciudadSeleccionada);
+                const optionCiudad=document.getElementById(`${ciudadSeleccionada}-org`); 
+                optionCiudad.disabled=true;
+                if(errorText.innerText==="Por favor selecciona un destino"){
+                    ocultarError();
+                }
+            });
+
             const tarjetas = document.querySelectorAll(".tarjeta-vuelo");
             tarjetas.forEach(element => {
                 element.addEventListener('click',(e)=>{
@@ -139,8 +249,27 @@
             document.querySelector('input[name="pasajeros"]').addEventListener('input', function () {
                 this.value = this.value
                     .replace(/[^0-9]/g, '') 
-                    .replace(/^0+/, '');    
+                    .replace(/^0+/, '');
+                    
+                if (this.value === '' || parseInt(this.value) <= 0) {
+                    mostrarError("Por favor ingresa un número válido de pasajeros");
+                } else {
+                    ocultarError();
+                }
             });
+
+            document.querySelector('input[name="fecha_salida"]').addEventListener('change', function () {
+                const fechaSeleccionada = this.value;
+
+
+                if (!fechaSeleccionada) {
+                    mostrarError("Seleccione una fecha de salida");
+                    this.value = '';
+                } else {
+                    ocultarError();
+                }
+            });
+            
         </script>
 </body>
 </html>
