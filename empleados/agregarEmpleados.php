@@ -1,9 +1,13 @@
 <?php
 
-include("conexion.php");
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$sql = "SELECT * FROM empleados";
-$resultado = mysqli_query($conn, $sql);
+require('api/classEmpleado.php');
+
+$empleado = new Empleado();
+
+$resultado = $empleado->getEmpleados();
 
 ?>
 
@@ -15,57 +19,57 @@ $resultado = mysqli_query($conn, $sql);
 </head>
 <body>
 
-    <h1>Agregar Empleado</h1>
+<h1>Agregar Empleado</h1>
 
-    <form action="guardar.php" method="POST">
+<form action="guardar.php" method="POST">
 
-        <input type="text" name="nombre" placeholder="Nombre">
+    <input type="text" name="nombre" placeholder="Nombre">
 
-        <input type="text" name="apellido" placeholder="Apellido">
+    <input type="text" name="apellido" placeholder="Apellido">
 
-        <input type="text" name="puesto" placeholder="Puesto">
+    <input type="text" name="puesto" placeholder="Puesto">
 
-        <input type="number" name="salario" placeholder="Salario">
+    <input type="number" name="salario" placeholder="Salario">
 
-        <button type="submit">
-            Guardar
-        </button>
+    <button type="submit">
+        Guardar
+    </button>
 
-    </form>
+</form>
 
-    <hr>
+<hr>
 
-    <h2>Lista de empleados</h2>
+<h2>Lista de empleados</h2>
 
-    <table border="1">
+<table border="1">
 
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Puesto</th>
-            <th>Salario</th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Puesto</th>
+        <th>Salario</th>
+    </tr>
 
-        <?php while($fila = mysqli_fetch_assoc($resultado)){ ?>
+    <?php while($fila = mysqli_fetch_assoc($resultado)){ ?>
 
-        <tr>
+    <tr>
 
-            <td><?php echo $fila['id']; ?></td>
+        <td><?php echo $fila['id']; ?></td>
 
-            <td><?php echo $fila['nombre']; ?></td>
+        <td><?php echo $fila['nombre']; ?></td>
 
-            <td><?php echo $fila['apellido']; ?></td>
+        <td><?php echo $fila['apellido']; ?></td>
 
-            <td><?php echo $fila['puesto']; ?></td>
+        <td><?php echo $fila['puesto']; ?></td>
 
-            <td><?php echo $fila['salario']; ?></td>
+        <td><?php echo $fila['salario']; ?></td>
 
-        </tr>
+    </tr>
 
-        <?php } ?>
+    <?php } ?>
 
-    </table>
+</table>
 
 </body>
 </html>
