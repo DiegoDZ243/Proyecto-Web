@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Usuario</title>
     <link rel="stylesheet" href="css/usuarios.css">
 </head>
@@ -9,33 +10,33 @@
 
 <div class="contenedor">
 
-<h1>Agregar Usuario</h1>
+    <h1>Agregar Usuario</h1>
 
-<form action="insertar.php" method="POST">
+    <form action="insertar.php" method="POST">
 
-    <label>Nombre:</label><br>
-    <input type="text" name="nombre"><br><br>
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
 
-    <label>Apellido Paterno:</label><br>
-    <input type="text" name="a_paterno"><br><br>
+        <label>Apellido Paterno:</label>
+        <input type="text" name="a_paterno" required>
 
-    <label>Apellido Materno:</label><br>
-    <input type="text" name="a_materno"><br><br>
+        <label>Apellido Materno:</label>
+        <input type="text" name="a_materno" required>
 
-    <label>Fecha Nacimiento:</label><br>
-    <input type="date" name="fecha_nac"><br><br>
+        <label>Fecha Nacimiento:</label>
+        <input type="date" name="fecha_nac" required>
 
-    <label>Correo:</label><br>
-    <input type="email" name="correo"><br><br>
+        <label>Correo:</label>
+        <input type="email" name="correo" required>
 
-    <label>Password:</label><br>
-    <input type="password" name="password"><br><br>
+        <label>Password:</label>
+        <input type="password" name="password" required>
 
-    <button type="submit">
-        Guardar Usuario
-    </button>
+        <button type="submit">
+            Guardar Usuario
+        </button>
 
-</form>
+    </form>
 
 </div>
 
