@@ -1,0 +1,186 @@
+/* =========================
+   RESET
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #f3f4f6;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    padding: 40px;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+#formulario-destino{
+    width: 900px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 35px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+.contenedor-encabezado{
+    margin-bottom: 30px;
+}
+
+.contenedor-encabezado h3{
+    font-size: 34px;
+    color: #1f2937;
+
+    margin-bottom: 10px;
+}
+
+.contenedor-encabezado p{
+    font-size: 17px;
+    color: #6b7280;
+}
+
+/* =========================
+   ERROR
+========================= */
+.contenedor-error{
+    width: 100%;
+
+    display: none;
+    align-items: center;
+    gap: 15px;
+
+    background: #fdecec;
+
+    border-left: 5px solid #b76a6a;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    margin-bottom: 25px;
+}
+
+#imagen-error{
+    width: 35px;
+}
+
+#texto-error{
+    color: #8b3d3d;
+    font-size: 18px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.contenedor-inputs{
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* IZQUIERDA */
+.contenedor-nombre{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.contenedor-nombre label{
+    font-size: 18px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.contenedor-nombre input{
+    width: 100%;
+
+    padding: 16px;
+
+    border: 2px solid #d1d5db;
+
+    border-radius: 14px;
+
+    font-size: 16px;
+
+    transition: 0.3s ease;
+}
+
+.contenedor-nombre input:focus{
+    outline: none;
+
+    border-color: #4b6b9a;
+
+    box-shadow: 0 0 0 4px rgba(75,107,154,0.15);
+}
+
+/* =========================
+   VISUALIZADOR
+========================= */
+.visualizador-imagen{
+    width: 420px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+#imagen-destino{
+    width: 100%;
+    height: 280px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    border: 3px solid #e5e7eb;
+}
+
+/* =========================
+   BOTON
+========================= */
+.contenedor-boton{
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    margin-top: 35px;
+}
+
+#btn-guardar{
+    border: none;
+
+    background: #4b6b9a;
+    color: white;
+
+    padding: 16px 45px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+#btn-guardar:hover{
+    background: #3d5b84;
+    transform: translateY(-2px);
+}

@@ -23,6 +23,7 @@ destino.addEventListener('change',()=>{
 }); 
 
 url.addEventListener('change',(e)=>{
+    contenedorError.style.display="none"; 
     if(!url.value.trim()){
         imagen.src='img/imagen-default.jpg'; 
     }
