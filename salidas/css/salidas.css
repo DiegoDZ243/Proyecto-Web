@@ -1,0 +1,250 @@
+/* =========================
+   BASE
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #f3f4f6;
+    padding: 25px;
+    color: #222;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 32px;
+    color: #1f2937;
+}
+
+/* =========================
+   CONTENEDOR GENERAL
+========================= */
+.fondo-salidas{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* =========================
+   CARD VUELO
+========================= */
+.contenedor-unir{
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.25s ease;
+}
+
+.contenedor-unir:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* =========================
+   INFORMACIÓN VUELO
+========================= */
+.contenedor-datos{
+    flex: 1;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* =========================
+   ORIGEN / DESTINO
+========================= */
+.item-origen-destino{
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.item-origen,
+.item-destino{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f9fafb;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.item-origen img,
+.item-destino img{
+    width: 110px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.contendor-origen,
+.contendor-destino{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contendor-origen h3,
+.contendor-destino h3{
+    font-size: 16px;
+    color: #374151;
+}
+
+.contendor-origen p,
+.contendor-destino p{
+    font-size: 20px;
+    font-weight: bold;
+    color: #0077ff;
+}
+
+/* =========================
+   FECHA Y HORA
+========================= */
+.item-fecha-hora{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.item-fecha,
+.item-hora{
+    flex: 1;
+    background: #f9fafb;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.item-fecha h3,
+.item-hora h3{
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.item-fecha p,
+.item-hora p{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* =========================
+   PRECIO
+========================= */
+.item-precio{
+    background: #0077ff;
+    color: white;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.item-precio h3{
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.item-precio p{
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* =========================
+   BOTONES
+========================= */
+.contenedor-botones{
+    width: 220px;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.contenedor-botones a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #e5e7eb;
+    color: #111827;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+.contenedor-botones a:hover{
+    background: #d1d5db;
+    transform: scale(1.02);
+}
+
+.contenedor-botones a img{
+    width: 20px;
+    height: 20px;
+}
+
+/* =========================
+   BOTÓN CREAR
+========================= */
+.pie-salidas{
+    margin-top: 35px;
+    text-align: center;
+}
+
+.pie-salidas a{
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    background: #16a34a;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.25s ease;
+}
+
+.pie-salidas a:hover{
+    background: #15803d;
+    transform: translateY(-2px);
+}
+
+.pie-salidas img{
+    width: 22px;
+    height: 22px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width: 900px){
+
+    .contenedor-unir{
+        flex-direction: column;
+    }
+
+    .contenedor-botones{
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .contenedor-botones a{
+        flex: 1;
+        justify-content: center;
+    }
+
+}

@@ -13,7 +13,7 @@ CREATE TABLE vuelos(
     id_origen		INT				NOT NULL,
     fecha			DATE			NOT NULL, 
     hora_salida		TIME			NOT NULL,
-    embarque		VARCHAR(50)		NOT NULL,
+    embarque		VARCHAR(50)		NULL,
     precio			DECIMAL(10,2)	NOT NULL,
     cupo 			INT 			NOT NULL 	DEFAULT 48,
     id_destino 		INT 			NOT NULL,
@@ -188,9 +188,74 @@ delimiter $
     end $
 delimiter ; 
 
+delimiter $
+	create procedure sp_getVuelosMas()
+		begin
+			select id_vuelo, o.id_destino as id_origen, o.ciudad as origen, o.imagen as img_origen,
+            d.id_destino as id_destino, d.ciudad as destino, d.imagen as img_destino,v.fecha, v.hora_salida,v.precio
+			from vuelos v join destinos o on o.id_destino=v.id_origen
+			join destinos d on d.id_destino=v.id_destino
+			order by origen asc,v.fecha asc;
+	end $
+    
+delimiter ;
+DELIMITER $
+CREATE PROCEDURE sp_insertarVuelo
+(IN p_id_origen INT, IN p_id_destino INT, IN p_fecha DATE,
+ IN p_hora_salida TIME, IN p_precio DECIMAL(10,2))
+BEGIN
+    INSERT INTO vuelos(id_origen, id_destino, fecha, hora_salida, precio)
+    VALUES (p_id_origen, p_id_destino, p_fecha, p_hora_salida, p_precio);
+END $
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_actualizarVuelo;
+DELIMITER $
+CREATE PROCEDURE sp_actualizarVuelo
+(
+    IN p_id_vuelo INT,
+    IN p_id_origen INT, 
+    IN p_id_destino INT, 
+    IN p_fecha DATE, 
+    IN p_hora_salida TIME, 
+    IN p_precio DECIMAL(10,2)
+)
+BEGIN
+    UPDATE vuelos 
+    SET id_origen = p_id_origen,
+        id_destino = p_id_destino,
+        fecha = p_fecha,
+        hora_salida = p_hora_salida,
+        precio = p_precio
+    WHERE id_vuelo = p_id_vuelo;
+END $
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_eliminarVuelo;
+DELIMITER $
+CREATE PROCEDURE sp_eliminarVuelo
+(
+    IN p_id_vuelo INT
+)
+BEGIN
+    START TRANSACTION;
+    
+    -- 1. Primero eliminamos los boletos amarrados a este vuelo para evitar errores de llave foránea
+    DELETE FROM boletos 
+    WHERE id_vuelo = p_id_vuelo;
+    -- 2. Ahora sí, eliminamos el vuelo de forma segura
+    DELETE FROM vuelos 
+    WHERE id_vuelo = p_id_vuelo;
+    COMMIT;
+END $
+
+
+
 call sp_getVuelos();
+call sp_getVuelosMas();
 call sp_getVuelosBaratos(); 
 call sp_getDestinos();
 call sp_buscarVuelo(1); 
 
+select ciudad,imagen from destinos;
 select * from boletos;

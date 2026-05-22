@@ -1,0 +1,230 @@
+/* =========================
+   BASE
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #f3f4f6;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+#formulario-salidas{
+    width: 100%;
+    max-width: 950px;
+    background: white;
+    border-radius: 18px;
+    padding: 35px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+.contenedor-encabezado{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.contenedor-encabezado h3{
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.contenedor-encabezado p{
+    color: #6b7280;
+    font-size: 16px;
+}
+
+/* =========================
+   ERROR
+========================= */
+.error-message{
+    display: none;
+    align-items: center;
+    gap: 15px;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #fca5a5;
+}
+
+#error-message img{
+    width: 30px;
+    height: 30px;
+}
+
+#error-text{
+    font-size: 16px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.contenedor-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contenedor-origen-destino{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* =========================
+   SELECTS
+========================= */
+.contenedor-origen,
+.contenedor-destino,
+.contenedor-precio{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contenedor-origen label,
+.contenedor-destino label,
+.contenedor-precio label{
+    font-weight: bold;
+    color: #374151;
+    font-size: 15px;
+}
+
+select,
+input{
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.2s ease;
+    font-size: 15px;
+    background: white;
+}
+
+select:focus,
+input:focus{
+    border-color: #0077ff;
+    box-shadow: 0 0 0 4px rgba(0,119,255,0.15);
+}
+
+/* =========================
+   FECHA Y HORA
+========================= */
+.contenedor-fecha-hora{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contenedor-fecha,
+.contenedor-hora{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f9fafb;
+    padding: 18px;
+    border-radius: 14px;
+}
+
+.contenedor-fecha img,
+.contenedor-hora img{
+    width: 45px;
+    height: 45px;
+}
+
+.contenedor-input-fecha,
+.contenedor-input-hora{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contenedor-input-fecha label,
+.contenedor-input-hora label{
+    font-weight: bold;
+    color: #374151;
+}
+
+/* =========================
+   PRECIO
+========================= */
+.contenedor-precio input{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+.contenedor-boton{
+    margin-top: 35px;
+    text-align: center;
+}
+
+#btn-guardar{
+    background: #0077ff;
+    color: white;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+#btn-guardar:hover{
+    background: #005fcc;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media(max-width: 768px){
+
+    #formulario-salidas{
+        padding: 25px;
+    }
+
+    .contenedor-fecha-hora{
+        flex-direction: column;
+    }
+
+    .contenedor-fecha,
+    .contenedor-hora{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contenedor-fecha img,
+    .contenedor-hora img{
+        width: 55px;
+        height: 55px;
+    }
+
+    .contenedor-input-fecha,
+    .contenedor-input-hora{
+        width: 100%;
+    }
+
+}
