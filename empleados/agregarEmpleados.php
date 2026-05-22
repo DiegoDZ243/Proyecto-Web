@@ -13,26 +13,73 @@ $resultado = $empleado->getEmpleados();
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <title>Empleados Aeropuerto</title>
+
+    <!-- AQUI VA EL CSS -->
+    <link rel="stylesheet" href="css/empleados.css">
+
 </head>
+
 <body>
 
-<h1>Agregar Empleado</h1>
+<h1>Agregar Empleado ✈️</h1>
 
-<form action="guardar.php" method="POST">
+<!-- AQUI VA EL ID DEL FORM -->
+<form id="formEmpleado"
+      action="guardar.php"
+      method="POST">
 
-    <input type="text" name="nombre" placeholder="Nombre">
+    <!-- NOMBRE -->
+    <input type="text"
+           name="nombre"
+           id="nombre"
+           placeholder="Nombre">
 
-    <input type="text" name="apellido" placeholder="Apellido">
+    <!-- APELLIDO PATERNO -->
+    <input type="text"
+           name="a_paterno"
+           id="a_paterno"
+           placeholder="Apellido Paterno">
 
-    <input type="text" name="puesto" placeholder="Puesto">
+    <!-- APELLIDO MATERNO -->
+    <input type="text"
+           name="a_materno"
+           id="a_materno"
+           placeholder="Apellido Materno">
 
-    <input type="number" name="salario" placeholder="Salario">
+    <!-- SUELDO -->
+    <input type="number"
+           step="0.01"
+           name="sueldo"
+           id="sueldo"
+           placeholder="Sueldo">
+
+    <!-- HORA ENTRADA -->
+    <label>Hora Entrada</label>
+
+    <input type="time"
+           name="hora_entrada">
+
+    <!-- HORA SALIDA -->
+    <label>Hora Salida</label>
+
+    <input type="time"
+           name="hora_salida">
+
+    <!-- ID JEFE -->
+    <input type="number"
+           name="id_jefe"
+           placeholder="ID Jefe">
 
     <button type="submit">
-        Guardar
+
+        Guardar Empleado
+
     </button>
 
 </form>
@@ -44,32 +91,46 @@ $resultado = $empleado->getEmpleados();
 <table border="1">
 
     <tr>
+
         <th>ID</th>
         <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Puesto</th>
-        <th>Salario</th>
+        <th>Apellido Paterno</th>
+        <th>Apellido Materno</th>
+        <th>Sueldo</th>
+
     </tr>
 
     <?php while($fila = mysqli_fetch_assoc($resultado)){ ?>
 
     <tr>
 
-        <td><?php echo $fila['id']; ?></td>
+        <td>
+            <?php echo $fila['id_empleado']; ?>
+        </td>
 
-        <td><?php echo $fila['nombre']; ?></td>
+        <td>
+            <?php echo $fila['nombre']; ?>
+        </td>
 
-        <td><?php echo $fila['apellido']; ?></td>
+        <td>
+            <?php echo $fila['a_paterno']; ?>
+        </td>
 
-        <td><?php echo $fila['puesto']; ?></td>
+        <td>
+            <?php echo $fila['a_materno']; ?>
+        </td>
 
-        <td><?php echo $fila['salario']; ?></td>
+        <td>
+            $<?php echo $fila['sueldo']; ?>
+        </td>
 
     </tr>
 
     <?php } ?>
 
 </table>
+
+<script src="scripts/empleados.js"></script>
 
 </body>
 </html>
