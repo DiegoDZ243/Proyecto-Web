@@ -160,20 +160,6 @@ if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'empleado
             margin-bottom: 15px;
             color: #667eea;
         }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            .usuario-info {
-                width: 100%;
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 <body>

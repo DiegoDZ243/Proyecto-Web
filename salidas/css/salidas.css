@@ -201,6 +201,10 @@ h1{
 .pie-salidas{
     margin-top: 35px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:15px; 
 }
 
 .pie-salidas a{
@@ -225,26 +229,4 @@ h1{
 .pie-salidas img{
     width: 22px;
     height: 22px;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media(max-width: 900px){
-
-    .contenedor-unir{
-        flex-direction: column;
-    }
-
-    .contenedor-botones{
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .contenedor-botones a{
-        flex: 1;
-        justify-content: center;
-    }
-
 }

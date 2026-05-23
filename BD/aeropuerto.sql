@@ -130,7 +130,7 @@ delimiter $
 			select id_vuelo, o.ciudad as origen, d.ciudad as destino, v.fecha, v.precio
 			from vuelos v join destinos o on o.id_destino=v.id_origen
 			join destinos d on d.id_destino=v.id_destino
-			order by origen asc,v.fecha asc;
+			order by id_vuelo;-- order by origen asc,v.fecha asc;
 	end $
 delimiter ;
 
@@ -142,7 +142,7 @@ delimiter $
                     o.imagen
 			from vuelos v join destinos o on o.id_destino=v.id_origen
 			join destinos d on d.id_destino=v.id_destino
-            where v.cupo>=0
+            where v.cupo>0
 			order by precio asc limit 4;
 		end $
 delimiter ;

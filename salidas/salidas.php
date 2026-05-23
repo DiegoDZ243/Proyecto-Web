@@ -55,9 +55,9 @@
                 </div>
             </div>
         <?php endforeach?>
-        <div class="pie-salidas">
-            <a href="crearSalida.php"><img src="img/icn_insertar.png">Crear Salida</a>
-            <a href="../dashboard_empleado.php">← Volver al Dashboard</a>
+        <div class="pie-salidas" >
+             <a href="../dashboard_empleado.php">← Volver al Dashboard</a>
+            <a href="crearSalida.php"><img src="img/icn_insertar.png">Crear Vuelo</a>
         </div>
     </div>
 </body>

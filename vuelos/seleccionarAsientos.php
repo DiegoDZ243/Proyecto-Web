@@ -10,7 +10,6 @@
 
     $vueloActual = new vuelo($id_vuelo);
     $precio=$vueloActual->getPrecio(); 
-    echo $precio;
     $asientosOcupados = $vueloActual->getAsientosOcupados();
 ?>
 
@@ -39,7 +38,7 @@
                         <p>Selecciona tus asientos</p>
                     </div>
 
-                    <img src="img/icn-boleto.png" id="imgBoleto">
+                    <img src="img/icn-avion.png" id="imgBoleto">
                 </div>
 
             </div>
