@@ -39,7 +39,7 @@ $resultado = $conexion->ExecuteQuery($sql);
 </tr>
 
 <?php while($fila = $conexion->GetRowsWithColumn($resultado)){ ?>
-    
+
 <tr>
 
     <td><?php echo $fila['id_empleado']; ?></td>
