@@ -1,6 +1,6 @@
 <?php
 
-include("../Conexion/Conexión.php");
+include("../Conexion/Conexion.php");
 
 $sql = "SELECT * FROM empleados";
 
