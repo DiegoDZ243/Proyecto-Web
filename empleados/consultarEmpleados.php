@@ -2,9 +2,13 @@
 
 include("../Conexion/Conexion.php");
 
+$conexion = new ConnectionMySQL();
+
+$conexion->CreateConnection();
+
 $sql = "SELECT * FROM empleados";
 
-$resultado = mysqli_query($conn, $sql);
+$resultado = $conexion->ExecuteQuery($sql);
 
 ?>
 
@@ -34,8 +38,8 @@ $resultado = mysqli_query($conn, $sql);
 
 </tr>
 
-<?php while($fila = mysqli_fetch_assoc($resultado)){ ?>
-
+<?php while($fila = $conexion->GetRowsWithColumn($resultado)){ ?>
+    
 <tr>
 
     <td><?php echo $fila['id_empleado']; ?></td>
