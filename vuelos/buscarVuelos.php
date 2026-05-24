@@ -1,17 +1,9 @@
 <?php
-    session_start();
-    
-    // Verificar que sea cliente
-    if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'cliente') {
-        header('Location: ../index.html');
-        exit();
-    }
-    
+    session_start(); 
     require('api/classInfoVuelos.php'); 
     $vuelos=new vuelos(); 
     $listaDestinos=$vuelos->getDestinos(); 
     $listaVuelosBaratos=$vuelos->getVuelosBaratos();
-    
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeroPHP - Buscar Vuelos</title>
     <link rel="stylesheet" href="css/buscarVuelos.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/barraSuperior.css">
 </head>
 <body>
     <section class="barra-superior">
@@ -30,14 +24,57 @@
                 <img src="img/icn-logo.png" alt="logo aeropuerto">
             </div>
             <div class="contendor-enlaces">
-                <a href="mis_boletos.php">Mis boletos</a>
-                <a href="../logout.php" style="color: red;">
+                <?php if(isset($_SESSION["usuario"])):?>
+                    <h3> ¡Bienvenido, <?= $_SESSION["usuario"] ?>!</h3>
+                    <a href="mis_boletos.php">Mis boletos</a>
+                <?php endif ?>
+                <a href="../logout.php" id="login-boton" style="color: red;">
                     <img src="img/icn-usuario.png" alt="iconoUsuario">
-                    <h5>Cerrar sesión</h5>
+                    <?php if(isset($_SESSION["usuario"])){ ?>
+                        <h5>Cerrar sesión</h5>
+
+                    <?php } else { ?>
+                        <h5>Iniciar sesión</h5>
+                    <?php } ?>
                 </a>
             </div>
         </div>
     </section>
+    <div class="fondo-overlay" id="overlay" hidden>
+        <form id="formulario-login" method="post" action="validar.php">
+            <input name="router" value="buscarVuelos.php" hidden>
+            <div class="encabezado-login">
+                <div class="contenedor-titulo">
+                    <h1>Inicia sesión</h1>
+                    <button id="btnSalirLogin"> X </button>
+                </div>
+            </div>
+            <div class="cuerpo-login">
+                <div class="texto-login">
+                    <p>Inicia sesión para ver y comprar boletos</p>
+                    <img src="img/icn-login.png">
+                </div>
+                <div class="error-login" <?php if(!isset($_GET["err"])): ?> hidden <?php endif ?>>
+                    <p>Usuario y/o contraseña incorrectas</p>
+                </div>
+            </div>
+            <div class="fondo-login">
+                <div class="contenedor-usuario-login">
+                    <input type="email" name="correo" placeholder="Email" required>
+                </div>
+                <div class="contenedor-pass-login">
+                    <input type="password" name="pass" placeholder="Contraseña" required>
+                    <img >
+                </div>
+                <div class="contenedor-boton-login">
+                    <button type="submit">Iniciar sesión</button>
+                </div>
+            </div>
+            <div class="pie-login">
+                <p>¿No tienes cuenta? <a>Regístrate aquí</a></p>
+            </div>
+        </form>
+    </div>
     <main class="fondo-buscador">
         <form class="contenedor-buscador" method="post" action="seleccionarVuelo.php" id="formulario-busqueda">
             <!-- Mensaje de error -->
@@ -138,7 +175,43 @@
                 <?php endforeach; ?>
             </div>  
         </section>
-        <script src="scripts/buscarVuelos.js"></script>
+        
+        <script>
+            const botonLogin=document.getElementById("login-boton"); 
+            const botonSalirLogin=document.getElementById("btnSalirLogin");
+            const fondoOverlay=document.getElementById("overlay"); 
+            const formularioLogin=document.getElementById("formulario-login"); 
+
+            <?php if(isset($_GET["err"])): ?>
+                fondoOverlay.hidden=false; 
+            <?php endif ?>
+            botonLogin.addEventListener('click',(e)=>{
+                <?php if(!isset($_SESSION["usuario"])):?>
+                    e.preventDefault(); 
+                    if(formularioLogin.classList.toggle("sobrepuesta")){
+                        fondoOverlay.hidden=true;
+                    }else{
+                        fondoOverlay.hidden=false;
+                    }
+                <?php endif ?>
+            }); 
+
+            botonSalirLogin.addEventListener('click',(e)=>{
+                <?php if(!isset($_SESSION["usuario"])):?>
+                    e.preventDefault(); 
+                    if(formularioLogin.classList.toggle("sobrepuesta")){
+                        fondoOverlay.hidden=true;
+                        <?php if(isset($_GET["err"])): ?>
+                            window.history.replaceState({}, document.title, window.location.pathname);
+                        <?php endif; ?>
+                    }else{
+                        fondoOverlay.hidden=false;
+                    }    
+                <?php endif ?>
+            }); 
+
+
+        </script>
         <script>
             const listaCiudadOrigen= <?php echo json_encode($listaDestinos) ?>;
             const listaCiudadDestino= <?php echo json_encode($listaDestinos)?>; 

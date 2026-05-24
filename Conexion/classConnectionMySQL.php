@@ -45,6 +45,10 @@
             return $result->fetch_assoc(); 
         }
 
+        public function GetRowCount($result){
+            return $result->num_rows; 
+        }
+
         public function SetFreeResult($result){
             return $result->free_result(); 
         }

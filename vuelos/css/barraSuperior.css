@@ -1,0 +1,109 @@
+/* =========================
+   BARRA SUPERIOR
+========================= */
+
+.barra-superior{
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.contenedor-barra{
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 25px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.contendor-logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.contendor-logo h5{
+    font-size: 24px;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.contendor-logo img{
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+/* =========================
+   ENLACES
+========================= */
+
+.contendor-enlaces{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.contendor-enlaces h3{
+    font-size: 15px;
+    color: #374151;
+    font-weight: 500;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.contendor-enlaces a{
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    color: #111827;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.contendor-enlaces a:hover{
+    background: #f3f4f6;
+    transform: translateY(-1px);
+}
+
+/* =========================
+   LOGIN / LOGOUT
+========================= */
+
+#login-boton{
+    background: #eff6ff;
+}
+
+#login-boton:hover{
+    background: #dbeafe;
+}
+
+#login-boton img{
+    width: 28px;
+    height: 28px;
+}
+
+#login-boton h5{
+    font-size: 18px;
+    margin: 0;
+}

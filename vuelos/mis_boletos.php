@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-// Verificar que sea cliente
-if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'cliente') {
-    header('Location: ../index.html');
-    exit();
-}
-
 require_once('../Conexion/classConnectionMySQL.php');
 
 $id_usuario = $_SESSION['usuario_id'];

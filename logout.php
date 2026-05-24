@@ -1,6 +1,7 @@
 <?php
 session_start();
 session_destroy();
-header('Location: index.html');
+echo "Sesión cerrada";
+header("Location:vuelos/buscarVuelos.php");  
 exit();
 ?>

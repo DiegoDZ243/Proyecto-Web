@@ -1,0 +1,158 @@
+/* =========================
+   BARRA SUPERIOR
+========================= */
+
+.barra-superior{
+    width: 100%;
+    background: #ffffff;
+
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.contenedor-barra{
+    max-width: 1400px;
+
+    margin: auto;
+    padding: 15px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+}
+
+/* =========================
+   IZQUIERDA
+========================= */
+
+.contenedor-volver-menu{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.contenedor-volver-menu a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    
+    color: #142c5f;
+
+    font-weight: bold;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+    cursor:pointer;
+    transition: 0.25s ease;
+
+}
+
+
+.contenedor-volver-menu a:hover{
+    background: #eff6ff;
+    transform: translateX(-2px);
+}
+
+.contenedor-volver-menu a img{
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.contenedor-volver-menu a h3{
+    font-size: 18px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.contendor-logo{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.contendor-logo h5{
+    font-size: 24px;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+.contendor-logo img{
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+/* =========================
+   DERECHA
+========================= */
+
+.contendor-enlaces{
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.contendor-enlaces h3{
+    font-size: 15px;
+    color: #374151;
+    font-weight: 500;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.contendor-enlaces a{
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    color: #111827;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.contendor-enlaces a:hover{
+    background: #f3f4f6;
+    transform: translateY(-1px);
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#login-boton{
+    background: #fef2f2;
+}
+
+#login-boton:hover{
+    background: #fee2e2;
+}
+
+#login-boton img{
+    width: 22px;
+    height: 22px;
+}
+
+#login-boton h5{
+    margin: 0;
+    font-size: 18px;
+}
