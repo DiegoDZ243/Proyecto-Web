@@ -49,7 +49,7 @@ while($row = $NewConn->GetRows($result)){
     echo "<td>".$row[3]."</td>";
     echo "<td>".$row[4]."</td>";
     echo "<td>".$row[5]."</td>";
-    echo "<td>".$row[6]."</td>";
+    echo "<td>********</td>";
 
     echo "<td>
         <a class='editar' href='editar.php?id=".$row[0]."'>
