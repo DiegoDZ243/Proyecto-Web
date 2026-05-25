@@ -1,14 +1,10 @@
 <?php
+    session_start(); 
+    include("api/classEmpleado.php");
 
-include("../Conexion/Conexion.php");
+    $classEmpleado=new empleado(); 
 
-$conexion = new ConnectionMySQL();
-
-$conexion->CreateConnection();
-
-$sql = "SELECT * FROM empleados";
-
-$resultado = $conexion->ExecuteQuery($sql);
+    $listaEmpleados=$classEmpleado->getEmpleados(); 
 
 ?>
 
@@ -17,9 +13,19 @@ $resultado = $conexion->ExecuteQuery($sql);
 <head>
     <meta charset="UTF-8">
     <title>Consultar Empleados</title>
+    <link rel="stylesheet" href="css/barraSuperiorExt.css">
 </head>
 <body>
-
+<div class="navbar">
+    <div>
+        <a href="../dashboard_empleado.php"><img src="img/icn-regresar.png"> Regresar</a>
+        <h1>🛫 AeroPHP - Panel de Empleado</h1>
+    </div>
+    <div class="usuario-info">
+        <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
+        <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
+    </div>
+</div>
 <h2>Lista de Empleados</h2>
 
 <table border="1">
@@ -33,14 +39,14 @@ $resultado = $conexion->ExecuteQuery($sql);
     <th>Sueldo</th>
     <th>Hora Entrada</th>
     <th>Hora Salida</th>
-    <th>ID Jefe</th>
+    <th>Jefe</th>
     <th>Acciones</th>
 
 </tr>
 
-<?php while($fila = $conexion->GetRowsWithColumn($resultado)){ ?>
+<?php foreach($listaEmpleados as $fila): ?>
 
-<tr>
+<tr> 
 
     <td><?php echo $fila['id_empleado']; ?></td>
     <td><?php echo $fila['nombre']; ?></td>
@@ -53,7 +59,7 @@ $resultado = $conexion->ExecuteQuery($sql);
 
     <td>
 
-        <a href="editarEmpleado.php?id=<?php echo $fila['id_empleado']; ?>">
+        <a href="editarEmpleados.php?id=<?php echo $fila['id_empleado']; ?>">
             Editar
         </a>
 
@@ -67,7 +73,7 @@ $resultado = $conexion->ExecuteQuery($sql);
 
 </tr>
 
-<?php } ?>
+<?php endforeach ?>
 
 </table>
 

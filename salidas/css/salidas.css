@@ -1,6 +1,3 @@
-/* =========================
-   BASE
-========================= */
 *{
     margin: 0;
     padding: 0;
@@ -10,223 +7,218 @@
 
 body{
     background: #f3f4f6;
-    padding: 25px;
-    color: #222;
 }
 
-h1{
-    text-align: center;
-    margin-bottom: 35px;
-    font-size: 32px;
-    color: #1f2937;
-}
-
-/* =========================
-   CONTENEDOR GENERAL
-========================= */
-.fondo-salidas{
-    width: 100%;
+body > h1{
     max-width: 1200px;
-    margin: auto;
+    margin: 40px auto 20px;
+    padding: 0 20px;
+
+    color: #111827;
+    font-size: 32px;
 }
 
-/* =========================
-   CARD VUELO
-========================= */
+.fondo-salidas{
+    max-width: 1200px;
+
+    margin: 0 auto 40px;
+    padding: 24px;
+
+    background: #e5e7eb;
+
+    border-radius: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 .contenedor-unir{
     background: white;
-    border-radius: 16px;
-    overflow: hidden;
+
+    border-radius: 18px;
+
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    margin-bottom: 25px;
+
+    overflow: hidden;
+
     box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    transition: 0.25s ease;
+
+    transition: 0.2s ease;
 }
 
 .contenedor-unir:hover{
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
 }
 
-/* =========================
-   INFORMACIÓN VUELO
-========================= */
 .contenedor-datos{
     flex: 1;
-    padding: 25px;
+
+    padding: 24px;
+
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
 }
 
-/* =========================
-   ORIGEN / DESTINO
-========================= */
 .item-origen-destino{
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
 }
 
 .item-origen,
 .item-destino{
-    flex: 1;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 14px;
+
     background: #f9fafb;
-    padding: 15px;
-    border-radius: 12px;
+
+    padding: 14px;
+
+    border-radius: 14px;
 }
 
 .item-origen img,
 .item-destino img{
-    width: 110px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-}
+    width: 180px;
+    height: 150px;
 
-.contendor-origen,
-.contendor-destino{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    border-radius: 12px;
+
+    object-fit: cover;
 }
 
 .contendor-origen h3,
-.contendor-destino h3{
-    font-size: 16px;
-    color: #374151;
+.contendor-destino h3,
+.item-fecha h3,
+.item-hora h3,
+.item-precio h3{
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 4px;
 }
 
 .contendor-origen p,
-.contendor-destino p{
-    font-size: 20px;
+.contendor-destino p,
+.item-fecha p,
+.item-hora p,
+.item-precio p{
+    color: #111827;
+    font-size: 16px;
     font-weight: bold;
-    color: #0077ff;
 }
 
-/* =========================
-   FECHA Y HORA
-========================= */
 .item-fecha-hora{
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
 }
 
 .item-fecha,
-.item-hora{
-    flex: 1;
-    background: #f9fafb;
-    padding: 15px;
-    border-radius: 12px;
-}
-
-.item-fecha h3,
-.item-hora h3{
-    margin-bottom: 8px;
-    color: #374151;
-}
-
-.item-fecha p,
-.item-hora p{
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* =========================
-   PRECIO
-========================= */
+.item-hora,
 .item-precio{
-    background: #0077ff;
-    color: white;
-    padding: 18px;
-    border-radius: 12px;
-    text-align: center;
-}
+    background: #f9fafb;
 
-.item-precio h3{
-    margin-bottom: 8px;
-    font-size: 18px;
+    padding: 14px;
+
+    border-radius: 14px;
 }
 
 .item-precio p{
-    font-size: 28px;
-    font-weight: bold;
+    color: #2563eb;
+    font-size: 20px;
 }
 
-/* =========================
-   BOTONES
-========================= */
 .contenedor-botones{
     width: 220px;
-    background: #f9fafb;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
 }
 
 .contenedor-botones a{
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px;
-    border-radius: 10px;
-    background: #e5e7eb;
-    color: #111827;
-    font-weight: bold;
-    transition: 0.2s ease;
-}
+    flex: 1;
 
-.contenedor-botones a:hover{
-    background: #d1d5db;
-    transform: scale(1.02);
-}
-
-.contenedor-botones a img{
-    width: 20px;
-    height: 20px;
-}
-
-/* =========================
-   BOTÓN CREAR
-========================= */
-.pie-salidas{
-    margin-top: 35px;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:15px; 
+    margin: 35px;
+    gap: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    transition: 0.2s ease;
+}
+
+.contenedor-botones a:first-child{
+    background: #2563eb;
+}
+
+.contenedor-botones a:last-child{
+    background: #ef4444;
+}
+
+.contenedor-botones a:hover{
+    opacity: 0.92;
+}
+
+.contenedor-botones img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.pie-salidas{
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
 }
 
 .pie-salidas a{
+    background: white;
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    padding: 14px 22px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
+    font-weight: bold;
+
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    text-decoration: none;
+    gap: 10px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+    transition: 0.2s ease;
+}
+
+.pie-salidas a:last-child{
     background: #16a34a;
+    width: 250px;
+    justify-content: center;
     color: white;
-    padding: 14px 22px;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: bold;
-    transition: 0.25s ease;
 }
 
 .pie-salidas a:hover{
-    background: #15803d;
     transform: translateY(-2px);
 }
 
 .pie-salidas img{
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }

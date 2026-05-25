@@ -1,4 +1,5 @@
 <?php
+    session_start(); 
     require("api/classSalidas.php"); 
     $classSalidas=new vuelos(); 
     $listaSalidas=$classSalidas->getVuelosMas(); 
@@ -11,10 +12,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de salidas</title>
     <link rel="stylesheet" href="css/salidas.css">
+    <link rel="stylesheet" href="css/barraSuperiorExt.css">
 </head>
 <body>
+    <div class="navbar">
+        <div>
+            <a href="../dashboard_empleado.php"><img src="img/icn-regresar.png"> Regresar</a>
+            <h1>🛫 AeroPHP - Panel de Empleado</h1>
+        </div>
+        <div class="usuario-info">
+            <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
+            <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </div>
     <h1>Lista de salidas (vuelos) disponibles</h1>
     <div class="fondo-salidas">
+        <div class="pie-salidas" >
+            <a href="crearSalida.php"><img src="img/icn_insertar.png">Crear Vuelo</a>
+        </div>
         <?php foreach($listaSalidas as $v):?>
             <div class="contenedor-unir">
                 <div class="contenedor-datos">
@@ -55,10 +70,7 @@
                 </div>
             </div>
         <?php endforeach?>
-        <div class="pie-salidas" >
-             <a href="../dashboard_empleado.php">← Volver al Dashboard</a>
-            <a href="crearSalida.php"><img src="img/icn_insertar.png">Crear Vuelo</a>
-        </div>
+        
     </div>
 </body>
 </html>

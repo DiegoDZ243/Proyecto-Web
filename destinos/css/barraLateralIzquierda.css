@@ -1,0 +1,43 @@
+/* =========================
+   ASIDE BOTON FLOTANTE
+========================= */
+
+.barra-inferior-izquierda{
+    position: fixed;
+
+    left: 28px;
+    bottom: 28px;
+
+    z-index: 200;
+}
+
+.barra-inferior-izquierda a{
+    width: 56px;
+    height: 56px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2563eb;
+
+    border-radius: 50%;
+
+    box-shadow: 0 8px 22px rgba(37,99,235,0.35);
+
+    transition: 0.2s ease;
+
+    cursor: pointer;
+}
+
+.barra-inferior-izquierda a:hover{
+    transform: translateY(-4px);
+    opacity: 0.92;
+}
+
+.barra-inferior-izquierda img{
+    width: 26px;
+    height: 26px;
+
+    object-fit: contain;
+}

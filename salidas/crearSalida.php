@@ -1,4 +1,5 @@
 <?php
+    session_start(); 
     require("api/classSalidas.php"); 
     $vuelos=new vuelos(); 
     $listaDestinos=$vuelos->getDestinos(); 
@@ -11,65 +12,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Salida</title>
     <link rel="stylesheet" href="css/crearSalida.css">
+    <link rel="stylesheet" href="css/barraSuperiorExt.css">
 </head>
 <body>
-    <form id="formulario-salidas" method="post" action="guardar.php">
-        <div class="contenedor-encabezado">
-            <h3>Dar de alta un nuevo vuelo</h3>
-            <p>Llene los campos para dar de alta un nuevo vuelo</p>
+    <div class="navbar">
+        <div>
+            <a href="salidas.php"><img src="img/icn-regresar.png"> Regresar</a>
+            <h1>🛫 AeroPHP - Panel de Empleado</h1>
         </div>
-        <div class="error-message" id="error-message">
-            <img src="img/icn-error.png" alt="icono-error" id="imagen-error">
-            <h3 id="error-text"></h3>
+        <div class="usuario-info">
+            <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
+            <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
         </div>
-        <div class="contenedor-inputs">
-            <div class="contenedor-origen-destino">
-                <div class="contenedor-origen">
-                    <label for="origen">Seleecione el origen: </label>
-                    <select  id="select-origen" name="origen">
-                        <option value="" selected disabled>Selecciona un origen</option>
-                        <?php foreach($listaDestinos as $d):?>
-                            <option value="<?= $d["id_destino"] ?>" id="<?= $d["id_destino"] ?>-org"> <?= $d["ciudad"] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-                <div class="contenedor-destino">
-                    <label for="destino">Seleecione el destino: </label>
-                    <select  id="select-destino" name="destino">
-                        <option value="" selected disabled>Selecciona un destino</option>
-                        <?php foreach($listaDestinos as $d):?>
-                            <option value="<?= $d["id_destino"] ?>" id="<?= $d["id_destino"] ?>-dest"> <?= $d["ciudad"] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-                <div class="contenedor-fecha-hora">
-                    <div class="contenedor-fecha">
-                        <img src="img/icn-salida.png" alt="salida">
-                        <div class="contenedor-input-fecha">
-                            <label>Salida: </label>
-                            <input type="date" name="fecha_salida" min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+3 year')) ?>">
-                        </div>
-                    </div>
-                    <div class="contenedor-hora">
-                        <img src="img/icn-hora.png" alt="hora">
-                        <div class="contenedor-input-hora">
-                            <label>Hora: </label>
-                            <input type="time" name="hora_salida">
-                        </div>
-                    </div>
-                </div>
-                <div class="contenedor-precio">
-                    <label>Precio: </label>
-                    <input type="number" name="precio" min="50" max="1000000">
-                </div>
+    </div>
+    <div class="fondo-crear-salidas">
+        <form id="formulario-salidas" method="post" action="guardar.php">
+            <div class="contenedor-encabezado">
+                <h3>Dar de alta un nuevo vuelo</h3>
+                <p>Llene los campos para dar de alta un nuevo vuelo</p>
             </div>
+            <div class="error-message" id="error-message">
+                <img src="img/icn-error.png" alt="icono-error" id="imagen-error">
+                <h3 id="error-text"></h3>
+            </div>
+            <div class="contenedor-inputs">
+                <div class="contenedor-origen-destino">
+                    <div class="contenedor-origen">
+                        <label for="origen">Seleecione el origen: </label>
+                        <select  id="select-origen" name="origen">
+                            <option value="" selected disabled>Selecciona un origen</option>
+                            <?php foreach($listaDestinos as $d):?>
+                                <option value="<?= $d["id_destino"] ?>" id="<?= $d["id_destino"] ?>-org"> <?= $d["ciudad"] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="contenedor-destino">
+                        <label for="destino">Seleecione el destino: </label>
+                        <select  id="select-destino" name="destino">
+                            <option value="" selected disabled>Selecciona un destino</option>
+                            <?php foreach($listaDestinos as $d):?>
+                                <option value="<?= $d["id_destino"] ?>" id="<?= $d["id_destino"] ?>-dest"> <?= $d["ciudad"] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="contenedor-fecha-hora">
+                        <div class="contenedor-fecha">
+                            <img src="img/icn-salida.png" alt="salida">
+                            <div class="contenedor-input-fecha">
+                                <label>Salida: </label>
+                                <input type="date" name="fecha_salida" min="<?= date('Y-m-d') ?>" max="<?= date('Y-m-d', strtotime('+3 year')) ?>">
+                            </div>
+                        </div>
+                        <div class="contenedor-hora">
+                            <img src="img/icn-hora.png" alt="hora">
+                            <div class="contenedor-input-hora">
+                                <label>Hora: </label>
+                                <input type="time" name="hora_salida">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contenedor-precio">
+                        <label>Precio: </label>
+                        <input type="number" name="precio" min="50" max="1000000">
+                    </div>
+                </div>
 
-        </div>
-        <div class="contenedor-boton">
-            <button id="btn-guardar">Guardar</button>
-        </div>
-    </form> 
-    
+            </div>
+            <div class="contenedor-boton">
+                <button id="btn-guardar">Guardar</button>
+            </div>
+        </form> 
+    </div>
     <script>
          const listaCiudadOrigen= <?php echo json_encode($listaDestinos) ?>;
             const listaCiudadDestino= <?php echo json_encode($listaDestinos)?>; 

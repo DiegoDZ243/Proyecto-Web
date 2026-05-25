@@ -1,124 +1,63 @@
 <?php
+    // Dirección de la api
+    require("api/classEmpleado.php"); 
+    // Nombre de la clase dentro de la api
+    $claseEmpleados=new empleado(); 
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+    // Uso de la api para obtener el empleado con GET["id"] que es el que se manda a la url
 
-include("../Conexion/conexion.php");
-
-if(isset($_GET['id'])){
-
-    $id = $_GET['id'];
-
-}else{
-
-    die("ID no encontrado");
-
-}
-
-$sql = "SELECT * FROM empleados WHERE id_empleado = '$id'";
-
-$resultado = mysqli_query($conexion, $sql);
-
-if(mysqli_num_rows($resultado) > 0){
-
-    $fila = mysqli_fetch_assoc($resultado);
-
-}else{
-
-    die("Empleado no encontrado");
-
-}
+    $empleadoActual=$claseEmpleados->getEmpleadoById($_GET["id"]);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <title>Editar Empleado</title>
-
 </head>
-
 <body>
 
-    <h2>Editar Empleado</h2>
+<h2>Editar Empleado</h2>
 
-    <form action="guardarActualizacion.php" method="POST">
+<form action="guardarActualizacion.php" method="POST">
 
-        <input 
-            type="hidden" 
-            name="id" 
-            value="<?php echo $fila['id_empleado']; ?>"
-        >
+    <input type="hidden" name="id" value="<?= $empleadoActual["id_empleado"] ?>">
 
-        Nombre:
-        <input 
-            type="text" 
-            name="nombre" 
-            value="<?php echo $fila['nombre']; ?>"
-        >
-        <br><br>
+    <label>Nombre:</label>
+    <!-- Para valores puntuales usar "< ?=  ?>" (sin el espacio entre < ?; solo que si lo junto marca error, jaja)-->
+    <input type="text" name="nombre" value="<?= $empleadoActual["nombre"] ?>">
+    <br><br>
 
-        Apellido Paterno:
-        <input 
-            type="text" 
-            name="a_paterno" 
-            value="<?php echo $fila['a_paterno']; ?>"
-        >
-        <br><br>
+    Apellido Paterno:
+    <input type="text" name="a_paterno" value="<?= $empleadoActual["a_paterno"] ?>">
+    <br><br>
 
-        Apellido Materno:
-        <input 
-            type="text" 
-            name="a_materno" 
-            value="<?php echo $fila['a_materno']; ?>"
-        >
-        <br><br>
+    Apellido Materno:
+    <input type="text" name="a_materno" value="<?= $empleadoActual["a_materno"] ?>">
+    <br><br>
 
-        Sueldo:
-        <input 
-            type="text" 
-            name="sueldo" 
-            value="<?php echo $fila['sueldo']; ?>"
-        >
-        <br><br>
+    Sueldo:
+    <input type="text" name="sueldo" value="<?= $empleadoActual["sueldo"] ?>">
+    <br><br>
 
-        Hora Entrada:
-        <input 
-            type="time" 
-            name="hora_entrada" 
-            value="<?php echo $fila['hora_entrada']; ?>"
-        >
-        <br><br>
+    Hora Entrada:
+    <input type="time" name="hora_entrada" value="<?=  $empleadoActual["hora_entrada"] ?>">
+    <br><br>
 
-        Hora Salida:
-        <input 
-            type="time" 
-            name="hora_salida" 
-            value="<?php echo $fila['hora_salida']; ?>"
-        >
-        <br><br>
+    Hora Salida:
+    <input type="time" name="hora_salida" value="<?= $empleadoActual["hora_salida"] ?>">
+    <br><br>
 
-        ID Jefe:
-        <input 
-            type="text" 
-            name="id_jefe" 
-            value="<?php echo $fila['id_jefe']; ?>"
-        >
-        <br><br>
+    ID Jefe:
+    <input type="text" name="id_jefe" value="<?= $empleadoActual["id_jefe"] ?>">
+    <br><br>
 
-        <button type="submit">
+    <button type="submit">
+        Actualizar
+    </button>
 
-            Actualizar
-
-        </button>
-
-    </form>
+</form>
 
 </body>
-
 </html>

@@ -1,3 +1,7 @@
+/* =========================
+   BASE
+========================= */
+
 *{
     margin: 0;
     padding: 0;
@@ -6,152 +10,222 @@
 }
 
 body{
-    background: #f3f4f6;
+    background: #f8fafc;
+    min-height: 100vh;
 }
 
+/* =========================
+   TITULO PRINCIPAL
+========================= */
 
-h1{
-    width: 100%;
-    text-align: center;
+body > h1{
+    max-width: 1200px;
+    margin: 42px auto 20px;
+    padding: 0 20px;
 
-    padding: 25px 20px;
-    margin-bottom: 20px;
+    color: #111827;
 
-    font-size: 38px;
+    font-size: 34px;
     font-weight: bold;
-    letter-spacing: 1px;
-
-    color: #1f2937;
-
-    background: white;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-
-    border-bottom: 4px solid #d1d5db;
 }
+
+/* =========================
+   FONDO DESTINOS
+========================= */
 
 .fondo-destinos{
-    width: 100%;
-    min-height: 100vh;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
+    max-width: 1200px;
+
+    margin: 0 auto 45px;
+    padding: 32px;
+
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+
+    border-radius: 28px;
 }
 
+/* =========================
+   LISTA
+========================= */
+
 .contenedor-destino{
-    width: 100%;
-    max-width: 1200px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 24px;
 }
+
+/* =========================
+   TARJETA DESTINO
+========================= */
 
 .contenedor-unir{
     background: white;
-    border-radius: 18px;
-    overflow: hidden;
+
+    border-radius: 22px;
+
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 24px rgba(37,99,235,0.12);
+
+    transition: 0.2s ease;
 }
 
 .contenedor-unir:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
 }
+
+/* =========================
+   INFORMACION
+========================= */
 
 .item-destino{
     flex: 1;
-    padding: 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 26px;
 }
 
 .item-destino h3{
-    margin-bottom: 15px;
-    color: #111827;
-    font-size: 24px;
+    color: #6b7280;
+    font-size: 18px;
 }
 
 .item-destino span{
-    color: #2563eb;
+    display: block;
+
+    margin-top: 8px;
+
+    color: #111827;
+
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .item-destino img{
     width: 100%;
-    max-height: 320px;
+    height: 165px;
+
     object-fit: cover;
-    border-radius: 14px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
 }
 
+/* =========================
+   BOTONES LATERALES
+========================= */
+
 .contenedor-botones{
-    width: 220px;
+    width: 230px;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 12px;
-    padding: 15px;
-    background: #f9fafb;
 }
 
 .contenedor-botones a{
-    text-decoration: none;
-    color: white;
+    flex: 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 10px;
 
-    padding: 14px 10px;
-    border-radius: 12px;
+    text-decoration: none;
 
-    font-size: 16px;
+    color: white;
+
+    font-size: 15px;
     font-weight: bold;
 
-    transition: 0.3s ease;
+    transition: 0.2s ease;
 }
 
 .contenedor-botones a:first-child{
-    background: #4c84d8;
+    background: #2563eb;
 }
 
 .contenedor-botones a:last-child{
-    background: #ed5757;
+    background: #ef4444;
 }
 
 .contenedor-botones a:hover{
-    transform: scale(1.03);
-    filter: brightness(1.05);
+    opacity: 0.92;
 }
 
 .contenedor-botones img{
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
+
+/* =========================
+   PIE
+========================= */
 
 .pie-destino{
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    gap:15px;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-top: 8px;
 }
 
 .pie-destino button{
     border: none;
-    background: #16a34a;
-    border-radius: 12px;
-    transition: 0.3s ease;
-}
-
-.pie-destino button:hover{
-    background: #15803d;
+    background: transparent;
 }
 
 .pie-destino a{
-    display: block;
-    padding: 16px 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
     text-decoration: none;
-    color: white;
-    font-size: 18px;
+
+    padding: 15px 24px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
     font-weight: bold;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+
+    transition: 0.2s ease;
+}
+
+.pie-destino a img{
+    width: 50px;
+    height: 50px;
+
+    object-fit: contain;
+}
+
+.pie-destino button:first-child a{
+    background: #16a34a;
+    color: white;
+}
+
+.pie-destino button:last-child a{
+    background: white;
+    color: #2563eb;
+}
+
+.pie-destino a:hover{
+    transform: translateY(-2px);
+    opacity: 0.92;
 }

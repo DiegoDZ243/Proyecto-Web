@@ -15,36 +15,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Destino</title>
     <link rel="stylesheet" href="css/crearDestinos.css">
+    <link rel="stylesheet" href="css/barraSuperiorExt.css">
 </head>
 <body>
-    <form id="formulario-destino" method="post" action="update.php">
-        <input name="id_destino" value=<?= $id_destino ?> hidden>
-        <div class="contenedor-encabezado">
-            <h3>Modificar un destino</h3>
-            <p>Modifique los campos para actualizar el destino</p>
+    <div class="navbar">
+        <div>
+            <a href="destinos.php"><img src="img/icn-regresar.png"> Regresar</a>
+            <h1>🛫 AeroPHP - Panel de Empleado</h1>
         </div>
-        <div class="contenedor-error" id="contenedor-error">
-            <img src="img/icn-error.png" alt="icono-error" id="imagen-error">
-            <h3 id="texto-error"></h3>
+        <div class="usuario-info">
+            <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
+            <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
         </div>
-        <div class="contenedor-inputs">
-            <div class="contenedor-nombre">
-                <label for="ciudad">Nombre del destino: </label>
-                <input type="text" id="input-nombre" name="ciudad" value="<?= $destinoActual["ciudad"] ?>" placeholder="Nombre del destino">
+    </div>
+    <div class="fondo-formulario">
+        <form id="formulario-destino" method="post" action="update.php">
+            <input name="id_destino" value=<?= $id_destino ?> hidden>
+            <div class="contenedor-encabezado">
+                <div class="titulo-modificar">
+                    <img src="img/icn_modificar.png">
+                    <h3>Modificar un destino</h3>
+                </div>
+                <p>Modifique los campos para actualizar el destino</p>
             </div>
-            <div class="visualizador-imagen">
-                <img src=<?= $destinoActual["imagen"] ?> alt="imagen-destino" id="imagen-destino">
+            <div class="contenedor-error" id="contenedor-error">
+                <img src="img/icn-error.png" alt="icono-error" id="imagen-error">
+                <h3 id="texto-error"></h3>
+            </div>
+            <div class="contenedor-inputs">
                 <div class="contenedor-nombre">
-                    <label for="imagen"> Url de la imagen del destino: </label>
-                    <input type="text" name="imagen"  id="input-url" value="<?= $destinoActual["imagen"] ?>" placeholder="Pegue la url de la imagen del destino">
+                    <label for="ciudad">Nombre del destino: </label>
+                    <input type="text" id="input-nombre" name="ciudad" value="<?= $destinoActual["ciudad"] ?>" placeholder="Nombre del destino">
+                </div>
+                <div class="visualizador-imagen">
+                    <img src=<?= $destinoActual["imagen"] ?> alt="imagen-destino" id="imagen-destino">
+                    <div class="contenedor-nombre">
+                        <label for="imagen"> Url de la imagen del destino: </label>
+                        <input type="text" name="imagen"  id="input-url" value="<?= $destinoActual["imagen"] ?>" placeholder="Pegue la url de la imagen del destino">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="contenedor-boton">
-            <button id="btn-guardar">Guardar</button>
-        </div>
-    </form>
-
+            <div class="contenedor-boton">
+                <button id="btn-guardar">Guardar</button>
+            </div>
+        </form>
+    </div>
     <script src="script/crearDestinos.js"></script>
      <script>
         

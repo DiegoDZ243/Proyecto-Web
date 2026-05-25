@@ -309,10 +309,28 @@ END $
 
 DELIMITER ;
 
+delimiter $
+create procedure sp_getEmpleados()
+begin
+	select e.id_empleado, e.nombre, e.a_paterno, e.a_materno,
+	e.sueldo, e.hora_entrada, e.hora_salida,
+	concat(j.nombre,' ',j.a_paterno,' ',j.a_materno) as 'jefe' from empleados e 
+	join empleados j on e.id_jefe=j.id_empleado; 
+end $
+delimiter ;
+
+drop procedure if exists sp_getNombresEmpleados;
+delimiter $
+create procedure sp_getNombresEmpleados(in id int)
+begin
+	select id_empleado as id_jefe ,concat(nombre, ' ',a_paterno,' ',a_materno)  as nombreCompleto from empleados where id_empleado!=id; 
+end $
+delimiter ; 
+call sp_getNombresEmpleados
+call sp_getEmpleados(); 
 call sp_getVuelos();
 call sp_getVuelosMas();
-call sp_getVuelosBaratos(); 
+call sp_getVuelosBaratos();
 call sp_getDestinos();
 call sp_buscarVuelo(1); 
 select * from destinos; 
--- call sp_eliminarDestino(5); 

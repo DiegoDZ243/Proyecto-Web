@@ -1,6 +1,7 @@
 /* =========================
-   RESET
+   BASE
 ========================= */
+
 *{
     margin: 0;
     padding: 0;
@@ -9,178 +10,225 @@
 }
 
 body{
-    background: #f3f4f6;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+/* =========================
+   FONDO FORMULARIO
+========================= */
+
+.fondo-formulario{
+    width: calc(100% - 40px);
+    max-width: 1100px;
+
+    min-height: calc(100vh - 150px);
+
+    margin: 42px auto;
+
+    padding: 45px;
+
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+
+    border-radius: 28px;
 
     display: flex;
     justify-content: center;
     align-items: center;
-
-    min-height: 100vh;
-    padding: 40px;
 }
 
 /* =========================
    FORMULARIO
 ========================= */
+
 #formulario-destino{
-    width: 900px;
+    width: 100%;
+    max-width: 900px;
 
     background: white;
 
-    border-radius: 22px;
+    border-radius: 20px;
 
-    padding: 35px;
+    padding: 38px;
 
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.12);
 }
 
 /* =========================
    ENCABEZADO
 ========================= */
+
 .contenedor-encabezado{
     margin-bottom: 30px;
 }
 
 .contenedor-encabezado h3{
-    font-size: 34px;
-    color: #1f2937;
-
-    margin-bottom: 10px;
+    font-size: 32px;
+    color: #111827;
+    margin-bottom: 8px;
 }
 
 .contenedor-encabezado p{
-    font-size: 17px;
     color: #6b7280;
+    font-size: 15px;
 }
 
 /* =========================
    ERROR
 ========================= */
+
 .contenedor-error{
-    width: 100%;
-
     display: none;
+
     align-items: center;
-    gap: 15px;
+    gap: 14px;
 
-    background: #fdecec;
+    background: #fee2e2;
+    color: #991b1b;
 
-    border-left: 5px solid #b76a6a;
-
-    padding: 16px;
+    padding: 14px 16px;
 
     border-radius: 14px;
 
     margin-bottom: 25px;
+
+    border: 1px solid #fca5a5;
 }
 
-#imagen-error{
-    width: 35px;
+.contenedor-error img{
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
 }
 
-#texto-error{
-    color: #8b3d3d;
-    font-size: 18px;
+.contenedor-error h3{
+    font-size: 15px;
 }
 
 /* =========================
    INPUTS
 ========================= */
+
 .contenedor-inputs{
     display: flex;
-    gap: 40px;
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
 }
 
-/* IZQUIERDA */
 .contenedor-nombre{
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    width: 100%;
+    gap: 10px;
 }
 
 .contenedor-nombre label{
-    font-size: 18px;
     font-weight: bold;
     color: #374151;
+    font-size: 15px;
 }
 
-.contenedor-nombre input{
+input{
     width: 100%;
 
-    padding: 16px;
+    padding: 14px 15px;
 
-    border: 2px solid #d1d5db;
+    border: 1px solid #d1d5db;
 
-    border-radius: 14px;
+    border-radius: 12px;
 
-    font-size: 16px;
-
-    transition: 0.3s ease;
-}
-
-.contenedor-nombre input:focus{
     outline: none;
 
-    border-color: #4b6b9a;
+    transition: 0.2s ease;
 
-    box-shadow: 0 0 0 4px rgba(75,107,154,0.15);
+    font-size: 15px;
+
+    background: white;
+
+    color: #111827;
+}
+
+input:focus{
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.14);
 }
 
 /* =========================
-   VISUALIZADOR
+   VISUALIZADOR IMAGEN
 ========================= */
-.visualizador-imagen{
-    width: 420px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+.visualizador-imagen{
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+
+    align-items: center;
+
+    background: #f9fafb;
+
+    padding: 20px;
+
+    border-radius: 18px;
 }
 
 #imagen-destino{
     width: 100%;
-    height: 280px;
+    height: 220px;
 
     object-fit: cover;
 
-    border-radius: 18px;
+    border-radius: 16px;
 
-    border: 3px solid #e5e7eb;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
 }
 
 /* =========================
    BOTON
 ========================= */
+
 .contenedor-boton{
-    width: 100%;
+    margin-top: 34px;
 
     display: flex;
-    justify-content: center;
-
-    margin-top: 35px;
+    justify-content: flex-end;
 }
 
 #btn-guardar{
-    border: none;
-
-    background: #4b6b9a;
+    background: #2563eb;
     color: white;
 
-    padding: 16px 45px;
+    border: none;
 
-    font-size: 18px;
-    font-weight: bold;
+    padding: 15px 30px;
 
     border-radius: 14px;
 
+    font-size: 16px;
+    font-weight: bold;
+
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition: 0.2s ease;
 }
 
 #btn-guardar:hover{
-    background: #3d5b84;
     transform: translateY(-2px);
+    opacity: 0.92;
+}
+
+.titulo-modificar{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 8px;
+}
+
+.titulo-modificar img{
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+}
+
+.titulo-modificar h3{
+    margin: 0;
 }

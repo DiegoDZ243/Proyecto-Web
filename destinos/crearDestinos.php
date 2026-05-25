@@ -9,35 +9,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Destinos</title>
     <link rel="stylesheet" href="css/crearDestinos.css">
+    <link rel="stylesheet" href="css/barraSuperiorExt.css">
 </head>
 <body>
-    <form id="formulario-destino" method="post" action="guardar.php">
-        <div class="contenedor-encabezado">
-            <h3>Dar de alta un nuevo destino</h3>
-            <p>Llene los campos para dar de alta un nuevo destino de vuelos</p>
+    <div class="navbar">
+        <div>
+            <a href="destinos.php"><img src="img/icn-regresar.png"> Regresar</a>
+            <h1>🛫 AeroPHP - Panel de Empleado</h1>
         </div>
-        <div class="contenedor-error" id="contenedor-error">
-            <img src="img/icn-error.png" alt="icono-error" id="imagen-error">
-            <h3 id="texto-error"></h3>
+        <div class="usuario-info">
+            <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
+            <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
         </div>
-        <div class="contenedor-inputs">
-            <div class="contenedor-nombre">
-                <label for="ciudad">Nombre del destino: </label>
-                <input type="text" id="input-nombre" name="ciudad" placeholder="Nombre del destino">
+    </div>
+    <div class="fondo-formulario">
+        <form id="formulario-destino" method="post" action="guardar.php">
+            <div class="contenedor-encabezado">
+                <h3>Dar de alta un nuevo destino</h3>
+                <p>Llene los campos para dar de alta un nuevo destino de vuelos</p>
             </div>
-            <div class="visualizador-imagen">
-                <img src="img/imagen-default.jpg" alt="imagen-destino" id="imagen-destino">
+            <div class="contenedor-error" id="contenedor-error">
+                <img src="img/icn-error.png" alt="icono-error" id="imagen-error">
+                <h3 id="texto-error"></h3>
+            </div>
+            <div class="contenedor-inputs">
                 <div class="contenedor-nombre">
-                    <label for="imagen"> Url de la imagen del destino: </label>
-                    <input type="text" name="imagen"  id="input-url" placeholder="Pegue la url de la imagen del destino">
+                    <label for="ciudad">Nombre del destino: </label>
+                    <input type="text" id="input-nombre" name="ciudad" placeholder="Nombre del destino">
+                </div>
+                <div class="visualizador-imagen">
+                    <img src="img/imagen-default.jpg" alt="imagen-destino" id="imagen-destino">
+                    <div class="contenedor-nombre">
+                        <label for="imagen"> Url de la imagen del destino: </label>
+                        <input type="text" name="imagen"  id="input-url" placeholder="Pegue la url de la imagen del destino">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="contenedor-boton">
-            <button id="btn-guardar">Guardar</button>
-        </div>
-    </form>
-
+            <div class="contenedor-boton">
+                <button id="btn-guardar">Guardar</button>
+            </div>
+        </form>
+    </div>
+    
     <script src="script/crearDestinos.js"></script>
     <script>
         

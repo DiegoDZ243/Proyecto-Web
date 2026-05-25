@@ -1,5 +1,5 @@
 <?php
-
+session_start(); 
 require("../Conexion/classConnectionMySQL.php");
 
 $NewConn = new ConnectionMySQL();
@@ -18,8 +18,19 @@ $result = $NewConn->ExecuteQuery($query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar Usuarios</title>
     <link rel="stylesheet" href="css/usuarios.css">
+    <link rel="stylesheet" href="css/barraSuperiorExt.css">
 </head>
 <body>
+<div class="navbar">
+        <div>
+            <a href="../dashboard_empleado.php"><img src="img/icn-regresar.png"> Regresar</a>
+            <h1>🛫 AeroPHP - Panel de Empleado</h1>
+        </div>
+        <div class="usuario-info">
+            <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
+            <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
+        </div>
+    </div>
 
 <h1>Lista de Usuarios</h1>
 

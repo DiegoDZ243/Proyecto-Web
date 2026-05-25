@@ -1,6 +1,7 @@
 /* =========================
    BASE
 ========================= */
+
 *{
     margin: 0;
     padding: 0;
@@ -9,87 +10,115 @@
 }
 
 body{
-    background: #f3f4f6;
+    background: #f8fafc;
     min-height: 100vh;
+}
+
+/* =========================
+   FONDO FORMULARIO
+========================= */
+
+.fondo-crear-salidas{
+    width: calc(100% - 40px);
+    max-width: 1100px;
+
+    min-height: calc(100vh - 250px);
+
+    margin: 42px auto;
+
+    padding: 45px;
+
+    background: linear-gradient(135deg, #dbeafe, #eff6ff);
+
+    border-radius: 28px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
 }
 
 /* =========================
    FORMULARIO
 ========================= */
+
 #formulario-salidas{
     width: 100%;
-    max-width: 950px;
-    background: white;
-    border-radius: 18px;
-    padding: 35px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
 
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 38px;
+
+    box-shadow: 0 8px 24px rgba(37,99,235,0.12);
+}
 /* =========================
    ENCABEZADO
 ========================= */
+
 .contenedor-encabezado{
     margin-bottom: 30px;
-    text-align: center;
 }
 
 .contenedor-encabezado h3{
     font-size: 32px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     color: #111827;
 }
 
 .contenedor-encabezado p{
     color: #6b7280;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 /* =========================
    ERROR
 ========================= */
+
 .error-message{
     display: none;
+
     align-items: center;
-    gap: 15px;
+    gap: 14px;
+
     background: #fee2e2;
     color: #991b1b;
-    padding: 15px;
-    border-radius: 12px;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
     margin-bottom: 25px;
+
     border: 1px solid #fca5a5;
 }
 
 #error-message img{
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
 }
 
 #error-text{
-    font-size: 16px;
+    font-size: 15px;
 }
 
 /* =========================
-   INPUTS
+   CONTENEDORES
 ========================= */
+
 .contenedor-inputs{
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 24px;
 }
 
 .contenedor-origen-destino{
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
 }
 
-/* =========================
-   SELECTS
-========================= */
 .contenedor-origen,
 .contenedor-destino,
 .contenedor-precio{
@@ -98,116 +127,173 @@ body{
     gap: 10px;
 }
 
+.contenedor-fecha-hora{
+    grid-column: span 2;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.contenedor-precio{
+    grid-column: span 2;
+}
+
+/* =========================
+   LABELS
+========================= */
+
 .contenedor-origen label,
 .contenedor-destino label,
-.contenedor-precio label{
+.contenedor-precio label,
+.contenedor-input-fecha label,
+.contenedor-input-hora label{
     font-weight: bold;
     color: #374151;
     font-size: 15px;
 }
 
+/* =========================
+   INPUTS
+========================= */
+
 select,
 input{
     width: 100%;
-    padding: 14px;
+
+    padding: 14px 15px;
+
     border: 1px solid #d1d5db;
-    border-radius: 10px;
+
+    border-radius: 12px;
+
     outline: none;
+
     transition: 0.2s ease;
+
     font-size: 15px;
+
     background: white;
+
+    color: #111827;
+}
+
+select{
+    cursor: pointer;
 }
 
 select:focus,
 input:focus{
-    border-color: #0077ff;
-    box-shadow: 0 0 0 4px rgba(0,119,255,0.15);
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.14);
 }
 
 /* =========================
    FECHA Y HORA
 ========================= */
-.contenedor-fecha-hora{
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
 
 .contenedor-fecha,
 .contenedor-hora{
-    flex: 1;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 16px;
+
     background: #f9fafb;
+
     padding: 18px;
-    border-radius: 14px;
+
+    border-radius: 16px;
 }
 
 .contenedor-fecha img,
 .contenedor-hora img{
-    width: 45px;
-    height: 45px;
+    width: 46px;
+    height: 46px;
+
+    object-fit: contain;
 }
 
 .contenedor-input-fecha,
 .contenedor-input-hora{
     flex: 1;
+
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.contenedor-input-fecha label,
-.contenedor-input-hora label{
-    font-weight: bold;
-    color: #374151;
-}
-
 /* =========================
    PRECIO
 ========================= */
+
 .contenedor-precio input{
     font-size: 18px;
     font-weight: bold;
+    color: #2563eb;
 }
 
 /* =========================
-   BOTÓN
+   BOTON
 ========================= */
+
 .contenedor-boton{
-    margin-top: 35px;
-    text-align: center;
+    margin-top: 34px;
+
+    display: flex;
+    justify-content: flex-end;
 }
 
 #btn-guardar{
-    background: #0077ff;
+    background: #2563eb;
     color: white;
+
     border: none;
-    padding: 15px 28px;
-    border-radius: 12px;
-    font-size: 17px;
+
+    padding: 15px 30px;
+
+    border-radius: 14px;
+
+    font-size: 16px;
     font-weight: bold;
+
     cursor: pointer;
-    transition: 0.25s ease;
+
+    transition: 0.2s ease;
 }
 
 #btn-guardar:hover{
-    background: #005fcc;
     transform: translateY(-2px);
+    opacity: 0.92;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
+
 @media(max-width: 768px){
 
-    #formulario-salidas{
-        padding: 25px;
+    .fondo-crear-salidas{
+        width: calc(100% - 32px);
+        margin: 28px auto;
+        padding: 16px;
     }
 
+    #formulario-salidas{
+        padding: 24px;
+    }
+
+    .contenedor-encabezado h3{
+        font-size: 26px;
+    }
+
+    .contenedor-origen-destino,
     .contenedor-fecha-hora{
-        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+
+    .contenedor-fecha-hora,
+    .contenedor-precio{
+        grid-column: span 1;
     }
 
     .contenedor-fecha,
@@ -216,15 +302,11 @@ input:focus{
         text-align: center;
     }
 
-    .contenedor-fecha img,
-    .contenedor-hora img{
-        width: 55px;
-        height: 55px;
+    .contenedor-boton{
+        justify-content: stretch;
     }
 
-    .contenedor-input-fecha,
-    .contenedor-input-hora{
+    #btn-guardar{
         width: 100%;
     }
-
 }
