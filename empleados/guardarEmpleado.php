@@ -14,7 +14,7 @@
     $email=$_POST["email"]; 
     $pass=$_POST["pass"]; 
     // Se registra al jefe 1, solo para pruebas
-    $empleado->insert($nombre, $apeMat, $apeMat, $salario,$hora_entrada,$hora_salida,1,$email,$pass); 
+    $empleado->insert($nombre, $apeMat, $apeMat, $salario,$hora_entrada,$hora_salida,$id_jefe,$email,$pass); 
 
     header("Location: consultarEmpleados.php");
     exit;

@@ -32,6 +32,8 @@
                         "id_jefe"=>$fila["id_jefe"]
                     ]; 
                 }
+                $result->free();
+                $this->NewConn->ClearResults();
             }
            
             return $empleado; 
@@ -93,12 +95,13 @@
                         "id_jefe"=>$fila["jefe"]
                     ]; 
                 }
+                $result->free();
+                $this->NewConn->ClearResults();
             }
             return $empleados; 
         }
 
         public function getNombresEmpleados($id_empleado){
-            
             $query="call sp_getNombresEmpleados($id_empleado)";
             $result=$this->NewConn->ExecuteQuery($query); 
             $empleados=[]; 
@@ -109,6 +112,11 @@
                         "nombreCompleto"=>$fila["nombreCompleto"]
                     ]; 
                 }
+                $result->free();
+                $this->NewConn->ClearResults();
+            }else{
+                echo "Hubo un error"; 
+                echo "Error MySQL: " . $this->NewConn->GetError();
             }
             return $empleados; 
         }

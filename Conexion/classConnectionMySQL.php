@@ -67,6 +67,9 @@
             }
         }
         
+        public function GetError(){
+            return $this->conn->error;
+        }
 
     }
 

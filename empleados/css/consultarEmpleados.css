@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+.contenedor-empleados{
+    width: 95%;
+    max-width: 1250px;
+    margin: 35px auto;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+.encabezado-empleados{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.encabezado-empleados h2{
+    font-size: 30px;
+    color: #1e3a8a;
+}
+
+.btn-agregar{
+    background: #2563eb;
+    color: white;
+
+    text-decoration: none;
+    padding: 12px 18px;
+
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+
+    transition: 0.2s ease;
+}
+
+.btn-agregar:hover{
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+/* =========================
+   TABLA
+========================= */
+.tabla-contenedor{
+    width: 100%;
+    overflow-x: auto;
+
+    background: white;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 950px;
+}
+
+thead{
+    background: #1e3a8a;
+    color: white;
+}
+
+th{
+    padding: 15px 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+td{
+    padding: 14px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+tbody tr:hover{
+    background: #eff6ff;
+}
+
+/* =========================
+   ACCIONES
+========================= */
+.acciones{
+    display: flex;
+    gap: 8px;
+}
+
+.btn-editar,
+.btn-eliminar{
+    text-decoration: none;
+    color: white;
+
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    transition: 0.2s ease;
+}
+
+.btn-editar{
+    background: #2563eb;
+}
+
+.btn-editar:hover{
+    background: #1d4ed8;
+}
+
+.btn-eliminar{
+    background: #dc2626;
+}
+
+.btn-eliminar:hover{
+    background: #b91c1c;
+}

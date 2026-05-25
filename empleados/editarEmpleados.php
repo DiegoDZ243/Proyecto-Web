@@ -7,7 +7,7 @@
     // Uso de la api para obtener el empleado con GET["id"] que es el que se manda a la url
 
     $empleadoActual=$claseEmpleados->getEmpleadoById($_GET["id"]);
-
+    $listaJefes=$empleado->getNombresEmpleados($_SESSION["usuario_id"]);
 ?>
 
 <!DOCTYPE html>

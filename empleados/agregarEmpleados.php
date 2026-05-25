@@ -7,10 +7,6 @@
     $empleadoActual=$empleado->getEmpleadoById($_SESSION["usuario_id"]); 
     $listEmpleados=$empleado->getEmpleados(); 
     $listaJefes=$empleado->getNombresEmpleados($_SESSION["usuario_id"]);
-    echo $_SESSION["usuario_id"]; 
-    foreach($listaJefes as $j){
-        echo $j["id_jefe"]." ".$j["nombreCompleto"]; 
-    }
 
 ?>
 
@@ -23,7 +19,8 @@
     <link rel="stylesheet" href="css/barraSuperiorExt.css">
 </head>
 <body>
-    <div>
+    <div class="navbar">
+        <div>
             <a href="consultarEmpleados.php"><img src="img/icn-regresar.png"> Regresar</a>
             <h1>🛫 AeroPHP - Panel de Empleado</h1>
         </div>
@@ -33,98 +30,107 @@
         </div>
     </div>
     <h1>Agregar Empleado</h1>
+    <div class="fondo-formulario">
+        <form action="guardarEmpleado.php" method="POST" id="formulario-empleado">
+            <div class="contenedor-error" id="contenedor-error" hidden>
+                <img src="img/icn-error.png" alt="Error">
+                <p id="texto-error"></p>
+            </div>
+            <div class="input-nombre">
+                <label for="nombre">Nombre: </label>
+                <input type="text" name="nombre" placeholder="Nombre">
+            </div>
+            <div class="input-paterno">
+                <label for="apellidoPat">Apellido paterno: </label>
+                <input type="text" name="apellidoPat" placeholder="Apellido paterno">
+            </div>
+            <div class="input-materno">
+                <label for=apellidoMat>Apellido materno: </label>
+                <input type="text" name="apellidoMat" placeholder="Apellido Materno">
+            </div>
+            <div class="input-salario">
+                <label for="salario">Salario: </label>
+                <input type="number" name="salario" placeholder="Salario">
+            </div>
+            <div class="input-hora-entrada">
+                <label for="hora_entrada">Hora de entrada: </label>
+                <input type="time" name="hora_entrada">
+            </div>
+            <div class="input-hora-salida">
+                <label for="hora_salida">Hora de salida: </label>
+                <input type="time" name="hora_salida">
+            </div>
+            <div class="input-jefe">
+                <select name="id_jefe">
+                    <option value="">Elige el jefe del empleado</option>
+                    <?php foreach($listaJefes as $j): ?>
+                        <option value="<?= $j["id_jefe"] ?>"><?= $j["nombreCompleto"] ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+            <div class="input-correo">
+                <label for="correo">Email: </label>
+                <input type="email" name="email">
+            </div>
+            <div class="input-pass">
+                <label for="pass">Contraseña: </label>
+                <input type="password" name="pass">
+            </div>
+            <button type="submit">
+                Guardar
+            </button>
 
-    <form action="guardarEmpleado.php" method="POST">
-
-        <input type="text" name="nombre" placeholder="Nombre">
-
-        <input type="text" name="apellidoPat" placeholder="Apellido paterno">
-
-        <input type="text" name="apellidoMat" placeholder="Apellido Materno">
-
-        <input type="number" name="salario" placeholder="Salario">
-
-        <label for="hora_entrada">Hora de entrada: </label>
-        <input type="time" name="hora_entrada">
-
-        <label for="hora_salida">Hora de salida: </label>
-        <input type="time" name="hora_salida">
-
-        <select vale="1" name="id_jefe">
-            <option>Lista de jefes</option disabled>
-            <?php foreach($listaJefes as $j): ?>
-                <option value="<?= $j["id_jefe"] ?>"><?= $j["nombreCompleto"] ?></option>
-            <?php endforeach ?>
-        </select>
-
-        <label for="correo">Email: </label>
-        <input type="email" name="email">
-
-        <label for="pass">Contraseña: </label>
-        <input type="password" name="pass">
-
-        <button type="submit">
-            Guardar
-        </button>
-
-    </form>
-
-    <hr>
-
-    <h2>Lista de empleados</h2>
-
-    <table border="1" id="tblRegistros">
-
-        <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Apellido Paterno</th>
-        <th>Apellido Materno</th>
-        <th>Sueldo</th>
-        <th>Hora Entrada</th>
-        <th>Hora Salida</th>
-        <th>ID Jefe</th>
-        </tr>
-
-
-        
-
-    </table>
-
+        </form>
+    </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-                // EMPLEADO ACTUAL
-            let empleadoActual = <?php echo json_encode($empleadoActual); ?>;
+    const formulario = document.getElementById("formulario-empleado");
+    const contenedorError = document.getElementById("contenedor-error");
+    const textoError = document.getElementById("texto-error");
 
-            console.log(empleadoActual);
+    contenedorError.style.display = "none";
 
-            let listaEmpleados = <?php echo json_encode($listEmpleados); ?>;
+    formulario.addEventListener("submit", function(e){
+        const campos = [
+            { name: "nombre", mensaje: "El nombre es obligatorio" },
+            { name: "apellidoPat", mensaje: "El apellido paterno es obligatorio" },
+            { name: "apellidoMat", mensaje: "El apellido materno es obligatorio" },
+            { name: "salario", mensaje: "El salario es obligatorio" },
+            { name: "hora_entrada", mensaje: "La hora de entrada es obligatoria" },
+            { name: "hora_salida", mensaje: "La hora de salida es obligatoria" },
+            { name: "id_jefe", mensaje: "Debe seleccionar un jefe" },
+            { name: "email", mensaje: "El correo es obligatorio" },
+            { name: "pass", mensaje: "La contraseña es obligatoria" }
+        ];
 
+        let hayError = false;
 
-            console.log(listaEmpleados);
+        for(const campo of campos){
+            const input = formulario.elements[campo.name];
 
-            let tabla = document.getElementById("tblRegistros");
+            if(input.value.trim() === ""){
+                e.preventDefault();
 
-            for(let i = 0; i < listaEmpleados.length; i++){
-                let empleado = listaEmpleados[i];
-                    
-                console.log(empleado.nombre);
-                
-                let fila = `
-                    <tr>
-                    <td>${empleado.id_empleado}</td>
-                    <td>${empleado.nombre}</td>
-                    <td>${empleado.a_paterno}</td>
-                    <td>${empleado.a_materno}</td>
-                    <td>${empleado.sueldo}</td>
-                    <td>${empleado.hora_entrada}</td>
-                    <td>${empleado.hora_salida}</td>
-                    <td>${empleado.id_jefe}</td>
-                    </tr>
-                    `;
-                tabla.innerHTML += fila;
+                textoError.textContent = campo.mensaje;
+                contenedorError.hidden = false;
+                contenedorError.style.display = "flex";
+
+                input.focus();
+
+                contenedorError.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                hayError = true;
+                break;
             }
-        });
-    </script>
+        }
+
+        if(!hayError){
+            contenedorError.hidden = true;
+            contenedorError.style.display = "none";
+        }
+    });
+</script>
 </body>
 </html> 
