@@ -3,7 +3,7 @@ CREATE DATABASE aeropuerto;
 USE aeropuerto; 
 
 CREATE TABLE destinos(
-	id_destino 	INT 			PRIMARY KEY,
+	id_destino 	INT 			PRIMARY KEY auto_increment,
     ciudad		VARCHAR(50)		NOT NULL,
     imagen		VARCHAR(255)	NOT NULL
 );
@@ -112,6 +112,7 @@ VALUES
 ('Diego', 'Castro', 'Vega', 16000.00, '09:00:00', '18:00:00', 1, 'diego@aero.com', '1234');
 
 -- Creación de trigger para automatizar la actualizacion del cupo en vuelos
+
 delimiter $
 create trigger trigger_cupo after insert on boletos
 for each row
@@ -257,45 +258,61 @@ BEGIN
     WHERE id_vuelo = p_id_vuelo;
     COMMIT;
 END $
+delimiter ;
+drop procedure if exists sp_eliminarDestino;
 
 DROP PROCEDURE IF EXISTS sp_eliminarDestino;
 DELIMITER $
+
 CREATE PROCEDURE sp_eliminarDestino
 (
     IN p_id_destino INT
 )
 BEGIN
-    -- Activamos una transacción para que todo se ejecute o no se ejecute nada
-    START TRANSACTION;
-    
-    -- 1. Primero eliminamos todos los boletos de aquellos vuelos que inicien o terminen en este destino
-    DELETE FROM boletos 
-    WHERE id_vuelo IN (
-        SELECT id_vuelo 
-        FROM vuelos 
-        WHERE id_origen = p_id_destino OR id_destino = p_id_destino
-    );
-    
-    -- 2. Después eliminamos los vuelos que usen este destino como origen o fin
-    DELETE FROM vuelos 
-    WHERE id_origen = p_id_destino OR id_destino = p_id_destino;
-    
-    -- 3. Finalmente, eliminamos el destino de forma segura
-    DELETE FROM destinos 
-    WHERE id_destino = p_id_destino;
-    
-    -- Confirmamos de manera permanente todos los borrados en la base de datos
-    COMMIT;
-END $
-DELIMITER ;
+    SET SQL_SAFE_UPDATES = 0;
 
-select cupo from vuelos where id_vuelo=1; 
+    START TRANSACTION;
+
+    -- Guardamos los vuelos afectados
+    CREATE TEMPORARY TABLE temp_vuelos (
+        id_vuelo INT
+    );
+
+    INSERT INTO temp_vuelos(id_vuelo)
+    SELECT id_vuelo
+    FROM vuelos
+    WHERE id_origen = p_id_destino
+       OR id_destino = p_id_destino;
+
+    -- Eliminamos boletos
+    DELETE FROM boletos
+    WHERE id_vuelo IN (
+        SELECT id_vuelo FROM temp_vuelos
+    );
+
+    -- Eliminamos vuelos
+    DELETE FROM vuelos
+    WHERE id_vuelo IN (
+        SELECT id_vuelo FROM temp_vuelos
+    );
+
+    -- Eliminamos destino
+    DELETE FROM destinos
+    WHERE id_destino = p_id_destino;
+
+    DROP TEMPORARY TABLE temp_vuelos;
+
+    COMMIT;
+
+    SET SQL_SAFE_UPDATES = 1;
+END $
+
+DELIMITER ;
 
 call sp_getVuelos();
 call sp_getVuelosMas();
 call sp_getVuelosBaratos(); 
 call sp_getDestinos();
 call sp_buscarVuelo(1); 
-
-select ciudad,imagen from destinos;
-select * from boletos where id_usuario=1;
+select * from destinos; 
+-- call sp_eliminarDestino(5); 

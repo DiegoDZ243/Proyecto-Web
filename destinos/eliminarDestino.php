@@ -1,34 +1,23 @@
 <?php
 session_start();
 
-// Verificar que sea empleado
-if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'empleado') {
-    header('Location: ../index.html');
-    exit();
-}
-
-$id = isset($_GET['id']) ? intval($_GET['id']) : (isset($_POST['id_destino']) ? intval($_POST['id_destino']) : null);
+$id = $_GET["id"]; 
+echo $id; 
 
 // Si viene por POST, eliminar el destino
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $id) {
-    require_once('../Conexion/classConnectionMySQL.php');
-    
+
+require_once('../Conexion/classConnectionMySQL.php');
+
+if(isset($_POST["id_destino"])){
     $conn = new ConnectionMySQL();
     $conn->CreateConnection();
     $sql = "CALL sp_eliminarDestino($id)";
     $conn->ExecuteQuery($sql);
     $conn->ClearResults();
     $conn->CloseConnection();
-    
-    header('Location: destinos.php');
-    exit();
+    header("Location: destinos.php"); 
 }
 
-// Si no hay id o viene por GET, mostrar confirmación
-if (!$id) {
-    header('Location: destinos.php');
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
