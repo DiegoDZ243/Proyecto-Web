@@ -7,10 +7,13 @@ $id = $_GET['id'];
 $NewConn = new ConnectionMySQL();
 $NewConn->CreateConnection();
 
-$query = "DELETE FROM usuarios
-WHERE id_usuario = '$id'";
+/* ELIMINAR PRIMERO LOS BOLETOS */
+$queryBoletos = "DELETE FROM boletos WHERE id_usuario = '$id'";
+$NewConn->ExecuteQuery($queryBoletos);
 
-$result = $NewConn->ExecuteQuery($query);
+/* DESPUÉS EL USUARIO */
+$queryUsuario = "DELETE FROM usuarios WHERE id_usuario = '$id'";
+$result = $NewConn->ExecuteQuery($queryUsuario);
 
 if($result){
 
