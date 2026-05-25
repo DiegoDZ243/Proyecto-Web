@@ -22,7 +22,7 @@
         </div>
         <div class="usuario-info">
             <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
-            <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
+            <a href="../logout.php" class="logout-btn">Cerrar Sesión</a>
         </div>
     </div>
     <h1>Lista de salidas (vuelos) disponibles</h1>

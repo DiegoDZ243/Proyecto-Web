@@ -1,0 +1,180 @@
+/* =========================
+   BASE
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background: #f3f4f6;
+    color: #1f2937;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal{
+    width: 100%;
+    max-width: 540px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    padding: 35px 32px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
+    animation: aparecerModal 0.25s ease;
+}
+
+@keyframes aparecerModal{
+    from{
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================
+   ICONO
+========================= */
+.warning-icon{
+    width: 78px;
+    height: 78px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    font-size: 42px;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.modal h2{
+    font-size: 30px;
+
+    color: #1e3a8a;
+
+    margin-bottom: 12px;
+}
+
+.modal p{
+    font-size: 15px;
+
+    color: #4b5563;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+}
+
+.info-text{
+    width: 100%;
+
+    background: #eff6ff;
+
+    border-left: 5px solid #2563eb;
+
+    color: #1e40af;
+
+    padding: 14px 16px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    text-align: left;
+
+    margin: 22px 0;
+}
+
+/* =========================
+   ACCIONES
+========================= */
+.actions{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.btn{
+    min-width: 150px;
+
+    padding: 13px 18px;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: 0.2s ease;
+}
+
+/* Botón eliminar */
+.btn-danger{
+    background: #dc2626;
+    color: white;
+
+    box-shadow: 0 10px 20px rgba(220,38,38,0.22);
+}
+
+.btn-danger:hover{
+    background: #b91c1c;
+    transform: translateY(-1px);
+}
+
+/* Botón cancelar */
+.btn-secondary{
+    background: #2563eb;
+    color: white;
+
+    box-shadow: 0 10px 20px rgba(37,99,235,0.22);
+}
+
+.btn-secondary:hover{
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn:active{
+    transform: scale(0.98);
+}

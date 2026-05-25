@@ -319,14 +319,52 @@ begin
 end $
 delimiter ;
 
+drop procedure if exists sp_getEmpleado; 
+delimiter $
+create procedure sp_getEmpleado(in p_id_empleado int)
+begin
+	select e.id_empleado, e.nombre, e.a_paterno, e.a_materno,
+	e.sueldo, e.hora_entrada, e.hora_salida,
+	e.id_jefe, e.correo, e.password from empleados e 
+	join empleados j on e.id_jefe=j.id_empleado where e.id_empleado=p_id_empleado; 
+end $
+delimiter ;
+
+call sp_getEmpleado(2); 
+
 drop procedure if exists sp_getNombresEmpleados;
 delimiter $
 create procedure sp_getNombresEmpleados(in id int)
 begin
-	select id_empleado as id_jefe ,concat(nombre, ' ',a_paterno,' ',a_materno)  as nombreCompleto from empleados where id_empleado!=id; 
+	select id_empleado as id_jefe ,concat(nombre, ' ',a_paterno,' ',a_materno)  as nombreCompleto from empleados; 
+end $
+
+delimiter $
+create procedure sp_eliminarEmpleado(in p_id_empleado int)
+begin
+	SET SQL_SAFE_UPDATES = 0;
+		update empleados set id_jefe=1 where id_jefe=p_id_empleado; 
+		
+        delete from empleados where id_empleado=p_id_empleado;
+    
+    SET SQL_SAFE_UPDATES = 1;
+end $
+delimiter ;
+
+drop procedure if exists sp_buscarCorreo;
+delimiter $
+create procedure sp_buscarCorreo(in p_correo varchar(40), in p_password varchar(50))
+begin
+	select 'empleado' as tipo, nombre ,id_empleado as id_usuario,correo, password from empleados where correo=p_correo and password=p_password
+	union 
+	select 'usuario', nombre ,id_usuario as id_usuario ,correo, password from usuarios where correo=p_correo and password=p_password; 
 end $
 delimiter ; 
-call sp_getNombresEmpleados
+
+call sp_buscarCorreo('admin@aero.com','1234'); 
+
+call sp_getNombresEmpleados(1);
+call sp_getNombresEmpleados(1);
 call sp_getEmpleados(); 
 call sp_getVuelos();
 call sp_getVuelosMas();
@@ -334,3 +372,4 @@ call sp_getVuelosBaratos();
 call sp_getDestinos();
 call sp_buscarVuelo(1); 
 select * from destinos; 
+describe usuarios; 

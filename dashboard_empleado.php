@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Verificar que sea empleado
 if (!isset($_SESSION['usuario_tipo']) || $_SESSION['usuario_tipo'] !== 'empleado') {
     header('Location: index.html');
     exit();

@@ -1,0 +1,431 @@
+.fondo-overlay{
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(15,23,42,0.55);
+
+    backdrop-filter: blur(4px);
+
+    z-index: 9999;
+}
+
+/* =========================
+   FORM LOGIN
+========================= */
+
+#formulario-login{
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 430px;
+    max-width: 92%;
+
+    background: white;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.28);
+
+    z-index: 10000;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    animation: aparecerLogin 0.25s ease;
+}
+
+@keyframes aparecerLogin{
+    from{
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+    to{
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.encabezado-login{
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    padding: 22px 25px;
+
+    color: white;
+}
+
+.contenedor-titulo{
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.contenedor-titulo h1{
+    font-size: 26px;
+
+    font-weight: bold;
+}
+
+/* =========================
+   BOTONES CERRAR
+========================= */
+
+#btnSalirLogin,
+#btnSalirRegistro{
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.18);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    transition: 0.25s ease;
+}
+
+#btnSalirLogin:hover,
+#btnSalirRegistro:hover{
+    background: rgba(255,255,255,0.35);
+}
+
+/* =========================
+   CUERPO
+========================= */
+
+.cuerpo-login{
+    padding: 24px 25px 0;
+}
+
+.texto-login{
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.texto-login p{
+    font-size: 15px;
+
+    color: #475569;
+
+    line-height: 1.4;
+}
+
+.texto-login img{
+    width: 58px;
+    height: 58px;
+
+    object-fit: contain;
+}
+
+/* =========================
+   ERROR
+========================= */
+
+.error-login{
+    margin-top: 18px;
+
+    background: #fef2f2;
+
+    border-left: 5px solid #dc2626;
+
+    border-radius: 12px;
+
+    padding: 12px 14px;
+}
+
+.error-login p{
+    color: #991b1b;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+/* =========================
+   FORMULARIO LOGIN
+========================= */
+
+.fondo-login{
+    padding: 28px 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+/* =========================
+   INPUTS LOGIN
+========================= */
+
+.contenedor-usuario-login,
+.contenedor-pass-login{
+    display: flex;
+
+    align-items: center;
+
+    background: #f3f4f6;
+
+    border: 2px solid transparent;
+
+    border-radius: 14px;
+
+    padding: 15px 16px;
+
+    transition: 0.25s ease;
+}
+
+.contenedor-usuario-login:focus-within,
+.contenedor-pass-login:focus-within{
+    background: white;
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+}
+
+.contenedor-usuario-login input,
+.contenedor-pass-login input{
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 15px;
+
+    color: #0f172a;
+}
+
+.contenedor-usuario-login input::placeholder,
+.contenor-pass-login input::placeholder{
+    color: #94a3b8;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+
+.contenedor-boton-login{
+    margin-top: 8px;
+}
+
+.contenedor-boton-login button{
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+
+    box-shadow: 0 12px 22px rgba(37,99,235,0.28);
+}
+
+.contenedor-boton-login button:hover{
+    transform: translateY(-2px);
+
+    box-shadow: 0 16px 28px rgba(37,99,235,0.35);
+}
+
+/* =========================
+   PIE LOGIN / REGISTRO
+========================= */
+
+.pie-login{
+    padding: 20px;
+
+    text-align: center;
+
+    background: #f9fafb;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+.pie-login p{
+    font-size: 14px;
+
+    color: #6b7280;
+}
+
+.pie-login a{
+    color: #2563eb;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+.pie-login a:hover{
+    text-decoration: underline;
+}
+
+/* =========================
+   FORMULARIO REGISTRO
+========================= */
+
+#formulario-registro{
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 720px;
+    max-width: 95%;
+
+    background: white;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.28);
+
+    z-index: 10000;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    animation: aparecerLogin 0.25s ease;
+
+    max-height: 92vh;
+    overflow-y: auto;
+}
+
+/* =========================
+   CUERPO REGISTRO EN 2 COLUMNAS
+========================= */
+
+#formulario-registro .fondo-login{
+    padding: 28px 32px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px 20px;
+}
+
+#formulario-registro .contenedor-usuario-login,
+#formulario-registro .contenedor-pass-login{
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    background: #f3f4f6;
+
+    border: 2px solid transparent;
+
+    border-radius: 14px;
+
+    padding: 14px 16px;
+
+    transition: 0.25s ease;
+}
+
+#formulario-registro .contenedor-usuario-login:focus-within,
+#formulario-registro .contenedor-pass-login:focus-within{
+    background: white;
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.12);
+}
+
+#formulario-registro label{
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: #334155;
+}
+
+#formulario-registro input{
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 15px;
+
+    color: #0f172a;
+
+    padding: 2px 0;
+}
+
+#formulario-registro input::placeholder{
+    color: #94a3b8;
+}
+
+/* Email ocupa todo el ancho */
+#formulario-registro .contenedor-usuario-login:nth-child(5){
+    grid-column: span 2;
+}
+
+/* Botón ocupa todo el ancho */
+#formulario-registro .contenedor-boton-login{
+    grid-column: span 2;
+
+    margin-top: 8px;
+}

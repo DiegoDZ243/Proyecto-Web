@@ -24,7 +24,7 @@
         </div>
         <div class="usuario-info">
             <p>Bienvenido, <strong><?= htmlspecialchars($_SESSION['usuario_nombre']) ?></strong></p>
-            <a href="logout.php" class="logout-btn">Cerrar Sesión</a>
+            <a href="../logout.php" class="logout-btn">Cerrar Sesión</a>
         </div>
     </div>
 <main class="contenedor-empleados">
@@ -32,7 +32,7 @@
     <div class="encabezado-empleados">
         <h2>Lista de Empleados</h2>
 
-        <a href="agregarEmpleado.php" class="btn-agregar">
+        <a href="agregarEmpleados.php" class="btn-agregar">
             Agregar Empleado
         </a>
     </div>

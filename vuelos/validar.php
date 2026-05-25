@@ -8,7 +8,7 @@
     $router=$_POST["router"];  
     $nuevaConexion=new ConnectionMySQL();
     $nuevaConexion->CreateConnection(); 
-    $query="select id_usuario,nombre from usuarios where correo='$correo' and password='$pass'"; 
+    $query="call sp_buscarCorreo('$correo','$pass')"; 
 
     $result=$nuevaConexion->ExecuteQuery($query); 
 
@@ -17,7 +17,16 @@
             $fila=$nuevaConexion->GetRowsWithColumn($result); 
             $_SESSION["id_usuario"]=$fila["id_usuario"]; 
             $_SESSION["usuario"]=$fila["nombre"];
-            echo $_SESSION["usuario"]; 
+            $_SESSION['usuario_tipo']=$fila["tipo"]; 
+            $_SESSION["usuario_nombre"]=$fila["nombre"]; 
+            $_SESSION["usuario_id"]=$fila["id_usuario"]; 
+            $result->free();
+            $nuevaConexion->ClearResults();
+            if($_SESSION["usuario_tipo"]==="empleado"){
+                header("Location: ../dashboard_empleado.php"); 
+                exit;
+            }
+
             if(!isset($_POST["router"])){
                 header("Location:buscarVuelos.php"); 
             }

@@ -112,5 +112,28 @@
             }
         }
         
+        public function insertarUsuario($nombre, $apellidoPat, $apellidoMat, $fecha_nac, $correo, $pass){
+
+            $query = "INSERT INTO usuarios(
+                nombre,
+                a_paterno,
+                a_materno,
+                fecha_nac,
+                correo,
+                password
+            )
+            VALUES('$nombre','$apellidoPat','$apellidoMat','$fecha_nac','$correo','$pass')"; 
+
+            $result = $this->NewConn->ExecuteQuery($query);
+
+            if($result){
+                $this->NewConn->ClearResults();
+                return true;
+            }else{
+                echo "Error al insertar usuario";
+                return false;
+            }
+        }
+
     }
 ?>

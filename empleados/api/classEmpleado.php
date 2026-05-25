@@ -16,7 +16,7 @@
         }
 
         public function getEmpleadoById($id){
-            $query="select id_empleado, nombre, a_paterno, a_materno, sueldo, hora_entrada, hora_salida, id_jefe from empleados where id_empleado=$id";
+            $query="call sp_getEmpleado($id)";
             $result=$this->NewConn->ExecuteQuery($query); 
             $empleado = null;
             if($result){
@@ -29,7 +29,9 @@
                         "sueldo"=>$fila["sueldo"],
                         "hora_entrada"=>$fila["hora_entrada"],
                         "hora_salida"=>$fila["hora_salida"],
-                        "id_jefe"=>$fila["id_jefe"]
+                        "id_jefe"=>$fila["id_jefe"],
+                        "correo"=>$fila["correo"],
+                        "password"=>$fila["password"]
                     ]; 
                 }
                 $result->free();
@@ -52,7 +54,7 @@
             }
 
         }
-        public function actualizarEmpleado($id,$nombre,$a_paterno,$a_materno,$sueldo,$hora_entrada,$hora_salida,$id_jefe){
+        public function actualizarEmpleado($id,$nombre,$a_paterno,$a_materno,$sueldo,$hora_entrada,$hora_salida,$correo,$pass,$id_jefe){
             $sql = "UPDATE empleados SET
             nombre='$nombre',
             a_paterno='$a_paterno',
@@ -60,6 +62,8 @@
             sueldo='$sueldo',
             hora_entrada='$hora_entrada',
             hora_salida='$hora_salida',
+            password='$pass',
+            correo='$correo',
             id_jefe='$id_jefe'
             WHERE id_empleado='$id'
             ";
@@ -70,7 +74,7 @@
         }
 
         public function eliminarEmpleado($id_empleado){
-            $query="delete from empleados where id_empleado=$id_empleado"; 
+            $query="call sp_eliminarEmpleado($id_empleado)"; 
             $result=$this->NewConn->ExecuteQuery($query); 
             if(!$result){
                 echo "Ocurrio un error al eliminar el empleado"; 

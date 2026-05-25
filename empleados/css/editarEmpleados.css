@@ -1,0 +1,180 @@
+/* =========================
+   BASE
+========================= */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+h2{
+    text-align: center;
+    margin: 35px 0 15px;
+    color: #1e3a8a;
+    font-size: 32px;
+}
+
+/* =========================
+   CONTENEDOR FORMULARIO
+========================= */
+.fondo-formulario{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.fondo-formulario form{
+    width: 100%;
+    max-width: 780px;
+
+    background: #ffffff;
+    padding: 35px;
+
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* =========================
+   CAMPOS
+========================= */
+.fondo-formulario form > div{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fondo-formulario label{
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.fondo-formulario input,
+.fondo-formulario select{
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+
+    font-size: 15px;
+    color: #111827;
+    background: #ffffff;
+
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.fondo-formulario input:focus,
+.fondo-formulario select:focus{
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
+}
+
+.fondo-formulario input::placeholder{
+    color: #9ca3af;
+}
+
+/* =========================
+   CAMPOS ANCHOS
+========================= */
+.input-jefe,
+.input-correo,
+.input-pass{
+    grid-column: span 2;
+}
+
+/* =========================
+   ERROR
+========================= */
+.contenedor-error{
+    grid-column: span 2;
+
+    width: 100%;
+
+    background: #fee2e2;
+    border: 1px solid #ef4444;
+    color: #991b1b;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 13px 15px;
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.contenedor-error img{
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.contenedor-error p{
+    margin: 0;
+}
+
+/* =========================
+   INPUT CON ERROR
+========================= */
+.input-error input,
+.input-error select{
+    border: 2px solid #ef4444 !important;
+    background: #fff1f2;
+}
+
+.input-error label{
+    color: #b91c1c;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+.fondo-formulario button{
+    grid-column: span 2;
+
+    padding: 15px;
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #2563eb;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    box-shadow: 0 10px 20px rgba(37,99,235,0.25);
+}
+
+.fondo-formulario button:hover{
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.fondo-formulario button:active{
+    transform: scale(0.98);
+}
