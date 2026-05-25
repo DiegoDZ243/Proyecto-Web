@@ -1,7 +1,6 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    require('api/classEmpleado.php'); 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
     $empleado=new empleado();
     $empleadoActual=$empleado->getEmpleadoById(1); 
     $listEmpleados=$empleado->getEmpleados(); 
