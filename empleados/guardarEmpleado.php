@@ -8,9 +8,14 @@
     $apePat = $_POST['apellidoPat'];
     $apeMat = $_POST['apellidoMat'];
     $salario = $_POST['salario'];
+    $hora_entrada=$_POST["hora_entrada"]; 
+    $hora_salida=$_POST["hora_salida"]; 
+    $id_jefe=$_POST["id_jefe"]; 
+    $email=$_POST["email"]; 
+    $pass=$_POST["pass"]; 
+    // Se registra al jefe 1, solo para pruebas
+    $empleado->insert($nombre, $apeMat, $apeMat, $salario,$hora_entrada,$hora_salida,1,$email,$pass); 
 
-    $empleado->insert($nombre, $apeMat, $apeMat, $salario); 
-
-    header("Location: agregarEmpleados.php");
+    header("Location: consultarEmpleados.php");
     exit;
 ?>

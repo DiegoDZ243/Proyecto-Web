@@ -1,6 +1,6 @@
 <?php
 
-include("../Conexion/Conexion.php");
+include("../Conexion/classConnectionMySQL.php");
 
 $conexion = new ConnectionMySQL();
 
@@ -53,7 +53,7 @@ $resultado = $conexion->ExecuteQuery($sql);
 
     <td>
 
-        <a href="editarEmpleado.php?id=<?php echo $fila['id_empleado']; ?>">
+        <a href="editarEmpleados.php?id=<?php echo $fila['id_empleado']; ?>">
             Editar
         </a>
 

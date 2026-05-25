@@ -1,1 +1,4 @@
-<p>prueba</p>
+<?php 
+    header("Location: consultarEmpleados.php"); 
+
+?>

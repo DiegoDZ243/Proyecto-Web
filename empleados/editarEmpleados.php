@@ -1,14 +1,12 @@
 <?php
+    // Dirección de la api
+    require("api/classEmpleado.php"); 
+    // Nombre de la clase dentro de la api
+    $claseEmpleados=new empleado(); 
 
-include("Conexión.php");
+    // Uso de la api para obtener el empleado con GET["id"] que es el que se manda a la url
 
-$id = $_GET['id'];
-
-$sql = "SELECT * FROM empleados WHERE id_empleado = '$id'";
-
-$resultado = mysqli_query($conn, $sql);
-
-$fila = mysqli_fetch_assoc($resultado);
+    $empleadoActual=$claseEmpleados->getEmpleadoById($_GET["id"]);
 
 ?>
 
@@ -24,34 +22,35 @@ $fila = mysqli_fetch_assoc($resultado);
 
 <form action="guardarActualizacion.php" method="POST">
 
-    <input type="hidden" name="id" value="<?php echo $fila['id_empleado']; ?>">
+    <input type="hidden" name="id" value="<?= $empleadoActual["id_empleado"] ?>">
 
-    Nombre:
-    <input type="text" name="nombre" value="<?php echo $fila['nombre']; ?>">
+    <label>Nombre:</label>
+    <!-- Para valores puntuales usar "< ?=  ?>" (sin el espacio entre < ?; solo que si lo junto marca error, jaja)-->
+    <input type="text" name="nombre" value="<?= $empleadoActual["nombre"] ?>">
     <br><br>
 
     Apellido Paterno:
-    <input type="text" name="a_paterno" value="<?php echo $fila['a_paterno']; ?>">
+    <input type="text" name="a_paterno" value="<?= $empleadoActual["a_paterno"] ?>">
     <br><br>
 
     Apellido Materno:
-    <input type="text" name="a_materno" value="<?php echo $fila['a_materno']; ?>">
+    <input type="text" name="a_materno" value="<?= $empleadoActual["a_materno"] ?>">
     <br><br>
 
     Sueldo:
-    <input type="text" name="sueldo" value="<?php echo $fila['sueldo']; ?>">
+    <input type="text" name="sueldo" value="<?= $empleadoActual["sueldo"] ?>">
     <br><br>
 
     Hora Entrada:
-    <input type="time" name="hora_entrada" value="<?php echo $fila['hora_entrada']; ?>">
+    <input type="time" name="hora_entrada" value="<?=  $empleadoActual["hora_entrada"] ?>">
     <br><br>
 
     Hora Salida:
-    <input type="time" name="hora_salida" value="<?php echo $fila['hora_salida']; ?>">
+    <input type="time" name="hora_salida" value="<?= $empleadoActual["hora_salida"] ?>">
     <br><br>
 
     ID Jefe:
-    <input type="text" name="id_jefe" value="<?php echo $fila['id_jefe']; ?>">
+    <input type="text" name="id_jefe" value="<?= $empleadoActual["id_jefe"] ?>">
     <br><br>
 
     <button type="submit">

@@ -1,13 +1,10 @@
 <?php
+    require("api/classEmpleado.php"); 
 
-include("Conexión.php");
+    $claseEmpleados=new empleado(); 
 
-$id = $_GET['id'];
+    $claseEmpleados->eliminarEmpleado($_GET["id"]); 
 
-$sql = "DELETE FROM empleados WHERE id_empleado = '$id'";
-
-mysqli_query($conn, $sql);
-
-header("Location: consultarEmpleados.php");
+    header("Location: consultarEmpleados.php"); 
 
 ?>
