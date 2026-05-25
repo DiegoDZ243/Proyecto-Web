@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuarios</title>
+    <title>CRUD Usuarios</title>
     <link rel="stylesheet" href="css/usuarios.css">
 
     <!-- ICONOS -->
@@ -22,7 +22,7 @@
             </div>
 
             <div>
-                <h2>CRUD Usuarios</h2>
+                <h2>Usuarios</h2>
                 <p>Sistema de Gestión</p>
             </div>
 
