@@ -1,7 +1,7 @@
 <?php
     //config_db.php
-    define('HOST','localhost:3306'); 
+    define('HOST','localhost'); 
     define('USER','root'); 
-    define('PASSWORD','holamundo123'); 
+    define('PASSWORD',''); 
     define('DATABASE','aeropuerto'); 
 ?>
