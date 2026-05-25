@@ -8,13 +8,14 @@
     $router=$_POST["router"];  
     $nuevaConexion=new ConnectionMySQL();
     $nuevaConexion->CreateConnection(); 
-    $query="select nombre from usuarios where correo='$correo' and password='$pass'"; 
+    $query="select id_usuario,nombre from usuarios where correo='$correo' and password='$pass'"; 
 
     $result=$nuevaConexion->ExecuteQuery($query); 
 
     if($result){
         if($nuevaConexion->GetRowCount($result)>0){
             $fila=$nuevaConexion->GetRowsWithColumn($result); 
+            $_SESSION["id_usuario"]=$fila["id_usuario"]; 
             $_SESSION["usuario"]=$fila["nombre"];
             echo $_SESSION["usuario"]; 
             if(!isset($_POST["router"])){

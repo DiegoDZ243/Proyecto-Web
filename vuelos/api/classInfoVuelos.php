@@ -103,6 +103,14 @@
             }   
             return $listaDeVuelosFiltrados;          
         }
+
+        public function eliminarBoleto($id_boleto){
+            $query="delete from boletos where id_boleto=$id_boleto"; 
+            $result=$this->NewConn->ExecuteQuery($query); 
+            if(!$result){
+                echo "Ocurrió un error al eliminar :("; 
+            }
+        }
         
     }
 ?>

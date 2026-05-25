@@ -120,6 +120,13 @@ for each row
     end $
 delimiter ;
 
+delimiter $
+create trigger trigger_cupo_eliminar after delete on boletos
+for each row
+	begin
+		update vuelos set cupo=cupo+1 where id_vuelo=OLD.id_vuelo; 
+    end $
+delimiter ;
 
 -- PROCEDIMIENTOS ALMACENADOS
 drop procedure if exists sp_getVuelos; 
@@ -282,7 +289,7 @@ BEGIN
 END $
 DELIMITER ;
 
-
+select cupo from vuelos where id_vuelo=1; 
 
 call sp_getVuelos();
 call sp_getVuelosMas();
