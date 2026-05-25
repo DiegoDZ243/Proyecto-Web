@@ -80,7 +80,20 @@
             $a_paterno = $boleto['a_paterno'];
             $a_materno = $boleto['a_materno'];
             $query="call sp_insertarBoletos($id_vuelo,'$asiento','$nombre','$a_paterno','$a_materno',$usuario)";
-             $this->NewConn->ExecuteQuery($query);
+            $this->NewConn->ExecuteQuery($query);
+        }
+
+        public function getCupo(){
+            $query="select cupo from vuelos where id_vuelo=$this->id_vuelo"; 
+            $result=$this->NewConn->ExecuteQuery($query); 
+            $cupo=null; 
+            if($result){
+                $fila=$this->NewConn->GetRowsWithColumn($result);
+                $cupo=$fila["cupo"]; 
+            }else{  
+                echo "Hubo un error al recuperar el cupo"; 
+            }
+            return $cupo; 
         }
 
     }

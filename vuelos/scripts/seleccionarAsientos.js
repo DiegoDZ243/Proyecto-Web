@@ -93,7 +93,7 @@ function generaAsientoElegido(asiento){
 
 function quitarAsientoElegido(asiento){
     const asientoAQuitar=document.getElementById(`asientoBoleto-${asiento}`); 
-    dashBoardBoletos.removeChild(asientoAQuitar); 
+    if(asientoAQuitar!=null) dashBoardBoletos.removeChild(asientoAQuitar); 
 }
 
 function actualizarEstadoBoton(){
@@ -118,7 +118,9 @@ btnConfirmar.addEventListener('click',(e)=>{
     
     const inputParaPost=document.getElementById("asientoInput"); 
     inputParaPost.value=asientosActuales.toString(); 
+    document.getElementById("pasajeros").value=pasajeros; 
 }); 
+
 
 generarAsientos();
 actualizarEstadoBoton(); 

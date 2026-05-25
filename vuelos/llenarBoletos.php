@@ -1,10 +1,17 @@
 <?php
     session_start(); 
+
+    if(!isset($_SESSION["usuario"])){
+        header("Location: buscarVuelos.php"); 
+    }
+
     $asientos = explode(",", $_POST["asientos"]);
     $id_vuelo =$_POST['vuelo']; 
     require("api/classVuelo.php"); 
     $vueloActual=new vuelo($id_vuelo); 
     $infoVuelo=$vueloActual->getInfo(); 
+
+
 ?>
 
 <!DOCTYPE html>
