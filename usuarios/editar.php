@@ -12,7 +12,9 @@ $query = "SELECT * FROM usuarios WHERE id_usuario = '$id'";
 $result = $NewConn->ExecuteQuery($query);
 
 $row = $NewConn->GetRows($result);
-
+if(!$row){
+    die("Usuario no encontrado");
+}
 ?>
 
 <!DOCTYPE html>
