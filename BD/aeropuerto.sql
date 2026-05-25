@@ -66,9 +66,9 @@ INSERT INTO destinos (id_destino, ciudad,imagen) VALUES
 (5, 'Mérida','https://kunukhotel.com/wp-content/uploads/2025/03/Slide_y_Preview_Cosas_que_hacer_en_merida_7d0fbba96e.webp');
 
 INSERT INTO vuelos (id_origen ,fecha, hora_salida, embarque, precio, cupo, id_destino) VALUES
-(5,'2026-05-23', '06:30:00', 'Bloque A, Acceso 1', 1450.00, 43, 1),
-(2,'2026-05-24', '06:30:00', 'Bloque A, Acceso 1', 1350.00, 48, 1),
-(3,'2026-06-13', '07:30:00', 'Bloque B, Acceso 1', 1450.00, 48, 1),
+(5,'2026-05-25', '06:30:00', 'Bloque A, Acceso 1', 1450.00, 43, 1),
+(2,'2026-05-25', '06:30:00', 'Bloque A, Acceso 1', 1350.00, 48, 1),
+(3,'2026-05-26', '07:30:00', 'Bloque B, Acceso 1', 1450.00, 48, 1),
 (3,'2026-07-23', '06:30:00', 'Bloque A, Acceso 1', 1450.00, 48, 1),
 (1,'2026-07-17', '08:15:00', 'Bloque B, Acceso 3', 1799.00, 43, 2),
 (3,'2026-07-23', '09:15:00', 'Bloque C, Acceso 3', 1799.00, 48, 2),

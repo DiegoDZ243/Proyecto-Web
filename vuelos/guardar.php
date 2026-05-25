@@ -3,7 +3,7 @@
     
     // Verificar que el usuario esté logeado
     if (!isset($_SESSION['usuario_id'])) {
-        header('Location: ../index.html');
+        header('Location: buscarVuelos.php');
         exit();
     }
     

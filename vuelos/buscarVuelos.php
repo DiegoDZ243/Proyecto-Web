@@ -257,6 +257,7 @@
             <?php if(isset($_GET["err"]) || isset($_GET["registro"])): ?>
                 fondoOverlay.hidden=false; 
             <?php endif ?>
+            
             botonLogin.addEventListener('click',(e)=>{
                 <?php if(!isset($_SESSION["usuario"])):?>
                     e.preventDefault(); 

@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="css/seleccionarAsientos.css">
     <link rel="stylesheet" href="css/barraSuperiorExt.css">
     <link rel="stylesheet" href="css/barraLateralPasajeros.css">
+    <link rel="stylesheet" href="css/registro.css">
 </head>
 
 <body>
@@ -102,6 +103,77 @@
             </div>
         </form>
     </div>
+
+    <!-- Registro -->
+    <div class="fondo-overlay" id="overlay-registro" hidden>
+        <form id="formulario-registro" method="post" action="registrar.php">
+            <input name="router" value="seleccionarAsientos.php" hidden>
+
+            <div class="encabezado-login">
+                <div class="contenedor-titulo">
+                    <h1>Crear cuenta</h1>
+                    <button type="button" id="btnSalirRegistro">X</button>
+                </div>
+            </div>
+
+            <div class="cuerpo-login">
+                <div class="texto-login">
+                    <p>Regístrate para comprar boletos y consultar tus vuelos</p>
+                    <img src="img/icn-login.png" alt="icono registro">
+                </div>
+
+                <div class="error-login" id="error-registro" hidden>
+                    <p id="texto-error-registro">Todos los campos son obligatorios</p>
+                </div>
+            </div>
+
+            <div class="fondo-login">
+                <div class="contenedor-usuario-login">
+                    <label>Nombre: </label>
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                </div>
+
+                <div class="contenedor-usuario-login">
+                    <label>Apellido Paterno: </label>
+                    <input type="text" name="apellidoPat" placeholder="Apellido paterno" required>
+                </div>
+
+                <div class="contenedor-usuario-login">
+                    <label>Apellido Materno: </label>
+                    <input type="text" name="apellidoMat" placeholder="Apellido materno" required>
+                </div>
+
+                <div class="contenedor-usuario-login">
+                    <label>Fecha de nacimiento: </label>
+                    <input type="date" name="fecha_nac" required>
+                </div>
+
+                <div class="contenedor-usuario-login">
+                    <label>Email: </label>
+                    <input type="email" name="correo" placeholder="Email" required>
+                </div>
+
+                <div class="contenedor-pass-login">
+                    <label>Contraseña: </label>
+                    <input type="password" name="pass" placeholder="Contraseña" required>
+                </div>
+
+                <div class="contenedor-pass-login">
+                    <label>Confirma contraseña: </label>
+                    <input type="password" name="confirmarPass" placeholder="Confirmar contraseña" required>
+                </div>
+
+                <div class="contenedor-boton-login">
+                    <button type="submit">Registrarme</button>
+                </div>
+            </div>
+
+            <div class="pie-login">
+                <p>¿Ya tienes cuenta? <a id="abrir-login">Inicia sesión aquí</a></p>
+            </div>
+        </form>
+    </div>
+
     <?php endif ?>
     <section class="contenedor-dividido">
         <section class="contenedor-board-boletos columna">
@@ -228,6 +300,11 @@
                 e.preventDefault(); 
             }
         }); 
+        
+        <?php if(isset($_GET["err"]) || isset($_GET["registro"])): ?>
+            fondoOverlay.hidden=false; 
+            formularioLogin.classList.add("sobrepuesta"); 
+        <?php endif ?>
 
         botonLogin.addEventListener('click',(e)=>{
             <?php if(!isset($_SESSION["usuario"])):?>
@@ -320,6 +397,48 @@
             pasajerosActualesActualizados.innerText="0"; 
         }); 
 
+    </script>
+           <script>
+            const overlayLogin = document.getElementById("overlay");
+            const overlayRegistro = document.getElementById("overlay-registro");
+
+            const btnSalirRegistro = document.getElementById("btnSalirRegistro");
+            const abrirRegistro = document.querySelector(".pie-login a");
+            const abrirLogin = document.getElementById("abrir-login");
+
+            if(abrirRegistro){
+                abrirRegistro.addEventListener("click", function(){
+                    overlayLogin.hidden = true;
+                    overlayRegistro.hidden = false;
+                });
+            }
+
+            btnSalirRegistro.addEventListener("click", function(){
+                overlayRegistro.hidden = true;
+                overlayLogin.hidden=false; 
+            });
+
+            abrirLogin.addEventListener("click", function(){
+                overlayRegistro.hidden = true;
+                overlayLogin.hidden = false;
+            });
+    </script>
+
+    <script>
+        const formularioRegistro = document.getElementById("formulario-registro");
+        const errorRegistro = document.getElementById("error-registro");
+        const textoErrorRegistro = document.getElementById("texto-error-registro");
+
+        formularioRegistro.addEventListener("submit", function(e){
+            const pass = formularioRegistro.elements["pass"].value.trim();
+            const confirmarPass = formularioRegistro.elements["confirmarPass"].value.trim();
+
+            if(pass !== confirmarPass){
+                e.preventDefault();
+                textoErrorRegistro.textContent = "Las contraseñas no coinciden";
+                errorRegistro.hidden = false;
+            }
+        });
     </script>
 
 </body>
