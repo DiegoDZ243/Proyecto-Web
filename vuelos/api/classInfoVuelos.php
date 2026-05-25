@@ -4,7 +4,7 @@
 
         public function __construct()
         {
-            require('../Conexion/classConnectionMySQL.php');
+            require_once('../Conexion/classConnectionMySQL.php');
             $this->NewConn=new ConnectionMySQL(); 
             $this->NewConn->CreateConnection(); 
             
@@ -133,6 +133,53 @@
                 echo "Error al insertar usuario";
                 return false;
             }
+        }
+
+        public function getBoletoById($id_boleto){
+            $query="select * from boletos where id_boleto=$id_boleto"; 
+            $result=$this->NewConn->ExecuteQuery($query); 
+            if($result){
+                if($this->NewConn->GetRowCount($result)>0){
+                    $boleto=$this->NewConn->GetRowsWithColumn($result); 
+                    $result->free();
+                    $this->NewConn->ClearResults();
+                    return $boleto; 
+                }else{
+                    return null; 
+                }
+            }else{
+                echo "Ocurrió un error al obtener el boleto :("; 
+                return null; 
+            }
+        }
+
+        public function actualizarBoleto($id_boleto, $id_vuelo, $asiento, $nombre, $a_paterno, $a_materno){
+
+            $id_boleto = intval($id_boleto);
+            $id_vuelo = intval($id_vuelo);
+
+            $asiento = $asiento;
+            $nombre = $nombre;
+            $a_paterno = $a_paterno;
+            $a_materno = $a_materno;
+
+            $query = "CALL sp_actualizarBoleto(
+                $id_boleto,
+                $id_vuelo,
+                '$asiento',
+                '$nombre',
+                '$a_paterno',
+                '$a_materno'
+            )";
+
+            $result = $this->NewConn->ExecuteQuery($query);
+
+            if($result){
+                $this->NewConn->ClearResults();
+                return true;
+            }
+
+            return false;
         }
 
     }

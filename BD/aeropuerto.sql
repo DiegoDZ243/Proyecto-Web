@@ -361,6 +361,31 @@ begin
 end $
 delimiter ; 
 
+DROP PROCEDURE IF EXISTS sp_actualizarBoleto;
+
+DELIMITER $
+
+CREATE PROCEDURE sp_actualizarBoleto(
+    IN p_id_boleto INT,
+    IN p_id_vuelo INT,
+    IN p_asiento VARCHAR(5),
+    IN p_nombre VARCHAR(50),
+    IN p_a_paterno VARCHAR(50),
+    IN p_a_materno VARCHAR(50)
+)
+BEGIN
+    UPDATE boletos
+    SET 
+        id_vuelo = p_id_vuelo,
+        asiento = p_asiento,
+        nombre = p_nombre,
+        a_paterno = p_a_paterno,
+        a_materno = p_a_materno
+    WHERE id_boleto = p_id_boleto;
+END $
+
+DELIMITER ;
+
 call sp_buscarCorreo('admin@aero.com','1234'); 
 
 call sp_getNombresEmpleados(1);

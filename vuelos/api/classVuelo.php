@@ -5,7 +5,7 @@
 
         public function __construct($id_vuelo)
         {
-            require('../Conexion/classConnectionMySQL.php');
+            require_once('../Conexion/classConnectionMySQL.php');
             $this->id_vuelo=$id_vuelo; 
             $this->NewConn=new ConnectionMySQL(); 
             $this->NewConn->CreateConnection(); 

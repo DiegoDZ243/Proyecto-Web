@@ -26,8 +26,8 @@ $query = "SELECT
         JOIN vuelos v ON b.id_vuelo = v.id_vuelo
         JOIN destinos o ON v.id_origen = o.id_destino
         JOIN destinos d ON v.id_destino = d.id_destino
-        WHERE b.id_usuario = $id_usuario
-        ORDER BY v.fecha DESC";
+        WHERE b.id_usuario = $id_usuario and b.checked_in = 0
+        ORDER BY v.fecha DESC, o.ciudad DESC";
 
 $result = $conn->ExecuteQuery($query);
 $boletos = [];
@@ -143,7 +143,7 @@ $conn->CloseConnection();
                                 <input name="id_boleto" value="<?= $boleto["id_boleto"] ?>" hidden>
                                 <button id="btnReembolsar-<?= $boleto["id_boleto"] ?>"><img src="img/icn_eliminar.png"> Reembolsar Boleto </button>
                             </form>
-                            <form class="form-boleto" method="post" action="update.php" >
+                            <form class="form-boleto" method="post" action="editarBoleto.php?id_boleto=<?= $boleto["id_boleto"] ?>" >
                                 <input name="id_boleto" value="<?= $boleto["id_boleto"] ?>" hidden>
                                 <button id="btnReembolsar-<?= $boleto["id_boleto"] ?>"><img src="img/icn_modificar.png"> Modificar Boleto </button>
                             </form>

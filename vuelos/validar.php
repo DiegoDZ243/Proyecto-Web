@@ -1,11 +1,12 @@
 <?php
     session_start(); 
-    require("../Conexion/classConnectionMySQL.php"); 
+    
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     $correo=$_POST["correo"]; 
     $pass=$_POST["pass"];
     $router=$_POST["router"];  
+    require("../Conexion/classConnectionMySQL.php"); 
     $nuevaConexion=new ConnectionMySQL();
     $nuevaConexion->CreateConnection(); 
     $query="call sp_buscarCorreo('$correo','$pass')"; 
