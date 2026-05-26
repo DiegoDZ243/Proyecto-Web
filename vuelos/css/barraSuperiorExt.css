@@ -1,6 +1,4 @@
-/* =========================
-   BARRA SUPERIOR
-========================= */
+
 
 .barra-superior{
     width: 100%;
@@ -26,9 +24,6 @@
     gap: 20px;
 }
 
-/* =========================
-   IZQUIERDA
-========================= */
 
 .contenedor-volver-menu{
     display: flex;
@@ -71,9 +66,7 @@
     font-size: 18px;
 }
 
-/* =========================
-   LOGO
-========================= */
+
 
 .contendor-logo{
     display: flex;
@@ -93,9 +86,6 @@
     object-fit: contain;
 }
 
-/* =========================
-   DERECHA
-========================= */
 
 .contendor-enlaces{
     display: flex;
@@ -109,9 +99,7 @@
     font-weight: 500;
 }
 
-/* =========================
-   LINKS
-========================= */
+
 
 .contendor-enlaces a{
     text-decoration: none;
@@ -135,9 +123,6 @@
     transform: translateY(-1px);
 }
 
-/* =========================
-   LOGIN
-========================= */
 
 #login-boton{
     background: #fef2f2;

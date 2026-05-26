@@ -1,6 +1,4 @@
-/* =========================
-   NAVBAR
-========================= */
+/* Barra de navegación */
 
 .navbar{
     background: white;
@@ -21,9 +19,7 @@
     z-index: 100;
 }
 
-/* =========================
-   LADO IZQUIERDO
-========================= */
+/* Parte izquierda */
 
 .navbar > div:first-child{
     display: flex;
@@ -31,9 +27,7 @@
     gap: 22px;
 }
 
-/* =========================
-   BOTON REGRESAR
-========================= */
+/* Botón regresar*/
 
 .navbar > div:first-child a{
     display: inline-flex;
@@ -70,9 +64,7 @@
     object-fit: contain;
 }
 
-/* =========================
-   TITULO
-========================= */
+/* Titulo */
 
 .navbar h1{
     font-size: 26px;
@@ -81,9 +73,7 @@
     white-space: nowrap;
 }
 
-/* =========================
-   LADO DERECHO
-========================= */
+/* Lado derecho */
 
 .usuario-info{
     display: flex;
@@ -100,9 +90,7 @@
     color: #111827;
 }
 
-/* =========================
-   BOTON CERRAR SESION
-========================= */
+/* btn cerrar sesión */
 
 .logout-btn{
     background: #fee2e2;

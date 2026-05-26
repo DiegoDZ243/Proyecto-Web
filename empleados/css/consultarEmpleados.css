@@ -11,18 +11,12 @@ body{
     color: #1f2937;
 }
 
-/* =========================
-   CONTENEDOR
-========================= */
 .contenedor-empleados{
     width: 95%;
     max-width: 1250px;
     margin: 35px auto;
 }
 
-/* =========================
-   ENCABEZADO
-========================= */
 .encabezado-empleados{
     display: flex;
     justify-content: space-between;
@@ -55,9 +49,6 @@ body{
     transform: translateY(-1px);
 }
 
-/* =========================
-   TABLA
-========================= */
 .tabla-contenedor{
     width: 100%;
     overflow-x: auto;
@@ -95,9 +86,7 @@ tbody tr:hover{
     background: #eff6ff;
 }
 
-/* =========================
-   ACCIONES
-========================= */
+
 .acciones{
     display: flex;
     gap: 8px;

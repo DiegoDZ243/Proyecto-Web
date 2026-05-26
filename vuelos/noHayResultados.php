@@ -1,9 +1,18 @@
 <?php
     session_start();
+    require("api/classInfoVuelos.php"); 
     $origen = $_SESSION['origen'] ?? '';
     $destino = $_SESSION['destino'] ?? '';
     $fecha_salida = $_SESSION['fecha_salida'] ?? '';
     $pasajeros = $_SESSION['pasajeros'] ?? '';
+
+    if(!isset($origen) || !isset($destino) || !isset($fecha_salida) || !isset($pasajeros)){
+        header("Location:buscarVuelos.php"); 
+    }
+
+    $claseVuelos=new vuelos(); 
+    $nombreOrigen=$claseVuelos->getDestinoNombre($origen); 
+    $nombreDestino=$claseVuelos->getDestinoNombre($destino); 
 ?>
 
 <!DOCTYPE html>
@@ -13,20 +22,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AeroPHP - Sin resultados</title>
     <link rel="stylesheet" href="css/buscarVuelos.css">
+    <link rel="stylesheet" href="css/barraSuperiorExt.css">
     <link rel="stylesheet" href="css/noHayResultados.css">
 </head>
 <body>
-    <section class="barra-superior">
+     <section class="barra-superior">
         <div class="contenedor-barra">
-            <div class="contendor-logo">
-                <h5>AeroPHP</h5>
-                <img src="img/icn-logo.png" alt="logo aeropuerto">
+            <div class="contenedor-volver-menu">
+                <a href="buscarVuelos.php">
+                    <img src="img/icn-regresar.png">
+                    <h3>Regresar</h3>
+                </a>
+                <div class="contendor-logo">
+                    <h5>AeroPHP</h5>
+                    <img src="img/icn-logo.png" alt="logo aeropuerto">
+                </div>
             </div>
             <div class="contendor-enlaces">
-                <a>Mis boletos</a>
-                <a>
+                <?php if(isset($_SESSION["usuario"])):?>
+                    <h3> ¡Bienvenido, <?= $_SESSION["usuario"] ?>!</h3>
+                <?php endif ?>
+                <a href="mis_boletos.php">Mis boletos</a>
+                <a href="../logout.php" id="login-boton" style="color: red;">
                     <img src="img/icn-usuario.png" alt="iconoUsuario">
-                    <h5>Mi cuenta</h5>
+                    <?php if(isset($_SESSION["usuario"])){ ?>
+                        <h5>Cerrar sesión</h5>
+
+                    <?php } else { ?>
+                        <h5>Iniciar sesión</h5>
+                    <?php } ?>
                 </a>
             </div>
         </div>
@@ -46,11 +70,11 @@
                 <div class="grid-filtros">
                     <div class="filtro-item">
                         <span class="label">Origen:</span>
-                        <span class="valor"><?= $origen ?></span>
+                        <span class="valor"><?= $nombreOrigen ?></span>
                     </div>
                     <div class="filtro-item">
                         <span class="label">Destino:</span>
-                        <span class="valor"><?= $destino ?></span>
+                        <span class="valor"><?= $nombreDestino ?></span>
                     </div>
                     <div class="filtro-item">
                         <span class="label">Fecha de salida:</span>

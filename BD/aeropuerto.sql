@@ -69,11 +69,11 @@ INSERT INTO vuelos (id_origen ,fecha, hora_salida, embarque, precio, cupo, id_de
 (5,'2026-05-25', '06:30:00', 'Bloque A, Acceso 1', 1450.00, 43, 1),
 (2,'2026-05-25', '06:30:00', 'Bloque A, Acceso 1', 1350.00, 48, 1),
 (3,'2026-05-26', '07:30:00', 'Bloque B, Acceso 1', 1450.00, 48, 1),
-(3,'2026-07-23', '06:30:00', 'Bloque A, Acceso 1', 1450.00, 48, 1),
-(1,'2026-07-17', '08:15:00', 'Bloque B, Acceso 3', 1799.00, 43, 2),
-(3,'2026-07-23', '09:15:00', 'Bloque C, Acceso 3', 1799.00, 48, 2),
-(2,'2026-07-17', '11:00:00', 'Bloque C, Acceso 2', 2300.00, 45, 3),
-(2,'2026-07-10', '12:30:00', 'Bloque C, Acceso 2', 3300.00, 47, 3),
+(3,'2026-05-27', '06:30:00', 'Bloque A, Acceso 1', 1000.00, 48, 1),
+(1,'2026-05-28', '08:15:00', 'Bloque B, Acceso 3', 1799.00, 43, 2),
+(3,'2026-05-29', '09:15:00', 'Bloque C, Acceso 3', 999.00, 48, 2),
+(2,'2026-05-30', '11:00:00', 'Bloque C, Acceso 2', 2300.00, 45, 3),
+(2,'2026-05-31', '12:30:00', 'Bloque C, Acceso 2', 3300.00, 47, 3),
 (3,'2026-07-27', '15:45:00', 'Bloque A, Acceso 4', 2500.00, 48, 4),
 (1,'2026-07-28', '16:45:00', 'Bloque A, Acceso 1', 2500.00, 47, 4),
 (3,'2026-07-30', '15:45:00', 'Bloque A, Acceso 2', 2500.00, 48, 4),
@@ -360,6 +360,19 @@ begin
 	select 'usuario', nombre ,id_usuario as id_usuario ,correo, password from usuarios where correo=p_correo and password=p_password; 
 end $
 delimiter ; 
+
+DROP PROCEDURE IF EXISTS sp_validarCorreoDuplicado;
+
+DELIMITER $
+
+CREATE PROCEDURE sp_validarCorreoDuplicado(IN p_correo VARCHAR(40))
+BEGIN
+    SELECT correo FROM usuarios WHERE correo = p_correo
+    UNION ALL
+    SELECT correo FROM empleados WHERE correo = p_correo;
+END $
+
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS sp_actualizarBoleto;
 

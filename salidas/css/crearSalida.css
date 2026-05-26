@@ -1,6 +1,4 @@
-/* =========================
-   BASE
-========================= */
+/* Base */
 
 *{
     margin: 0;
@@ -14,9 +12,7 @@ body{
     min-height: 100vh;
 }
 
-/* =========================
-   FONDO FORMULARIO
-========================= */
+/* Fondo formulario */
 
 .fondo-crear-salidas{
     width: calc(100% - 40px);
@@ -37,9 +33,7 @@ body{
     align-items: center;
 }
 
-/* =========================
-   FORMULARIO
-========================= */
+/* Formulario */
 
 #formulario-salidas{
     width: 100%;
@@ -52,9 +46,7 @@ body{
 
     box-shadow: 0 8px 24px rgba(37,99,235,0.12);
 }
-/* =========================
-   ENCABEZADO
-========================= */
+/* Encabezado */
 
 .contenedor-encabezado{
     margin-bottom: 30px;
@@ -71,9 +63,7 @@ body{
     font-size: 15px;
 }
 
-/* =========================
-   ERROR
-========================= */
+/* Error */
 
 .error-message{
     display: none;
@@ -103,9 +93,7 @@ body{
     font-size: 15px;
 }
 
-/* =========================
-   CONTENEDORES
-========================= */
+/* Contenedores */
 
 .contenedor-inputs{
     display: flex;
@@ -139,9 +127,7 @@ body{
     grid-column: span 2;
 }
 
-/* =========================
-   LABELS
-========================= */
+/* Labels*/
 
 .contenedor-origen label,
 .contenedor-destino label,
@@ -153,9 +139,7 @@ body{
     font-size: 15px;
 }
 
-/* =========================
-   INPUTS
-========================= */
+/* inputs */
 
 select,
 input{
@@ -188,9 +172,7 @@ input:focus{
     box-shadow: 0 0 0 4px rgba(37,99,235,0.14);
 }
 
-/* =========================
-   FECHA Y HORA
-========================= */
+/* Fecha y hora */
 
 .contenedor-fecha,
 .contenedor-hora{
@@ -222,9 +204,7 @@ input:focus{
     gap: 8px;
 }
 
-/* =========================
-   PRECIO
-========================= */
+/* Precio */
 
 .contenedor-precio input{
     font-size: 18px;
@@ -232,9 +212,7 @@ input:focus{
     color: #2563eb;
 }
 
-/* =========================
-   BOTON
-========================= */
+/* Botón */
 
 .contenedor-boton{
     margin-top: 34px;
@@ -264,49 +242,4 @@ input:focus{
 #btn-guardar:hover{
     transform: translateY(-2px);
     opacity: 0.92;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width: 768px){
-
-    .fondo-crear-salidas{
-        width: calc(100% - 32px);
-        margin: 28px auto;
-        padding: 16px;
-    }
-
-    #formulario-salidas{
-        padding: 24px;
-    }
-
-    .contenedor-encabezado h3{
-        font-size: 26px;
-    }
-
-    .contenedor-origen-destino,
-    .contenedor-fecha-hora{
-        grid-template-columns: 1fr;
-    }
-
-    .contenedor-fecha-hora,
-    .contenedor-precio{
-        grid-column: span 1;
-    }
-
-    .contenedor-fecha,
-    .contenedor-hora{
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .contenedor-boton{
-        justify-content: stretch;
-    }
-
-    #btn-guardar{
-        width: 100%;
-    }
 }

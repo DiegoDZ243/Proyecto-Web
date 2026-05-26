@@ -1,6 +1,4 @@
-/* =========================
-   BASE
-========================= */
+
 
 *{
     margin: 0;
@@ -12,10 +10,6 @@
 body{
     background: #f3f4f6;
 }
-
-/* =========================
-   MODAL GENERAL
-========================= */
 
 .contenedor-eliminar,
 .contenedor-confirmacion{
@@ -37,9 +31,6 @@ body{
     padding: 20px;
 }
 
-/* =========================
-   TARJETA MODAL
-========================= */
 
 .contenedor-eliminar > *,
 .contenedor-confirmacion > *{
@@ -51,9 +42,6 @@ body{
     text-align: center;
 }
 
-/* =========================
-   CAJA INTERNA
-========================= */
 
 .contenedor-eliminar::before,
 .contenedor-confirmacion::before{
@@ -79,9 +67,6 @@ body{
     padding: 220px;
 }
 
-/* =========================
-   IMAGENES
-========================= */
 
 .contenedor-eliminar img,
 .contenedor-confirmacion img{
@@ -93,9 +78,6 @@ body{
     margin-bottom: 20px;
 }
 
-/* =========================
-   TITULOS
-========================= */
 
 .contenedor-eliminar h3,
 .contenedor-confirmacion h3{
@@ -110,9 +92,6 @@ body{
     line-height: 1.3;
 }
 
-/* =========================
-   TEXTO
-========================= */
 
 .cuerpo-eliminar p,
 .contenedor-confirmacion p{
@@ -125,10 +104,6 @@ body{
     max-width: 420px;
 }
 
-/* =========================
-   PIE BOTONES
-========================= */
-
 .eliminar-pie{
     display: flex;
 
@@ -137,9 +112,6 @@ body{
     margin-top: 28px;
 }
 
-/* =========================
-   BOTONES
-========================= */
 
 .eliminar-pie button{
     border: none;

@@ -33,6 +33,11 @@ if($password != $confirmarPass){
     exit();
 }
 
+if($claseUsuario->correoExiste($correo)){
+    header("Location: $router?errRegistro=correo");
+    exit();
+}
+
 if($claseUsuario->insertarUsuario($nombre, $apellidoPat, $apellidoMat, $fecha_nac, $correo, $password)){
     header("Location: $router?registro=ok");
 }else{

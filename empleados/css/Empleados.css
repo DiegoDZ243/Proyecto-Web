@@ -1,6 +1,3 @@
-/* =========================
-   BASE
-========================= */
 *{
     margin: 0;
     padding: 0;
@@ -14,9 +11,6 @@ body{
     color: #1f2937;
 }
 
-/* =========================
-   TÍTULO
-========================= */
 h1{
     text-align: center;
     margin: 30px 0 20px;
@@ -24,9 +18,6 @@ h1{
     font-size: 32px;
 }
 
-/* =========================
-   CONTENEDOR FORMULARIO
-========================= */
 .fondo-formulario{
     width: 100%;
     display: flex;
@@ -49,9 +40,6 @@ h1{
     gap: 20px;
 }
 
-/* =========================
-   INPUTS
-========================= */
 .fondo-formulario form > div{
     display: flex;
     flex-direction: column;
@@ -86,18 +74,12 @@ h1{
     box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
 }
 
-/* =========================
-   CAMPOS DE ANCHO COMPLETO
-========================= */
 .input-jefe,
 .input-correo,
 .input-pass{
     grid-column: span 2;
 }
 
-/* =========================
-   ERROR GENERAL
-========================= */
 .contenedor-error{
     grid-column: span 2;
 
@@ -126,9 +108,6 @@ h1{
     margin: 0;
 }
 
-/* =========================
-   INPUT CON ERROR
-========================= */
 .input-error input,
 .input-error select{
     border: 2px solid #ef4444 !important;
@@ -139,9 +118,6 @@ h1{
     color: #b91c1c;
 }
 
-/* =========================
-   BOTÓN
-========================= */
 .fondo-formulario button{
     grid-column: span 2;
 

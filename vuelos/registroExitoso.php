@@ -8,18 +8,12 @@
         exit();
     }
     
-    $boletos = $_POST['boletos'];
-    $_SESSION['boletos'] = $boletos; // Guardar los boletos en la sesión para usarlos en registroExitoso.php
+    $boletos = $_SESSION['boletos'];
     require("api/classVuelo.php"); 
+    $vueloActual=new vuelo($boletos[0]["vuelo"]); 
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
-    $vueloActual=new vuelo($boletos[0]["vuelo"]);
-    foreach($boletos as $b){
-        $vueloActual->registrarBoleto($b, $_SESSION['usuario_id']); 
-    }
     $infoVuelo=$vueloActual->getInfo();
-    header("Location: registroExitoso.php");
-    exit();
 ?>
 
 <!DOCTYPE html>

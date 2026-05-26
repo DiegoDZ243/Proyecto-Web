@@ -105,9 +105,10 @@
             </div>
         </form>
     </div>
+    <!-- Registro -->
     <div class="fondo-overlay" id="overlay-registro" hidden>
         <form id="formulario-registro" method="post" action="registrar.php">
-            <input name="router" value="buscarVuelos.php" hidden>
+            <input name="router" value="seleccionarVuelo.php" hidden>
 
             <div class="encabezado-login">
                 <div class="contenedor-titulo">
@@ -122,8 +123,26 @@
                     <img src="img/icn-login.png" alt="icono registro">
                 </div>
 
-                <div class="error-login" id="error-registro" hidden>
-                    <p id="texto-error-registro">Todos los campos son obligatorios</p>
+                <div class="error-login" id="error-registro" 
+                    <?php if(!isset($_GET["errRegistro"])): ?> hidden <?php endif ?>>
+                    
+                    <p id="texto-error-registro">
+                        <?php
+                            if(isset($_GET["errRegistro"])){
+                                if($_GET["errRegistro"] == "campos"){
+                                    echo "Todos los campos son obligatorios";
+                                }else if($_GET["errRegistro"] == "pass"){
+                                    echo "Las contraseñas no coinciden";
+                                }else if($_GET["errRegistro"] == "correo"){
+                                    echo "El correo ya está registrado";
+                                }else{
+                                    echo "Ocurrió un error al registrar";
+                                }
+                            }else{
+                                echo "Todos los campos son obligatorios";
+                            }
+                        ?>
+                    </p>
                 </div>
             </div>
 
@@ -268,6 +287,10 @@
             const btnSalirRegistro = document.getElementById("btnSalirRegistro");
             const abrirRegistro = document.querySelector(".pie-login a");
             const abrirLogin = document.getElementById("abrir-login");
+
+            <?php if(isset($_GET["errRegistro"])): ?>
+                overlayRegistro.hidden=false; 
+            <?php endif ?>
 
             if(abrirRegistro){
                 abrirRegistro.addEventListener("click", function(){

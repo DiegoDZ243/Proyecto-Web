@@ -1,6 +1,4 @@
-/* =========================
-   ASIDE PASAJEROS
-========================= */
+/* Barra lateral */
 
 .barra-lateral-pasajeros{
     position: fixed;
@@ -25,9 +23,7 @@
     z-index: 100;
 }
 
-/* =========================
-   TITULO
-========================= */
+/* Titulo */
 
 .titulo-input-pasajeros{
     display: flex;
@@ -46,9 +42,7 @@
     line-height: 1.4;
 }
 
-/* =========================
-   ERROR
-========================= */
+/* Error */
 
 .error-pasajeros{
     background: #fee2e2;
@@ -64,9 +58,7 @@
     font-size: 14px;
 }
 
-/* =========================
-   INPUT
-========================= */
+/* input */
 
 .input-pasajeros{
     display: flex;
@@ -105,9 +97,7 @@
     color: #111827;
 }
 
-/* =========================
-   BOTON
-========================= */
+/* boton */
 
 #btnLimpiarAsientos{
     border: none;

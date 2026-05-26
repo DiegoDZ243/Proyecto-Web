@@ -1,7 +1,3 @@
-/* =========================
-   BASE
-========================= */
-
 *{
     margin: 0;
     padding: 0;
@@ -14,9 +10,7 @@ body{
     min-height: 100vh;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* Barra de navegación*/
 
 .navbar{
     background: white;
@@ -80,9 +74,7 @@ body{
     transform: translateY(-2px);
 }
 
-/* =========================
-   CONTENEDOR
-========================= */
+/* Contenedor */
 
 .contenedor{
     max-width: 1200px;
@@ -109,9 +101,7 @@ body{
     font-size: 16px;
 }
 
-/* =========================
-   GRID
-========================= */
+/* Grid */
 
 .grid{
     display: grid;
@@ -119,9 +109,7 @@ body{
     gap: 24px;
 }
 
-/* =========================
-   TARJETAS
-========================= */
+/* Tarjetas */
 
 .card{
     background: white;
@@ -180,9 +168,7 @@ body{
     margin-bottom: 24px;
 }
 
-/* =========================
-   BOTONES
-========================= */
+/* Botones */
 
 .button-group{
     width: 100%;

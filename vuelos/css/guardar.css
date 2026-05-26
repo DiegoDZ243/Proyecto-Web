@@ -109,13 +109,3 @@ body{
     transform: translateY(-2px);
 }
 
-@media(max-width:768px){
-
-    .contenedor-confirmacion{
-        padding: 25px;
-    }
-
-    .encabezado h1{
-        font-size: 1.8rem;
-    }
-}

@@ -182,5 +182,37 @@
             return false;
         }
 
+        public function correoExiste($correo){
+
+            $query = "CALL sp_validarCorreoDuplicado('$correo')";
+            $result = $this->NewConn->ExecuteQuery($query);
+
+            $existe = false;
+
+            if($result){
+                if($this->NewConn->GetRowCount($result) > 0){
+                    $existe = true;
+                }
+
+                $result->free();
+                $this->NewConn->ClearResults();
+            }
+
+            return $existe;
+        }
+
+        public function getDestinoNombre($id_destino){
+            $query="select ciudad from destinos where id_destino=$id_destino"; 
+            $result = $this->NewConn->ExecuteQuery($query);
+            if($result){
+                $fila=$this->NewConn->GetRowsWithColumn($result); 
+                $destino=$fila["ciudad"]; 
+                $result->free();
+                $this->NewConn->ClearResults();
+                return $destino; 
+            }
+            return null; 
+        }
+
     }
 ?>

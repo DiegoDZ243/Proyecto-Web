@@ -1,5 +1,6 @@
 <?php
     session_start(); 
+    unset($_SESSION["completado"]);
     require('api/classInfoVuelos.php'); 
     $vuelos=new vuelos(); 
     $listaDestinos=$vuelos->getDestinos(); 
@@ -95,8 +96,26 @@
                     <img src="img/icn-login.png" alt="icono registro">
                 </div>
 
-                <div class="error-login" id="error-registro" hidden>
-                    <p id="texto-error-registro">Todos los campos son obligatorios</p>
+                <div class="error-login" id="error-registro" 
+                    <?php if(!isset($_GET["errRegistro"])): ?> hidden <?php endif ?>>
+                    
+                    <p id="texto-error-registro">
+                        <?php
+                            if(isset($_GET["errRegistro"])){
+                                if($_GET["errRegistro"] == "campos"){
+                                    echo "Todos los campos son obligatorios";
+                                }else if($_GET["errRegistro"] == "pass"){
+                                    echo "Las contraseñas no coinciden";
+                                }else if($_GET["errRegistro"] == "correo"){
+                                    echo "El correo ya está registrado";
+                                }else{
+                                    echo "Ocurrió un error al registrar";
+                                }
+                            }else{
+                                echo "Todos los campos son obligatorios";
+                            }
+                        ?>
+                    </p>
                 </div>
             </div>
 
@@ -434,6 +453,11 @@
             const abrirRegistro = document.querySelector(".pie-login a");
             const abrirLogin = document.getElementById("abrir-login");
 
+            <?php if(isset($_GET["errRegistro"])): ?>
+                overlayRegistro.hidden=false; 
+            <?php endif ?>
+
+
             if(abrirRegistro){
                 abrirRegistro.addEventListener("click", function(){
                     overlayLogin.hidden = true;
@@ -455,6 +479,8 @@
         const formularioRegistro = document.getElementById("formulario-registro");
         const errorRegistro = document.getElementById("error-registro");
         const textoErrorRegistro = document.getElementById("texto-error-registro");
+
+        
 
         formularioRegistro.addEventListener("submit", function(e){
             const pass = formularioRegistro.elements["pass"].value.trim();
